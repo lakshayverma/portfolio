@@ -19,6 +19,7 @@ export interface PromptConfig {
   additionalElements: Record<string, boolean>;
   customAdditions: string;
   compiledOutputOverride?: string;
+  summary: string;
 }
 
 const DB_NAME = 'PromptStudioDB_Next_v3';

@@ -18,7 +18,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A fierce samurai dual-wielding katanas amidst a sprawling field of crimson spider lilies. The wind whips their traditional garb as they stare down a group of heavily armored bandits. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 2",
@@ -32,7 +33,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A fierce samurai dual-wielding katanas amidst a sprawling field of crimson spider lilies. The wind whips their traditional garb as they stare down a group of heavily armored bandits. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 3",
@@ -46,7 +48,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A fierce samurai dual-wielding katanas amidst a sprawling field of crimson spider lilies. The wind whips their traditional garb as they stare down a group of heavily armored bandits. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 4",
@@ -61,7 +64,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A fierce samurai dual-wielding katanas amidst a sprawling field of crimson spider lilies. The wind whips their traditional garb as they stare down a group of heavily armored bandits. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 5",
@@ -75,7 +79,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A fierce samurai dual-wielding katanas amidst a sprawling field of crimson spider lilies. The wind whips their traditional garb as they stare down a group of heavily armored bandits. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 6",
@@ -91,7 +96,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A quiet, tender moment petting a massive, scarred wolf companion in the deep, pristine snow. The serene silence of the winter mountain contrasts with the violence of the era. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 7",
@@ -105,7 +111,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A quiet, tender moment petting a massive, scarred wolf companion in the deep, pristine snow. The serene silence of the winter mountain contrasts with the violence of the era. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 8",
@@ -119,7 +126,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A quiet, tender moment petting a massive, scarred wolf companion in the deep, pristine snow. The serene silence of the winter mountain contrasts with the violence of the era. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 9",
@@ -134,7 +142,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A quiet, tender moment petting a massive, scarred wolf companion in the deep, pristine snow. The serene silence of the winter mountain contrasts with the violence of the era. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 10",
@@ -148,7 +157,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A quiet, tender moment petting a massive, scarred wolf companion in the deep, pristine snow. The serene silence of the winter mountain contrasts with the violence of the era. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 11",
@@ -164,7 +174,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "The towering Mount Yotei violently erupting in the distance. The sky turns a terrifying ash-gray and orange, raining embers down upon a panicked feudal village. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 12",
@@ -178,7 +189,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "The towering Mount Yotei violently erupting in the distance. The sky turns a terrifying ash-gray and orange, raining embers down upon a panicked feudal village. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 13",
@@ -192,7 +204,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "The towering Mount Yotei violently erupting in the distance. The sky turns a terrifying ash-gray and orange, raining embers down upon a panicked feudal village. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 14",
@@ -207,7 +220,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "The towering Mount Yotei violently erupting in the distance. The sky turns a terrifying ash-gray and orange, raining embers down upon a panicked feudal village. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 15",
@@ -221,7 +235,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "The towering Mount Yotei violently erupting in the distance. The sky turns a terrifying ash-gray and orange, raining embers down upon a panicked feudal village. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 16",
@@ -237,7 +252,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A stealthy assassin dropping silently from the high branch of an ancient pine tree. The moonlight glints off their unsheathed wakizashi just before impact. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 17",
@@ -251,7 +267,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A stealthy assassin dropping silently from the high branch of an ancient pine tree. The moonlight glints off their unsheathed wakizashi just before impact. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 18",
@@ -265,7 +282,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A stealthy assassin dropping silently from the high branch of an ancient pine tree. The moonlight glints off their unsheathed wakizashi just before impact. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 19",
@@ -280,7 +298,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A stealthy assassin dropping silently from the high branch of an ancient pine tree. The moonlight glints off their unsheathed wakizashi just before impact. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 20",
@@ -294,7 +313,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A stealthy assassin dropping silently from the high branch of an ancient pine tree. The moonlight glints off their unsheathed wakizashi just before impact. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 21",
@@ -310,7 +330,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A weary traveler playing a melancholy tune on a shamisen by a crackling campfire. The sparks dance up toward a brilliant, unpolluted starry night sky. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 22",
@@ -324,7 +345,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A weary traveler playing a melancholy tune on a shamisen by a crackling campfire. The sparks dance up toward a brilliant, unpolluted starry night sky. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 23",
@@ -338,7 +360,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A weary traveler playing a melancholy tune on a shamisen by a crackling campfire. The sparks dance up toward a brilliant, unpolluted starry night sky. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 24",
@@ -353,7 +376,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A weary traveler playing a melancholy tune on a shamisen by a crackling campfire. The sparks dance up toward a brilliant, unpolluted starry night sky. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 25",
@@ -367,7 +391,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A weary traveler playing a melancholy tune on a shamisen by a crackling campfire. The sparks dance up toward a brilliant, unpolluted starry night sky. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 26",
@@ -383,7 +408,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A cinematic samurai standoff on the center of a perfectly frozen, glass-like lake. The reflection of the combatants is perfectly mirrored beneath the ice. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 27",
@@ -397,7 +423,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A cinematic samurai standoff on the center of a perfectly frozen, glass-like lake. The reflection of the combatants is perfectly mirrored beneath the ice. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 28",
@@ -411,7 +438,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A cinematic samurai standoff on the center of a perfectly frozen, glass-like lake. The reflection of the combatants is perfectly mirrored beneath the ice. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 29",
@@ -426,7 +454,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A cinematic samurai standoff on the center of a perfectly frozen, glass-like lake. The reflection of the combatants is perfectly mirrored beneath the ice. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 30",
@@ -440,7 +469,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A cinematic samurai standoff on the center of a perfectly frozen, glass-like lake. The reflection of the combatants is perfectly mirrored beneath the ice. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 31",
@@ -456,7 +486,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A loud, smoky volley fired from an early matchlock rifle. The heavy recoil pushes the ashigaru back as the devastating projectile shatters enemy armor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 32",
@@ -470,7 +501,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A loud, smoky volley fired from an early matchlock rifle. The heavy recoil pushes the ashigaru back as the devastating projectile shatters enemy armor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 33",
@@ -484,7 +516,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A loud, smoky volley fired from an early matchlock rifle. The heavy recoil pushes the ashigaru back as the devastating projectile shatters enemy armor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 34",
@@ -499,7 +532,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A loud, smoky volley fired from an early matchlock rifle. The heavy recoil pushes the ashigaru back as the devastating projectile shatters enemy armor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 35",
@@ -513,7 +547,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A loud, smoky volley fired from an early matchlock rifle. The heavy recoil pushes the ashigaru back as the devastating projectile shatters enemy armor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 36",
@@ -529,7 +564,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "Riding a swift horse through a dense, golden forest shedding autumn leaves. The movement creates a vortex of red and yellow foliage trailing behind the rider. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 37",
@@ -543,7 +579,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "Riding a swift horse through a dense, golden forest shedding autumn leaves. The movement creates a vortex of red and yellow foliage trailing behind the rider. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 38",
@@ -557,7 +594,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "Riding a swift horse through a dense, golden forest shedding autumn leaves. The movement creates a vortex of red and yellow foliage trailing behind the rider. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 39",
@@ -572,7 +610,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "Riding a swift horse through a dense, golden forest shedding autumn leaves. The movement creates a vortex of red and yellow foliage trailing behind the rider. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 40",
@@ -586,7 +625,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "Riding a swift horse through a dense, golden forest shedding autumn leaves. The movement creates a vortex of red and yellow foliage trailing behind the rider. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 41",
@@ -602,7 +642,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A superhuman display of reflexes, deflecting a flaming arrow mid-flight with a swift katana strike. The sparks from the deflected arrow illuminate the samurai's determined eyes. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 42",
@@ -616,7 +657,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A superhuman display of reflexes, deflecting a flaming arrow mid-flight with a swift katana strike. The sparks from the deflected arrow illuminate the samurai's determined eyes. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 43",
@@ -630,7 +672,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A superhuman display of reflexes, deflecting a flaming arrow mid-flight with a swift katana strike. The sparks from the deflected arrow illuminate the samurai's determined eyes. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 44",
@@ -645,7 +688,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A superhuman display of reflexes, deflecting a flaming arrow mid-flight with a swift katana strike. The sparks from the deflected arrow illuminate the samurai's determined eyes. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 45",
@@ -659,7 +703,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A superhuman display of reflexes, deflecting a flaming arrow mid-flight with a swift katana strike. The sparks from the deflected arrow illuminate the samurai's determined eyes. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 46",
@@ -675,7 +720,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A serene moment meditating deeply at a weathered, moss-covered Inari shrine. Ghostly fox spirits seem to dance at the edge of the warrior's peripheral vision. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 47",
@@ -689,7 +735,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A serene moment meditating deeply at a weathered, moss-covered Inari shrine. Ghostly fox spirits seem to dance at the edge of the warrior's peripheral vision. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 48",
@@ -703,7 +750,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A serene moment meditating deeply at a weathered, moss-covered Inari shrine. Ghostly fox spirits seem to dance at the edge of the warrior's peripheral vision. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 49",
@@ -718,7 +766,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A serene moment meditating deeply at a weathered, moss-covered Inari shrine. Ghostly fox spirits seem to dance at the edge of the warrior's peripheral vision. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 50",
@@ -732,7 +781,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A serene moment meditating deeply at a weathered, moss-covered Inari shrine. Ghostly fox spirits seem to dance at the edge of the warrior's peripheral vision. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     }
   ]
 }

@@ -18,7 +18,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A diligent farmer watering a massive field of vibrant, blooming spring crops. The early morning sun casts a warm, hopeful glow over the lush, green valley. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 2",
@@ -32,7 +33,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A diligent farmer watering a massive field of vibrant, blooming spring crops. The early morning sun casts a warm, hopeful glow over the lush, green valley. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 3",
@@ -46,7 +48,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A diligent farmer watering a massive field of vibrant, blooming spring crops. The early morning sun casts a warm, hopeful glow over the lush, green valley. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 4",
@@ -61,7 +64,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A diligent farmer watering a massive field of vibrant, blooming spring crops. The early morning sun casts a warm, hopeful glow over the lush, green valley. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 5",
@@ -75,7 +79,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A diligent farmer watering a massive field of vibrant, blooming spring crops. The early morning sun casts a warm, hopeful glow over the lush, green valley. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 6",
@@ -91,7 +96,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A peaceful afternoon spent fishing off the weathered wooden pier by the ocean. The gentle waves lap against the shore as a rare, legendary fish suddenly bites the line. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 7",
@@ -105,7 +111,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A peaceful afternoon spent fishing off the weathered wooden pier by the ocean. The gentle waves lap against the shore as a rare, legendary fish suddenly bites the line. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 8",
@@ -119,7 +126,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A peaceful afternoon spent fishing off the weathered wooden pier by the ocean. The gentle waves lap against the shore as a rare, legendary fish suddenly bites the line. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 9",
@@ -134,7 +142,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A peaceful afternoon spent fishing off the weathered wooden pier by the ocean. The gentle waves lap against the shore as a rare, legendary fish suddenly bites the line. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 10",
@@ -148,7 +157,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A peaceful afternoon spent fishing off the weathered wooden pier by the ocean. The gentle waves lap against the shore as a rare, legendary fish suddenly bites the line. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 11",
@@ -164,7 +174,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A dangerous, tense expedition deep into the perilous Skull Cavern. The dim light of a torch reveals swarms of flying serpents and glowing iridium nodes. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 12",
@@ -178,7 +189,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A dangerous, tense expedition deep into the perilous Skull Cavern. The dim light of a torch reveals swarms of flying serpents and glowing iridium nodes. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 13",
@@ -192,7 +204,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A dangerous, tense expedition deep into the perilous Skull Cavern. The dim light of a torch reveals swarms of flying serpents and glowing iridium nodes. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 14",
@@ -207,7 +220,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A dangerous, tense expedition deep into the perilous Skull Cavern. The dim light of a torch reveals swarms of flying serpents and glowing iridium nodes. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 15",
@@ -221,7 +235,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A dangerous, tense expedition deep into the perilous Skull Cavern. The dim light of a torch reveals swarms of flying serpents and glowing iridium nodes. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 16",
@@ -237,7 +252,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A charming, joyous scene of villagers dancing together at the vibrant Flower Festival. Colorful petals blow through the air amidst cheerful, rustic decorations. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 17",
@@ -251,7 +267,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A charming, joyous scene of villagers dancing together at the vibrant Flower Festival. Colorful petals blow through the air amidst cheerful, rustic decorations. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 18",
@@ -265,7 +282,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A charming, joyous scene of villagers dancing together at the vibrant Flower Festival. Colorful petals blow through the air amidst cheerful, rustic decorations. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 19",
@@ -280,7 +298,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A charming, joyous scene of villagers dancing together at the vibrant Flower Festival. Colorful petals blow through the air amidst cheerful, rustic decorations. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 20",
@@ -294,7 +313,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A charming, joyous scene of villagers dancing together at the vibrant Flower Festival. Colorful petals blow through the air amidst cheerful, rustic decorations. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 21",
@@ -310,7 +330,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A heartwarming moment petting a happy, well-fed cow in a sunlit barn. Dust motes dance in the sunbeams shining through the wooden slats. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 22",
@@ -324,7 +345,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A heartwarming moment petting a happy, well-fed cow in a sunlit barn. Dust motes dance in the sunbeams shining through the wooden slats. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 23",
@@ -338,7 +360,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A heartwarming moment petting a happy, well-fed cow in a sunlit barn. Dust motes dance in the sunbeams shining through the wooden slats. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 24",
@@ -353,7 +376,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A heartwarming moment petting a happy, well-fed cow in a sunlit barn. Dust motes dance in the sunbeams shining through the wooden slats. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 25",
@@ -367,7 +391,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A heartwarming moment petting a happy, well-fed cow in a sunlit barn. Dust motes dance in the sunbeams shining through the wooden slats. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 26",
@@ -383,7 +408,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "Riding a trusty horse briskly through the bustling center of Pelican Town. Villagers wave happily as the horse's hooves clop rhythmically on the cobblestone. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 27",
@@ -397,7 +423,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "Riding a trusty horse briskly through the bustling center of Pelican Town. Villagers wave happily as the horse's hooves clop rhythmically on the cobblestone. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 28",
@@ -411,7 +438,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "Riding a trusty horse briskly through the bustling center of Pelican Town. Villagers wave happily as the horse's hooves clop rhythmically on the cobblestone. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 29",
@@ -426,7 +454,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "Riding a trusty horse briskly through the bustling center of Pelican Town. Villagers wave happily as the horse's hooves clop rhythmically on the cobblestone. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 30",
@@ -440,7 +469,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "Riding a trusty horse briskly through the bustling center of Pelican Town. Villagers wave happily as the horse's hooves clop rhythmically on the cobblestone. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 31",
@@ -456,7 +486,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "The incredibly satisfying process of decorating the fully upgraded farmhouse. Cozy furniture, crackling fireplaces, and rare artifacts fill the welcoming space. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 32",
@@ -470,7 +501,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "The incredibly satisfying process of decorating the fully upgraded farmhouse. Cozy furniture, crackling fireplaces, and rare artifacts fill the welcoming space. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 33",
@@ -484,7 +516,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "The incredibly satisfying process of decorating the fully upgraded farmhouse. Cozy furniture, crackling fireplaces, and rare artifacts fill the welcoming space. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 34",
@@ -499,7 +532,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "The incredibly satisfying process of decorating the fully upgraded farmhouse. Cozy furniture, crackling fireplaces, and rare artifacts fill the welcoming space. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 35",
@@ -513,7 +547,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "The incredibly satisfying process of decorating the fully upgraded farmhouse. Cozy furniture, crackling fireplaces, and rare artifacts fill the welcoming space. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 36",
@@ -529,7 +564,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A chaotic, fast-paced battle swinging a galaxy sword against an overwhelming swarm of colorful slimes. Viscous, gelatinous splatters cover the dungeon walls. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 37",
@@ -543,7 +579,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A chaotic, fast-paced battle swinging a galaxy sword against an overwhelming swarm of colorful slimes. Viscous, gelatinous splatters cover the dungeon walls. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 38",
@@ -557,7 +594,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A chaotic, fast-paced battle swinging a galaxy sword against an overwhelming swarm of colorful slimes. Viscous, gelatinous splatters cover the dungeon walls. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 39",
@@ -572,7 +610,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A chaotic, fast-paced battle swinging a galaxy sword against an overwhelming swarm of colorful slimes. Viscous, gelatinous splatters cover the dungeon walls. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 40",
@@ -586,7 +625,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A chaotic, fast-paced battle swinging a galaxy sword against an overwhelming swarm of colorful slimes. Viscous, gelatinous splatters cover the dungeon walls. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 41",
@@ -602,7 +642,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "The awe-inspiring moment of finally harvesting a massive, magical giant pumpkin. The sheer scale of the crop dwarfs the proud farmer standing beside it. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 42",
@@ -616,7 +657,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "The awe-inspiring moment of finally harvesting a massive, magical giant pumpkin. The sheer scale of the crop dwarfs the proud farmer standing beside it. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 43",
@@ -630,7 +672,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "The awe-inspiring moment of finally harvesting a massive, magical giant pumpkin. The sheer scale of the crop dwarfs the proud farmer standing beside it. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 44",
@@ -645,7 +688,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "The awe-inspiring moment of finally harvesting a massive, magical giant pumpkin. The sheer scale of the crop dwarfs the proud farmer standing beside it. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 45",
@@ -659,7 +703,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "The awe-inspiring moment of finally harvesting a massive, magical giant pumpkin. The sheer scale of the crop dwarfs the proud farmer standing beside it. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 46",
@@ -675,7 +720,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "The magical, serene midnight event watching the glowing Moonlight Jellies migrate. Their soft blue luminescence reflects beautifully on the dark, calm ocean. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 47",
@@ -689,7 +735,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "The magical, serene midnight event watching the glowing Moonlight Jellies migrate. Their soft blue luminescence reflects beautifully on the dark, calm ocean. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 48",
@@ -703,7 +750,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "The magical, serene midnight event watching the glowing Moonlight Jellies migrate. Their soft blue luminescence reflects beautifully on the dark, calm ocean. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 49",
@@ -718,7 +766,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "The magical, serene midnight event watching the glowing Moonlight Jellies migrate. Their soft blue luminescence reflects beautifully on the dark, calm ocean. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 50",
@@ -732,7 +781,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "The magical, serene midnight event watching the glowing Moonlight Jellies migrate. Their soft blue luminescence reflects beautifully on the dark, calm ocean. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     }
   ]
 }

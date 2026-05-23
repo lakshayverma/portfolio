@@ -18,7 +18,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A nimble bandit executing a perfectly timed roll, narrowly dodging a massive, sweeping black blade from Maliketh. Dust kicks up in the ruined arena, illuminated by golden tree fragments falling from the sky. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 2",
@@ -32,7 +33,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A nimble bandit executing a perfectly timed roll, narrowly dodging a massive, sweeping black blade from Maliketh. Dust kicks up in the ruined arena, illuminated by golden tree fragments falling from the sky. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 3",
@@ -46,7 +48,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A nimble bandit executing a perfectly timed roll, narrowly dodging a massive, sweeping black blade from Maliketh. Dust kicks up in the ruined arena, illuminated by golden tree fragments falling from the sky. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 4",
@@ -61,7 +64,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A nimble bandit executing a perfectly timed roll, narrowly dodging a massive, sweeping black blade from Maliketh. Dust kicks up in the ruined arena, illuminated by golden tree fragments falling from the sky. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 5",
@@ -75,7 +79,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A nimble bandit executing a perfectly timed roll, narrowly dodging a massive, sweeping black blade from Maliketh. Dust kicks up in the ruined arena, illuminated by golden tree fragments falling from the sky. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 6",
@@ -91,7 +96,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "Malenia gracefully launching into her terrifying Waterfowl Dance. Scarlet rot petals bloom in mid-air as she descends with blinding speed toward a desperate challenger. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 7",
@@ -105,7 +111,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "Malenia gracefully launching into her terrifying Waterfowl Dance. Scarlet rot petals bloom in mid-air as she descends with blinding speed toward a desperate challenger. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 8",
@@ -119,7 +126,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "Malenia gracefully launching into her terrifying Waterfowl Dance. Scarlet rot petals bloom in mid-air as she descends with blinding speed toward a desperate challenger. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 9",
@@ -134,7 +142,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "Malenia gracefully launching into her terrifying Waterfowl Dance. Scarlet rot petals bloom in mid-air as she descends with blinding speed toward a desperate challenger. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 10",
@@ -148,7 +157,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "Malenia gracefully launching into her terrifying Waterfowl Dance. Scarlet rot petals bloom in mid-air as she descends with blinding speed toward a desperate challenger. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 11",
@@ -164,7 +174,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A solitary Tarnished standing atop a crumbling precipice, staring in awe at the colossal, glowing Erdtree dominating the horizon. The golden light reflects off their battle-scarred armor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 12",
@@ -178,7 +189,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A solitary Tarnished standing atop a crumbling precipice, staring in awe at the colossal, glowing Erdtree dominating the horizon. The golden light reflects off their battle-scarred armor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 13",
@@ -192,7 +204,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A solitary Tarnished standing atop a crumbling precipice, staring in awe at the colossal, glowing Erdtree dominating the horizon. The golden light reflects off their battle-scarred armor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 14",
@@ -207,7 +220,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A solitary Tarnished standing atop a crumbling precipice, staring in awe at the colossal, glowing Erdtree dominating the horizon. The golden light reflects off their battle-scarred armor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 15",
@@ -221,7 +235,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A solitary Tarnished standing atop a crumbling precipice, staring in awe at the colossal, glowing Erdtree dominating the horizon. The golden light reflects off their battle-scarred armor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 16",
@@ -237,7 +252,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "An epic confrontation with Starscourge Radahn in the sweeping, desolate dunes of Caelid. Massive purple gravity magic crackles as the gigantic general charges on his impossibly small steed. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 17",
@@ -251,7 +267,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "An epic confrontation with Starscourge Radahn in the sweeping, desolate dunes of Caelid. Massive purple gravity magic crackles as the gigantic general charges on his impossibly small steed. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 18",
@@ -265,7 +282,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "An epic confrontation with Starscourge Radahn in the sweeping, desolate dunes of Caelid. Massive purple gravity magic crackles as the gigantic general charges on his impossibly small steed. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 19",
@@ -280,7 +298,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "An epic confrontation with Starscourge Radahn in the sweeping, desolate dunes of Caelid. Massive purple gravity magic crackles as the gigantic general charges on his impossibly small steed. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 20",
@@ -294,7 +313,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "An epic confrontation with Starscourge Radahn in the sweeping, desolate dunes of Caelid. Massive purple gravity magic crackles as the gigantic general charges on his impossibly small steed. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 21",
@@ -310,7 +330,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A powerful sorcerer planting their staff into the ground to unleash the blinding, concentrated energy beam of Comet Azur. Magical shockwaves ripple across the ancient stone floor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 22",
@@ -324,7 +345,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A powerful sorcerer planting their staff into the ground to unleash the blinding, concentrated energy beam of Comet Azur. Magical shockwaves ripple across the ancient stone floor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 23",
@@ -338,7 +360,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A powerful sorcerer planting their staff into the ground to unleash the blinding, concentrated energy beam of Comet Azur. Magical shockwaves ripple across the ancient stone floor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 24",
@@ -353,7 +376,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A powerful sorcerer planting their staff into the ground to unleash the blinding, concentrated energy beam of Comet Azur. Magical shockwaves ripple across the ancient stone floor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 25",
@@ -367,7 +391,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A powerful sorcerer planting their staff into the ground to unleash the blinding, concentrated energy beam of Comet Azur. Magical shockwaves ripple across the ancient stone floor. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 26",
@@ -383,7 +408,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "Godrick the Grafted screaming in agony and triumph as he violently grafts a freshly severed, roaring dragon head onto his arm. Sparks and flames burst from the necrotic amalgamation. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 27",
@@ -397,7 +423,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "Godrick the Grafted screaming in agony and triumph as he violently grafts a freshly severed, roaring dragon head onto his arm. Sparks and flames burst from the necrotic amalgamation. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 28",
@@ -411,7 +438,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "Godrick the Grafted screaming in agony and triumph as he violently grafts a freshly severed, roaring dragon head onto his arm. Sparks and flames burst from the necrotic amalgamation. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 29",
@@ -426,7 +454,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "Godrick the Grafted screaming in agony and triumph as he violently grafts a freshly severed, roaring dragon head onto his arm. Sparks and flames burst from the necrotic amalgamation. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 30",
@@ -440,7 +469,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "Godrick the Grafted screaming in agony and triumph as he violently grafts a freshly severed, roaring dragon head onto his arm. Sparks and flames burst from the necrotic amalgamation. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 31",
@@ -456,7 +486,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A cautious explorer navigating the hauntingly beautiful, underground eternal city of Nokron. Bioluminescent flora and shimmering false stars cast an otherworldly blue glow over the silent ruins. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 32",
@@ -470,7 +501,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A cautious explorer navigating the hauntingly beautiful, underground eternal city of Nokron. Bioluminescent flora and shimmering false stars cast an otherworldly blue glow over the silent ruins. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 33",
@@ -484,7 +516,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A cautious explorer navigating the hauntingly beautiful, underground eternal city of Nokron. Bioluminescent flora and shimmering false stars cast an otherworldly blue glow over the silent ruins. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 34",
@@ -499,7 +532,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A cautious explorer navigating the hauntingly beautiful, underground eternal city of Nokron. Bioluminescent flora and shimmering false stars cast an otherworldly blue glow over the silent ruins. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 35",
@@ -513,7 +547,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A cautious explorer navigating the hauntingly beautiful, underground eternal city of Nokron. Bioluminescent flora and shimmering false stars cast an otherworldly blue glow over the silent ruins. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 36",
@@ -529,7 +564,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "Ranni the Witch sitting gracefully atop a stone tower wall, bathed in soft moonlight. Her spectral secondary face faintly overlaps her doll-like features as she gazes thoughtfully into the distance. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 37",
@@ -543,7 +579,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "Ranni the Witch sitting gracefully atop a stone tower wall, bathed in soft moonlight. Her spectral secondary face faintly overlaps her doll-like features as she gazes thoughtfully into the distance. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 38",
@@ -557,7 +594,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "Ranni the Witch sitting gracefully atop a stone tower wall, bathed in soft moonlight. Her spectral secondary face faintly overlaps her doll-like features as she gazes thoughtfully into the distance. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 39",
@@ -572,7 +610,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "Ranni the Witch sitting gracefully atop a stone tower wall, bathed in soft moonlight. Her spectral secondary face faintly overlaps her doll-like features as she gazes thoughtfully into the distance. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 40",
@@ -586,7 +625,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "Ranni the Witch sitting gracefully atop a stone tower wall, bathed in soft moonlight. Her spectral secondary face faintly overlaps her doll-like features as she gazes thoughtfully into the distance. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 41",
@@ -602,7 +642,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A mounted warrior riding the spectral steed Torrent through the scarlet-rot corrupted swamps of Caelid. Monstrous dog-creatures loom ominously in the blood-red, hazy background. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 42",
@@ -616,7 +657,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A mounted warrior riding the spectral steed Torrent through the scarlet-rot corrupted swamps of Caelid. Monstrous dog-creatures loom ominously in the blood-red, hazy background. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 43",
@@ -630,7 +672,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A mounted warrior riding the spectral steed Torrent through the scarlet-rot corrupted swamps of Caelid. Monstrous dog-creatures loom ominously in the blood-red, hazy background. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 44",
@@ -645,7 +688,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A mounted warrior riding the spectral steed Torrent through the scarlet-rot corrupted swamps of Caelid. Monstrous dog-creatures loom ominously in the blood-red, hazy background. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 45",
@@ -659,7 +703,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A mounted warrior riding the spectral steed Torrent through the scarlet-rot corrupted swamps of Caelid. Monstrous dog-creatures loom ominously in the blood-red, hazy background. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 46",
@@ -675,7 +720,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A nightmarish encounter with the Godskin Duo in a grand, ruined temple. Black flame magic spirals dangerously between the impossibly thin apostle and the grotesque noble. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 47",
@@ -689,7 +735,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A nightmarish encounter with the Godskin Duo in a grand, ruined temple. Black flame magic spirals dangerously between the impossibly thin apostle and the grotesque noble. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 48",
@@ -703,7 +750,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A nightmarish encounter with the Godskin Duo in a grand, ruined temple. Black flame magic spirals dangerously between the impossibly thin apostle and the grotesque noble. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 49",
@@ -718,7 +766,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A nightmarish encounter with the Godskin Duo in a grand, ruined temple. Black flame magic spirals dangerously between the impossibly thin apostle and the grotesque noble. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 50",
@@ -732,7 +781,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A nightmarish encounter with the Godskin Duo in a grand, ruined temple. Black flame magic spirals dangerously between the impossibly thin apostle and the grotesque noble. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     }
   ]
 }

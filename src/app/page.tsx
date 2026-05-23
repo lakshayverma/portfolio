@@ -43,7 +43,8 @@ const DEFAULT_CONFIG: PromptConfig = {
   keywords: [],
   scenery: '',
   additionalElements: {},
-  customAdditions: ''
+  customAdditions: '',
+  summary: ''
 };
 
 export default function Page() {
@@ -61,6 +62,8 @@ export default function Page() {
   const [isMagicFilling, setIsMagicFilling] = useState(false);
   const [isEnhancingOutput, setIsEnhancingOutput] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [isDraggingOver, setIsDraggingOver] = useState(false);
+  const [isDraggingOverSummary, setIsDraggingOverSummary] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 800);
@@ -98,6 +101,7 @@ export default function Page() {
                     title: `${subj.name}: ${t.substring(0, 20)}...`,
                     subjectId: subj.id,
                     description: t,
+                    summary: t,
                     primaryRatio: '16:9'
                   });
                 } else {
@@ -109,7 +113,8 @@ export default function Page() {
                     id: `template-${subj.id}-${i}`,
                     title: `${subj.name}: ${t.title}`,
                     subjectId: subj.id,
-                    description: t.description,
+                    description: t.description || '',
+                    summary: t.summary || t.description || '',
                     timeOfDay: t.timeOfDay || '',
                     tone: t.tone || [],
                     imageStyle: t.imageStyle || '',
@@ -238,6 +243,11 @@ Available Option Lists (Select ONLY character-for-character exact matches from t
 6. Additional Elements (Identify which elements from this list are present/relevant): ${JSON.stringify(elements)}
 7. Keywords (Select up to 5 matching tags from this list): ${JSON.stringify(keywords)}
 
+Task:
+1. Match the best parameters from the lists above.
+2. Generate a highly detailed and premium "summary" text of the scene. Inside this summary, you MUST weave in variables in curly braces such as {{subjectId}}, {{timeOfDay}}, {{imageStyle}}, {{scenery}}, or {{tone}} in natural combinations to showcase variable interpolation.
+   Example summary template: "A heroic warrior in {{subjectId}} standing ready for combat during {{timeOfDay}} hours, rendered in a striking {{imageStyle}} styling."
+
 Return ONLY a valid, raw JSON object matching the schema below. Do NOT use markdown code blocks or add any comments.
 If no options match for a single-select field, return "". If no options match for a list field, return [].
 
@@ -251,7 +261,8 @@ Schema:
   "additionalElements": {
     "elementName": true
   },
-  "keywords": ["string"]
+  "keywords": ["string"],
+  "summary": "string containing variables like {{timeOfDay}}, {{imageStyle}}, {{tone}} etc."
 }
 `;
 
@@ -274,6 +285,7 @@ Schema:
             imageStyle: parsed.imageStyle || prev.imageStyle,
             tone: Array.isArray(parsed.tone) ? parsed.tone.filter((t: string) => tones.includes(t)) : prev.tone,
             keywords: Array.isArray(parsed.keywords) ? parsed.keywords.filter((k: string) => keywords.includes(k)) : prev.keywords,
+            summary: parsed.summary || prev.summary || parsed.description || prev.description,
             additionalElements: {
               ...prev.additionalElements,
               ...elementsMap
@@ -336,6 +348,26 @@ Original Content:
     });
   };
 
+  const insertVariable = (varStr: string) => {
+    const summaryInput = document.getElementsByName('summary')[0] as HTMLTextAreaElement;
+    const descInput = document.getElementsByName('description')[0] as HTMLTextAreaElement;
+    const input = document.activeElement === descInput ? descInput : (summaryInput || descInput);
+    if (input) {
+      const start = input.selectionStart;
+      const end = input.selectionEnd;
+      const text = input.value;
+      const before = text.substring(0, start);
+      const after = text.substring(end, text.length);
+      const newText = before + varStr + after;
+      const fieldName = input.getAttribute('name') as 'summary' | 'description';
+      setConfig(prev => ({ ...prev, [fieldName]: newText }));
+      setTimeout(() => {
+        input.focus();
+        input.setSelectionRange(start + varStr.length, start + varStr.length);
+      }, 10);
+    }
+  };
+
   const generatedOutput = useMemo(() => {
     if (!appData) return '';
     const context = config.outputContext || 'Image Prompt';
@@ -373,7 +405,7 @@ Original Content:
     if (context === 'YouTube Description') {
       return `🔥 ${config.title} | ${subjectName}
 
-${interpolateTemplate(config.description, config)}
+${interpolateTemplate(config.summary || config.description, config)}
 
 We are diving deep into ${subjectName} today. ${expandedSubject}. The vibe is ${config.tone?.join(', ') || 'epic'} as our primary objective is: ${config.goal}. 
 
@@ -386,7 +418,7 @@ ${hashtags}`.trim();
     }
 
     if (context === 'Image Prompt') {
-      const baseDesc = `${interpolateTemplate(config.description, config)}. ${config.scenery ? interpolateTemplate(config.scenery, config) + '.' : ''} ${expandedSubject}. ${expandedTime}. ${expandedStyle}. ${expandedTones ? 'Atmosphere is ' + expandedTones + '.' : ''} ${activeElements ? 'Featuring ' + activeElements + '.' : ''} ${expandedPlacement} ${expandedFont}. ${expandedGoal}. ${interpolateTemplate(config.customAdditions, config)}. ${(config.keywords || []).join(', ')}`.replace(/\s+/g, ' ').trim();
+      const baseDesc = `${interpolateTemplate(config.summary || config.description, config)}. ${config.scenery ? interpolateTemplate(config.scenery, config) + '.' : ''} ${expandedSubject}. ${expandedTime}. ${expandedStyle}. ${expandedTones ? 'Atmosphere is ' + expandedTones + '.' : ''} ${activeElements ? 'Featuring ' + activeElements + '.' : ''} ${expandedPlacement} ${expandedFont}. ${expandedGoal}. ${interpolateTemplate(config.customAdditions, config)}. ${(config.keywords || []).join(', ')}`.replace(/\s+/g, ' ').trim();
       
       if (config.promptSyntax === 'Midjourney') {
         return `${baseDesc} --ar ${config.primaryRatio} --style raw --v 6.0`;
@@ -399,11 +431,11 @@ ${hashtags}`.trim();
     }
 
     if (context === 'Twitter/X Post') {
-      return `🎮 ${config.title}\n\n${interpolateTemplate(config.description, config)}\n\n${expandedSubject} ${expandedTime}.\n\n${activeElements ? 'Highlighting: ' + activeElements : ''}\n\n${hashtags}`.trim();
+      return `🎮 ${config.title}\n\n${interpolateTemplate(config.summary || config.description, config)}\n\n${expandedSubject} ${expandedTime}.\n\n${activeElements ? 'Highlighting: ' + activeElements : ''}\n\n${hashtags}`.trim();
     }
 
     if (context === 'Instagram Caption') {
-      return `✨ ${config.title}\n\n${interpolateTemplate(config.description, config)}\n\nCaptured in ${subjectName}. ${expandedSubject}. ${expandedTime}.\n\n${activeElements ? 'Featuring: ' + activeElements : ''}\n\n📸 Let me know what you think below!\n\n${hashtags}`.trim();
+      return `✨ ${config.title}\n\n${interpolateTemplate(config.summary || config.description, config)}\n\nCaptured in ${subjectName}. ${expandedSubject}. ${expandedTime}.\n\n${activeElements ? 'Featuring: ' + activeElements : ''}\n\n📸 Let me know what you think below!\n\n${hashtags}`.trim();
     }
 
     return 'Select a context';
@@ -455,8 +487,64 @@ ${hashtags}`.trim();
               <input name="title" value={config.title} onChange={handleInputChange} className="w-full bg-transparent text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-100 focus:outline-none" placeholder="Config Title" />
             </div>
 
+            {/* Sticky Variables Toolbar */}
+            <div className="sticky top-0 z-10 bg-gray-50/95 dark:bg-[#131314]/95 backdrop-blur-md border-b border-gray-200 dark:border-[#2a2a2a] py-3 -mx-4 md:-mx-8 px-4 md:px-8 mb-6 transition-all shadow-sm">
+              <div className="max-w-4xl mx-auto space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping"></span>
+                    Variables Toolbar (Drag/drop to editor or click to insert)
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {[
+                    { name: 'subjectId', label: 'Subject' },
+                    { name: 'goal', label: 'Goal' },
+                    { name: 'timeOfDay', label: 'Time of Day' },
+                    { name: 'imageStyle', label: 'Image Style' },
+                    { name: 'fontStyle', label: 'Font Style' },
+                    { name: 'textPlacements', label: 'Text Placement' },
+                    { name: 'scenery', label: 'Scenery' },
+                    { name: 'tone', label: 'Tones' },
+                    { name: 'platform', label: 'Platforms' },
+                  ].map((variable) => {
+                    let val = '';
+                    if (variable.name === 'tone') {
+                      val = Array.isArray(config.tone) ? config.tone.join(', ') : '';
+                    } else if (variable.name === 'platform') {
+                      val = Array.isArray(config.platform) ? config.platform.join(' and ') : '';
+                    } else {
+                      val = (config as any)[variable.name] || '';
+                    }
+                    
+                    const displayVal = val ? `"${val}"` : 'empty';
+
+                    return (
+                      <button
+                        key={variable.name}
+                        type="button"
+                        draggable={true}
+                        onDragStart={(e) => {
+                          e.dataTransfer.setData("text/plain", `{{${variable.name}}}`);
+                          e.dataTransfer.effectAllowed = "copy";
+                        }}
+                        onClick={() => insertVariable(`{{${variable.name}}}`)}
+                        className="px-2.5 py-1 text-[10px] bg-white dark:bg-[#1e1e1f] hover:bg-indigo-50 dark:hover:bg-[#25252b] text-indigo-600 dark:text-indigo-400 rounded-md border border-gray-200 dark:border-[#2f2f35] font-mono transition-all flex items-center gap-1 active:scale-95 cursor-grab active:cursor-grabbing hover:shadow-sm hover:border-indigo-300 dark:hover:border-indigo-900 group"
+                        title={`Drag or click to insert {{${variable.name}}}`}
+                      >
+                        <span className="font-bold text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">{`{{${variable.name}}}`}</span>
+                        <span className="text-[9px] text-slate-400 dark:text-slate-500 font-sans italic max-w-[120px] truncate">
+                          ({displayVal})
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
             <div className="space-y-6">
-              {/* Core Subject (Now at the top of the form) */}
+              {/* Core Subject (At the top of the form) */}
               <div className="space-y-2 relative">
                 <div className="flex justify-between items-end mb-1">
                   <label className="text-sm font-medium text-slate-700 dark:text-slate-400">Core Subject (Supports {'{{variables}}'})</label>
@@ -481,73 +569,36 @@ ${hashtags}`.trim();
                 </div>
                 <textarea 
                   name="description" value={config.description} onChange={handleInputChange} rows={3} 
-                  className="w-full bg-white dark:bg-[#1e1e1e] border border-gray-300 dark:border-[#333] rounded-xl p-3 text-sm text-slate-900 dark:text-slate-200 outline-none resize-none focus:border-indigo-500 transition-colors" 
+                  onDragEnter={(e) => { e.preventDefault(); setIsDraggingOver(true); }}
+                  onDragOver={(e) => { e.preventDefault(); }}
+                  onDragLeave={() => setIsDraggingOver(false)}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    setIsDraggingOver(false);
+                    const varText = e.dataTransfer.getData("text/plain");
+                    if (varText && varText.startsWith("{{") && varText.endsWith("}}")) {
+                      const textarea = e.currentTarget;
+                      const start = textarea.selectionStart;
+                      const end = textarea.selectionEnd;
+                      const text = textarea.value;
+                      const before = text.substring(0, start);
+                      const after = text.substring(end, text.length);
+                      const newText = before + varText + after;
+                      setConfig(prev => ({ ...prev, description: newText }));
+                      
+                      setTimeout(() => {
+                        textarea.focus();
+                        textarea.setSelectionRange(start + varText.length, start + varText.length);
+                      }, 10);
+                    }
+                  }}
+                  className={`w-full bg-white dark:bg-[#1e1e1e] border rounded-xl p-3 text-sm text-slate-900 dark:text-slate-200 outline-none resize-none transition-all ${
+                    isDraggingOver 
+                      ? 'border-indigo-500 dark:border-indigo-400 bg-indigo-50/10 dark:bg-indigo-950/10 ring-2 ring-indigo-500/20 scale-[1.01] border-dashed shadow-inner' 
+                      : 'border-gray-300 dark:border-[#333] focus:border-indigo-500'
+                  }`}
                   placeholder="Describe the central character or action... Click Enhance to expand it or Magic Fill to configure the form."
                 />
-
-                {/* Variables Showcase & Click-to-Insert */}
-                <div className="mt-2 space-y-1.5">
-                  <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 block uppercase tracking-wider">
-                    Click to insert variables (Evaluating actual selected values):
-                  </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {[
-                      { name: 'subjectId', label: 'Universe/Subject' },
-                      { name: 'goal', label: 'Goal' },
-                      { name: 'timeOfDay', label: 'Time of Day' },
-                      { name: 'imageStyle', label: 'Image Style' },
-                      { name: 'fontStyle', label: 'Font Style' },
-                      { name: 'textPlacements', label: 'Text Placement' },
-                      { name: 'scenery', label: 'Scenery' },
-                      { name: 'tone', label: 'Tone(s)' },
-                      { name: 'platform', label: 'Platform(s)' },
-                    ].map((variable) => {
-                      let val = '';
-                      if (variable.name === 'tone') {
-                        val = Array.isArray(config.tone) ? config.tone.join(', ') : '';
-                      } else if (variable.name === 'platform') {
-                        val = Array.isArray(config.platform) ? config.platform.join(' and ') : '';
-                      } else {
-                        val = (config as any)[variable.name] || '';
-                      }
-                      
-                      const displayVal = val ? `"${val}"` : 'empty';
-
-                      return (
-                        <button
-                          key={variable.name}
-                          type="button"
-                          onClick={() => {
-                            const input = document.getElementsByName('description')[0] as HTMLTextAreaElement;
-                            if (input) {
-                              const start = input.selectionStart;
-                              const end = input.selectionEnd;
-                              const text = input.value;
-                              const before = text.substring(0, start);
-                              const after = text.substring(end, text.length);
-                              const varStr = `{{${variable.name}}}`;
-                              const newText = before + varStr + after;
-                              
-                              setConfig(prev => ({ ...prev, description: newText }));
-                              
-                              setTimeout(() => {
-                                input.focus();
-                                input.setSelectionRange(start + varStr.length, start + varStr.length);
-                              }, 10);
-                            }
-                          }}
-                          className="px-2 py-1 text-[10px] bg-indigo-50 hover:bg-indigo-100 dark:bg-[#1a1c24] dark:hover:bg-[#222633] text-indigo-600 dark:text-indigo-400 rounded border border-indigo-100 dark:border-indigo-950 font-mono transition-all flex items-center gap-1 group"
-                          title={`Insert {{${variable.name}}} into description`}
-                        >
-                          <span className="font-bold group-hover:scale-105 transition-transform">{`{{${variable.name}}}`}</span>
-                          <span className="text-[9px] text-slate-400 dark:text-slate-500 font-sans italic">
-                            ({displayVal})
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
               </div>
 
               {/* Subject & Goal (Now below Core Subject) */}
@@ -590,6 +641,53 @@ ${hashtags}`.trim();
                   );
                 })}
               </div>
+            </div>
+
+            {/* Prompt Summary (Final manual pass) */}
+            <div className="space-y-4 pt-6 border-t border-gray-200 dark:border-[#2a2a2a]">
+              <div className="flex justify-between items-end">
+                <label className="text-sm font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
+                  Prompt Summary (Final manual pass)
+                </label>
+                <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider hidden sm:inline">
+                  Drag & drop variables here or click them
+                </span>
+              </div>
+              <textarea 
+                name="summary" 
+                value={config.summary || ''} 
+                onChange={handleInputChange} 
+                rows={4}
+                onDragEnter={(e) => { e.preventDefault(); setIsDraggingOverSummary(true); }}
+                onDragOver={(e) => { e.preventDefault(); }}
+                onDragLeave={() => setIsDraggingOverSummary(false)}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  setIsDraggingOverSummary(false);
+                  const varText = e.dataTransfer.getData("text/plain");
+                  if (varText && varText.startsWith("{{") && varText.endsWith("}}")) {
+                    const textarea = e.currentTarget;
+                    const start = textarea.selectionStart;
+                    const end = textarea.selectionEnd;
+                    const text = textarea.value;
+                    const before = text.substring(0, start);
+                    const after = text.substring(end, text.length);
+                    const newText = before + varText + after;
+                    setConfig(prev => ({ ...prev, summary: newText }));
+                    
+                    setTimeout(() => {
+                      textarea.focus();
+                      textarea.setSelectionRange(start + varText.length, start + varText.length);
+                    }, 10);
+                  }
+                }}
+                className={`w-full bg-white dark:bg-[#1e1e1e] border rounded-xl p-3.5 text-sm text-slate-900 dark:text-slate-200 outline-none resize-none transition-all font-mono leading-relaxed ${
+                  isDraggingOverSummary 
+                    ? 'border-indigo-500 dark:border-indigo-400 bg-indigo-50/10 dark:bg-indigo-950/10 ring-2 ring-indigo-500/20 scale-[1.01] border-dashed shadow-inner' 
+                    : 'border-gray-300 dark:border-[#333] focus:border-indigo-500 shadow-sm'
+                }`}
+                placeholder="Weave your variables together here (e.g. 'A warrior in {{subjectId}} exploring under {{timeOfDay}} skies, rendered in {{imageStyle}}.')"
+              />
             </div>
 
           </div>

@@ -18,7 +18,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 2",
@@ -32,7 +33,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 3",
@@ -46,7 +48,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 4",
@@ -61,7 +64,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 5",
@@ -75,7 +79,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 6",
@@ -91,7 +96,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 7",
@@ -105,7 +111,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 8",
@@ -119,7 +126,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 9",
@@ -134,7 +142,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 10",
@@ -148,7 +157,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 11",
@@ -164,7 +174,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 12",
@@ -178,7 +189,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 13",
@@ -192,7 +204,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 14",
@@ -207,7 +220,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 15",
@@ -221,7 +235,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 16",
@@ -237,7 +252,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 17",
@@ -251,7 +267,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 18",
@@ -265,7 +282,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 19",
@@ -280,7 +298,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 20",
@@ -294,7 +313,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 21",
@@ -310,7 +330,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 22",
@@ -324,7 +345,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 23",
@@ -338,7 +360,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 24",
@@ -353,7 +376,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 25",
@@ -367,7 +391,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 26",
@@ -383,7 +408,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 27",
@@ -397,7 +423,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 28",
@@ -411,7 +438,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 29",
@@ -426,7 +454,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 30",
@@ -440,7 +469,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 31",
@@ -456,7 +486,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 32",
@@ -470,7 +501,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 33",
@@ -484,7 +516,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 34",
@@ -499,7 +532,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 35",
@@ -513,7 +547,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 36",
@@ -529,7 +564,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 37",
@@ -543,7 +579,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 38",
@@ -557,7 +594,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 39",
@@ -572,7 +610,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 40",
@@ -586,7 +625,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 41",
@@ -602,7 +642,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 42",
@@ -616,7 +657,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 43",
@@ -630,7 +672,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 44",
@@ -645,7 +688,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 45",
@@ -659,7 +703,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 46",
@@ -675,7 +720,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 47",
@@ -689,7 +735,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 48",
@@ -703,7 +750,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 49",
@@ -718,7 +766,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 50",
@@ -732,7 +781,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     }
   ]
 }

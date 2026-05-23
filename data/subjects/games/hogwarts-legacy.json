@@ -1,0 +1,41 @@
+{
+  "id": "hogwarts-legacy",
+  "category": "Games",
+  "name": "Hogwarts Legacy",
+  "descriptionTemplate": "capturing the whimsical magic, towering gothic spires of Hogwarts Castle, and mysterious creatures of the wizarding world",
+  "templates": [
+    {
+      "title": "Ancient Spell in the Great Hall",
+      "description": "A talented fifth-year student casting a vibrant ancient magic spell",
+      "summary": "A talented fifth-year student in Hogwarts Legacy casting a vibrant ancient magic spell in the grand scale of the Great Hall during {{timeOfDay}}, rendered in a breathtaking {{imageStyle}} visual style, aiming for {{goal}}.",
+      "timeOfDay": "Midnight",
+      "tone": ["Epic", "Mysterious"],
+      "imageStyle": "Cinematic 3D",
+      "goal": "High CTR",
+      "primaryRatio": "16:9",
+      "additionalElements": ["magic aura", "stars"]
+    },
+    {
+      "title": "Forbidden Forest Secrets",
+      "description": "A stealthy wizard navigating dark overgrown paths past nesting hippogriffs",
+      "summary": "A stealthy wizard in Hogwarts Legacy navigating dark, overgrown paths past nesting hippogriffs, shrouded in {{timeOfDay}} atmospheres, styled in {{imageStyle}} format.",
+      "timeOfDay": "Overcast",
+      "tone": ["Grim", "Mysterious"],
+      "imageStyle": "Dark Fantasy Art",
+      "goal": "Lore Focus",
+      "primaryRatio": "21:9",
+      "additionalElements": ["forest", "fog"]
+    },
+    {
+      "title": "Cozy Gryffindor Common Room",
+      "description": "Students studying by a roaring stone fireplace",
+      "summary": "A group of wizarding students studying by a roaring stone fireplace inside a high-detail common room, bathed in cozy {{timeOfDay}} details and formatted as {{imageStyle}} art direction.",
+      "timeOfDay": "Overcast",
+      "tone": ["Cozy"],
+      "imageStyle": "Stylized 2D",
+      "goal": "Vibe / Relaxing",
+      "primaryRatio": "16:9",
+      "additionalElements": ["fire", "camp"]
+    }
+  ]
+}

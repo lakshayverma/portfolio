@@ -18,7 +18,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A terrifying shadow beast prowling silently through tall, luminescent grass. Its countless eyes gleam with a predatory cosmic hunger in the pitch-black environment. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 2",
@@ -32,7 +33,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A terrifying shadow beast prowling silently through tall, luminescent grass. Its countless eyes gleam with a predatory cosmic hunger in the pitch-black environment. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 3",
@@ -46,7 +48,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A terrifying shadow beast prowling silently through tall, luminescent grass. Its countless eyes gleam with a predatory cosmic hunger in the pitch-black environment. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 4",
@@ -61,7 +64,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A terrifying shadow beast prowling silently through tall, luminescent grass. Its countless eyes gleam with a predatory cosmic hunger in the pitch-black environment. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 5",
@@ -75,7 +79,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A terrifying shadow beast prowling silently through tall, luminescent grass. Its countless eyes gleam with a predatory cosmic hunger in the pitch-black environment. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 6",
@@ -91,7 +96,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "The enigmatic Gloam-Eyed Queen standing amidst a field of defeated demigods, channeling crackling black flame. Her presence distorts the very fabric of the surrounding shadows. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 7",
@@ -105,7 +111,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "The enigmatic Gloam-Eyed Queen standing amidst a field of defeated demigods, channeling crackling black flame. Her presence distorts the very fabric of the surrounding shadows. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 8",
@@ -119,7 +126,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "The enigmatic Gloam-Eyed Queen standing amidst a field of defeated demigods, channeling crackling black flame. Her presence distorts the very fabric of the surrounding shadows. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 9",
@@ -134,7 +142,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "The enigmatic Gloam-Eyed Queen standing amidst a field of defeated demigods, channeling crackling black flame. Her presence distorts the very fabric of the surrounding shadows. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 10",
@@ -148,7 +157,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "The enigmatic Gloam-Eyed Queen standing amidst a field of defeated demigods, channeling crackling black flame. Her presence distorts the very fabric of the surrounding shadows. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 11",
@@ -164,7 +174,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A catastrophic dark sun eclipse hovering ominously over the decaying Erdtree. Corrupted golden ash rains down on the twisted, shadowy landscape below. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 12",
@@ -178,7 +189,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A catastrophic dark sun eclipse hovering ominously over the decaying Erdtree. Corrupted golden ash rains down on the twisted, shadowy landscape below. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 13",
@@ -192,7 +204,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A catastrophic dark sun eclipse hovering ominously over the decaying Erdtree. Corrupted golden ash rains down on the twisted, shadowy landscape below. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 14",
@@ -207,7 +220,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A catastrophic dark sun eclipse hovering ominously over the decaying Erdtree. Corrupted golden ash rains down on the twisted, shadowy landscape below. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 15",
@@ -221,7 +235,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A catastrophic dark sun eclipse hovering ominously over the decaying Erdtree. Corrupted golden ash rains down on the twisted, shadowy landscape below. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 16",
@@ -237,7 +252,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A stealthy assassin executing a brutal stealth kill on a heavily armored knight under the pale light of a fragmented moon. Blood mists rapidly into the cold night air. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 17",
@@ -251,7 +267,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A stealthy assassin executing a brutal stealth kill on a heavily armored knight under the pale light of a fragmented moon. Blood mists rapidly into the cold night air. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 18",
@@ -265,7 +282,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A stealthy assassin executing a brutal stealth kill on a heavily armored knight under the pale light of a fragmented moon. Blood mists rapidly into the cold night air. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 19",
@@ -280,7 +298,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A stealthy assassin executing a brutal stealth kill on a heavily armored knight under the pale light of a fragmented moon. Blood mists rapidly into the cold night air. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 20",
@@ -294,7 +313,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A stealthy assassin executing a brutal stealth kill on a heavily armored knight under the pale light of a fragmented moon. Blood mists rapidly into the cold night air. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 21",
@@ -310,7 +330,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "An astronomer-mage weaving intricate starlight magic that shatters the surrounding darkness. Crystalline projectiles hover menacingly before launching at an unseen horror. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 22",
@@ -324,7 +345,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "An astronomer-mage weaving intricate starlight magic that shatters the surrounding darkness. Crystalline projectiles hover menacingly before launching at an unseen horror. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 23",
@@ -338,7 +360,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "An astronomer-mage weaving intricate starlight magic that shatters the surrounding darkness. Crystalline projectiles hover menacingly before launching at an unseen horror. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 24",
@@ -353,7 +376,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "An astronomer-mage weaving intricate starlight magic that shatters the surrounding darkness. Crystalline projectiles hover menacingly before launching at an unseen horror. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 25",
@@ -367,7 +391,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "An astronomer-mage weaving intricate starlight magic that shatters the surrounding darkness. Crystalline projectiles hover menacingly before launching at an unseen horror. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 26",
@@ -383,7 +408,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A horrifying Godskin ritual taking place deep within an obsidian catacomb. Eerie green torches cast long, writhing shadows against the fleshy walls. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 27",
@@ -397,7 +423,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A horrifying Godskin ritual taking place deep within an obsidian catacomb. Eerie green torches cast long, writhing shadows against the fleshy walls. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 28",
@@ -411,7 +438,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A horrifying Godskin ritual taking place deep within an obsidian catacomb. Eerie green torches cast long, writhing shadows against the fleshy walls. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 29",
@@ -426,7 +454,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A horrifying Godskin ritual taking place deep within an obsidian catacomb. Eerie green torches cast long, writhing shadows against the fleshy walls. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 30",
@@ -440,7 +469,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A horrifying Godskin ritual taking place deep within an obsidian catacomb. Eerie green torches cast long, writhing shadows against the fleshy walls. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 31",
@@ -456,7 +486,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A Lovecraftian Moon Presence descending gracefully from a starry rift in the sky. Its eldritch form defies geometry, driving onlookers to madness. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 32",
@@ -470,7 +501,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A Lovecraftian Moon Presence descending gracefully from a starry rift in the sky. Its eldritch form defies geometry, driving onlookers to madness. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 33",
@@ -484,7 +516,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A Lovecraftian Moon Presence descending gracefully from a starry rift in the sky. Its eldritch form defies geometry, driving onlookers to madness. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 34",
@@ -499,7 +532,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A Lovecraftian Moon Presence descending gracefully from a starry rift in the sky. Its eldritch form defies geometry, driving onlookers to madness. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 35",
@@ -513,7 +547,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A Lovecraftian Moon Presence descending gracefully from a starry rift in the sky. Its eldritch form defies geometry, driving onlookers to madness. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 36",
@@ -529,7 +564,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A rider tearing through a vast field of glowing, ethereal blue grass. The wind whips past as unseen cosmic entities chase them through the eternal night. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 37",
@@ -543,7 +579,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A rider tearing through a vast field of glowing, ethereal blue grass. The wind whips past as unseen cosmic entities chase them through the eternal night. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 38",
@@ -557,7 +594,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A rider tearing through a vast field of glowing, ethereal blue grass. The wind whips past as unseen cosmic entities chase them through the eternal night. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 39",
@@ -572,7 +610,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A rider tearing through a vast field of glowing, ethereal blue grass. The wind whips past as unseen cosmic entities chase them through the eternal night. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 40",
@@ -586,7 +625,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A rider tearing through a vast field of glowing, ethereal blue grass. The wind whips past as unseen cosmic entities chase them through the eternal night. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 41",
@@ -602,7 +642,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A desperate clash against a towering knight clad in armor forged from fallen stars. Each strike of his blade leaves a trail of galaxy-like nebula dust. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 42",
@@ -616,7 +657,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A desperate clash against a towering knight clad in armor forged from fallen stars. Each strike of his blade leaves a trail of galaxy-like nebula dust. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 43",
@@ -630,7 +672,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A desperate clash against a towering knight clad in armor forged from fallen stars. Each strike of his blade leaves a trail of galaxy-like nebula dust. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 44",
@@ -645,7 +688,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A desperate clash against a towering knight clad in armor forged from fallen stars. Each strike of his blade leaves a trail of galaxy-like nebula dust. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 45",
@@ -659,7 +703,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A desperate clash against a towering knight clad in armor forged from fallen stars. Each strike of his blade leaves a trail of galaxy-like nebula dust. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 46",
@@ -675,7 +720,8 @@
       "additionalElements": [
         "stars",
         "fog"
-      ]
+      ],
+      "summary": "A slow, dread-inducing exploration of a colossal obsidian throne room. A massive, shadowy figure slumbers on the throne, breathing out waves of cold dark magic. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 47",
@@ -689,7 +735,8 @@
       "primaryRatio": "21:9",
       "additionalElements": [
         "magic aura"
-      ]
+      ],
+      "summary": "A slow, dread-inducing exploration of a colossal obsidian throne room. A massive, shadowy figure slumbers on the throne, breathing out waves of cold dark magic. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 48",
@@ -703,7 +750,8 @@
       "primaryRatio": "16:9",
       "additionalElements": [
         "rain"
-      ]
+      ],
+      "summary": "A slow, dread-inducing exploration of a colossal obsidian throne room. A massive, shadowy figure slumbers on the throne, breathing out waves of cold dark magic. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 49",
@@ -718,7 +766,8 @@
       "additionalElements": [
         "rain",
         "blood"
-      ]
+      ],
+      "summary": "A slow, dread-inducing exploration of a colossal obsidian throne room. A massive, shadowy figure slumbers on the throne, breathing out waves of cold dark magic. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     },
     {
       "title": "Template 50",
@@ -732,7 +781,8 @@
       "primaryRatio": "1:1",
       "additionalElements": [
         "fire"
-      ]
+      ],
+      "summary": "A slow, dread-inducing exploration of a colossal obsidian throne room. A massive, shadowy figure slumbers on the throne, breathing out waves of cold dark magic. under {{timeOfDay}} light, rendered in {{imageStyle}} style. The atmosphere is {{tone}}, aiming to capture a {{goal}} view."
     }
   ]
 }
