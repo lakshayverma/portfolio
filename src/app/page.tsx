@@ -52,7 +52,7 @@ export default function Page() {
   const [config, setConfig] = useState<PromptConfig>({ ...DEFAULT_CONFIG, id: Date.now().toString() });
   const [savedPrompts, setSavedPrompts] = useState<PromptConfig[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
-  
+
   const [leftWidthPct, setLeftWidthPct] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -72,7 +72,7 @@ export default function Page() {
     const handleResize = () => setIsMobile(window.innerWidth < 800);
     handleResize();
     window.addEventListener('resize', handleResize);
-    
+
     // Load local storage split pref
     const savedSplit = localStorage.getItem('thumbnailAppSplitNext');
     if (savedSplit) setLeftWidthPct(parseFloat(savedSplit));
@@ -90,7 +90,7 @@ export default function Page() {
 
         // Fetch IndexedDB Data
         let savedData = await getAllFromDB();
-        
+
         // If empty DB, populate with some templates from API
         if (savedData.length === 0 && data.subjects) {
           const templates: PromptConfig[] = [];
@@ -129,7 +129,7 @@ export default function Page() {
               });
             }
           });
-          
+
           for (const t of templates) {
             await saveToDB(t);
           }
@@ -207,11 +207,11 @@ export default function Page() {
     try {
       const activeSubject = appData?.subjects.find((s: any) => s.id === config.subjectId);
       const subjectName = activeSubject ? activeSubject.name : 'Unknown';
-      
+
       const prompt = `Expand this brief scene idea into a highly vivid, cinematic visual description suitable for an advanced image generation prompt. Focus heavily on dynamic action, lighting, textures, and strong composition. Do NOT return a full prompt, ONLY return the visual description of the subject/action itself. Keep it under 3 punchy sentences.
       Universe: ${subjectName}
       Current Idea: ${config.description}`;
-      
+
       const result = await fetchGemini(prompt, "You are a master art director creating vivid descriptions.");
       if (result) {
         setConfig(prev => ({ ...prev, description: result.trim() }));
@@ -372,11 +372,11 @@ Original Content:
   const compileOutput = (configData: PromptConfig): string => {
     if (!appData) return '';
     const context = configData.outputContext || 'Image Prompt';
-    
+
     const activeSubject = appData.subjects.find((s: any) => s.id === configData.subjectId);
     const subjectName = activeSubject ? activeSubject.name : configData.subjectId;
     const subjectDesc = activeSubject ? activeSubject.descriptionTemplate : '';
-    
+
     const dicts = appData.global.dictionaries;
     const expandedSubject = subjectDesc ? interpolateTemplate(subjectDesc, configData) : `set in ${subjectName}`;
     const expandedTime = resolveDeepTemplate('timeOfDay', configData.timeOfDay, 'during', configData, dicts);
@@ -384,7 +384,7 @@ Original Content:
     const expandedPlacement = resolveDeepTemplate('textPlacements', configData.textPlacements, 'leave space at', configData, dicts);
     const expandedFont = resolveDeepTemplate('fontStyle', configData.fontStyle, 'for', configData, dicts);
     const expandedGoal = resolveDeepTemplate('goal', configData.goal, 'aiming for', configData, dicts);
-    
+
     const expandedTones = (configData.tone || []).map(t => resolveDeepTemplate('tone', t, 'feeling', configData, dicts)).join(' and ');
     const activeElementsList = Object.entries(configData.additionalElements || {}).filter(([_, v]) => v).map(([k]) => k);
     let unfurledElements: string[] = [];
@@ -419,7 +419,7 @@ ${hashtags}`.trim();
 
     if (context === 'Image Prompt') {
       const baseDesc = `${interpolateTemplate(configData.summary || configData.description, configData)}. ${configData.scenery ? interpolateTemplate(configData.scenery, configData) + '.' : ''} ${expandedSubject}. ${expandedTime}. ${expandedStyle}. ${expandedTones ? 'Atmosphere is ' + expandedTones + '.' : ''} ${activeElements ? 'Featuring ' + activeElements + '.' : ''} ${expandedPlacement} ${expandedFont}. ${expandedGoal}. ${interpolateTemplate(configData.customAdditions, configData)}. ${(configData.keywords || []).join(', ')}`.replace(/\s+/g, ' ').trim();
-      
+
       if (configData.promptSyntax === 'Midjourney') {
         return `${baseDesc} --ar ${configData.primaryRatio} --style raw --v 6.0`;
       } else if (configData.promptSyntax === 'Gemini' || configData.promptSyntax === 'ChatGPT') {
@@ -477,7 +477,7 @@ ${hashtags}`.trim();
 
   return (
     <div className="h-screen w-full flex flex-col overflow-hidden bg-gray-50 dark:bg-[#131314] text-slate-800 dark:text-slate-200">
-      <Header 
+      <Header
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         filteredPrompts={savedPrompts}
@@ -497,8 +497,8 @@ ${hashtags}`.trim();
 
       <main className="flex-1 flex overflow-hidden relative">
         {/* Editor (Left) */}
-        <div 
-          className="h-full overflow-y-auto custom-scrollbar pb-20" 
+        <div
+          className="h-full overflow-y-auto custom-scrollbar pb-20"
           style={{ width: isMobile ? '100%' : `${leftWidthPct}%`, display: isMobile && mobileActiveTab !== 'form' ? 'none' : 'block' }}
         >
           <div className="max-w-4xl mx-auto p-4 md:p-8 space-y-8">
@@ -526,6 +526,7 @@ ${hashtags}`.trim();
                     { name: 'scenery', label: 'Scenery' },
                     { name: 'tone', label: 'Tones' },
                     { name: 'platform', label: 'Platforms' },
+                    { name: 'keywords', label: 'Keywords' },
                   ].map((variable) => {
                     let val = '';
                     if (variable.name === 'tone') {
@@ -535,7 +536,7 @@ ${hashtags}`.trim();
                     } else {
                       val = (config as any)[variable.name] || '';
                     }
-                    
+
                     const displayVal = val ? `"${val}"` : 'empty';
 
                     return (
@@ -568,7 +569,7 @@ ${hashtags}`.trim();
                 <div className="flex justify-between items-end mb-1">
                   <label className="text-sm font-medium text-slate-700 dark:text-slate-400">Core Subject (Supports {'{{variables}}'})</label>
                   <div className="flex gap-2">
-                    <button 
+                    <button
                       onClick={handleMagicFill}
                       disabled={isMagicFilling || !config.description}
                       className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider bg-gradient-to-r from-amber-500 to-rose-500 text-white px-3 py-1.5 rounded shadow-lg hover:shadow-amber-500/25 disabled:opacity-50 transition-all"
@@ -576,7 +577,7 @@ ${hashtags}`.trim();
                       {isMagicFilling ? <Loader2 className="w-3 h-3 animate-spin" /> : <Zap className="w-3 h-3" />}
                       Magic Fill
                     </button>
-                    <button 
+                    <button
                       onClick={handleEnhanceSubject}
                       disabled={isEnhancing || !config.description}
                       className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider bg-gradient-to-r from-fuchsia-600 to-indigo-600 text-white px-3 py-1.5 rounded shadow-lg hover:shadow-indigo-500/25 disabled:opacity-50 transition-all"
@@ -586,8 +587,8 @@ ${hashtags}`.trim();
                     </button>
                   </div>
                 </div>
-                <textarea 
-                  name="description" value={config.description} onChange={handleInputChange} rows={3} 
+                <textarea
+                  name="description" value={config.description} onChange={handleInputChange} rows={3}
                   onFocus={() => setLastFocusedInput('description')}
                   onDragEnter={(e) => { e.preventDefault(); setIsDraggingOver(true); }}
                   onDragOver={(e) => { e.preventDefault(); }}
@@ -605,18 +606,17 @@ ${hashtags}`.trim();
                       const after = text.substring(end, text.length);
                       const newText = before + varText + after;
                       setConfig(prev => ({ ...prev, description: newText }));
-                      
+
                       setTimeout(() => {
                         textarea.focus();
                         textarea.setSelectionRange(start + varText.length, start + varText.length);
                       }, 10);
                     }
                   }}
-                  className={`w-full bg-white dark:bg-[#1e1e1e] border rounded-xl p-3 text-sm text-slate-900 dark:text-slate-200 outline-none resize-none transition-all ${
-                    isDraggingOver 
-                      ? 'border-indigo-500 dark:border-indigo-400 bg-indigo-50/10 dark:bg-indigo-950/10 ring-2 ring-indigo-500/20 scale-[1.01] border-dashed shadow-inner' 
+                  className={`w-full bg-white dark:bg-[#1e1e1e] border rounded-xl p-3 text-sm text-slate-900 dark:text-slate-200 outline-none resize-none transition-all ${isDraggingOver
+                      ? 'border-indigo-500 dark:border-indigo-400 bg-indigo-50/10 dark:bg-indigo-950/10 ring-2 ring-indigo-500/20 scale-[1.01] border-dashed shadow-inner'
                       : 'border-gray-300 dark:border-[#333] focus:border-indigo-500'
-                  }`}
+                    }`}
                   placeholder="Describe the central character or action... Click Enhance to expand it or Magic Fill to configure the form."
                 />
               </div>
@@ -633,18 +633,18 @@ ${hashtags}`.trim();
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="space-y-2 flex flex-col">
                   <Combobox label="Time of Day" name="timeOfDay" value={config.timeOfDay} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.timeOfDay)} placeholder="e.g. Golden Hour" />
-                  <div className="mt-2"><TimeOfDayVisualizer value={config.timeOfDay} onChange={(val) => setConfig(prev => ({...prev, timeOfDay: val}))} timesOptions={Object.keys(appData.global.dictionaries.timeOfDay)} /></div>
+                  <div className="mt-2"><TimeOfDayVisualizer value={config.timeOfDay} onChange={(val) => setConfig(prev => ({ ...prev, timeOfDay: val }))} timesOptions={Object.keys(appData.global.dictionaries.timeOfDay)} /></div>
                 </div>
-                
+
                 <div className="space-y-2 flex flex-col">
                   <Combobox label="Image Style" name="imageStyle" value={config.imageStyle} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.imageStyle)} placeholder="e.g. Cinematic 3D" />
-                  <div className="mt-2"><ImageStyleGrid value={config.imageStyle} onChange={(val) => setConfig(prev => ({...prev, imageStyle: val}))} styles={Object.keys(appData.global.dictionaries.imageStyle)} /></div>
+                  <div className="mt-2"><ImageStyleGrid value={config.imageStyle} onChange={(val) => setConfig(prev => ({ ...prev, imageStyle: val }))} styles={Object.keys(appData.global.dictionaries.imageStyle)} /></div>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <MultiSelect label="Tones & Mood" values={config.tone} onChange={(v) => setConfig(prev => ({...prev, tone: v}))} suggestions={Object.keys(appData.global.dictionaries.tone).concat(Object.keys(appData.macros.tones))} tagSets={appData.macros.tones} iconMap={TONE_ICONS} />
-                <MultiSelect label="Keywords & Tags" values={config.keywords} onChange={(v) => setConfig(prev => ({...prev, keywords: v}))} suggestions={Object.keys(appData.macros.keywords)} tagSets={appData.macros.keywords} />
+                <MultiSelect label="Tones & Mood" values={config.tone} onChange={(v) => setConfig(prev => ({ ...prev, tone: v }))} suggestions={Object.keys(appData.global.dictionaries.tone).concat(Object.keys(appData.macros.tones))} tagSets={appData.macros.tones} iconMap={TONE_ICONS} />
+                <MultiSelect label="Keywords & Tags" values={config.keywords} onChange={(v) => setConfig(prev => ({ ...prev, keywords: v }))} suggestions={Object.keys(appData.macros.keywords)} tagSets={appData.macros.keywords} />
               </div>
             </div>
 
@@ -655,13 +655,13 @@ ${hashtags}`.trim();
                 <div className="space-y-2 flex flex-col">
                   <Combobox label="Text Placement / Alignment" name="textPlacements" value={config.textPlacements} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.textPlacements)} placeholder="e.g. Top Left" />
                   <div className="mt-2 flex items-center gap-4">
-                    <TextPlacementGrid value={config.textPlacements} onChange={(val) => setConfig(prev => ({...prev, textPlacements: val}))} />
+                    <TextPlacementGrid value={config.textPlacements} onChange={(val) => setConfig(prev => ({ ...prev, textPlacements: val }))} />
                     <div className="text-xs text-slate-500 dark:text-slate-400">
                       Select layout alignment to reserve clear negative space for text overlays.
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="space-y-2 flex flex-col justify-start">
                   <Combobox label="Font Style Context" name="fontStyle" value={config.fontStyle} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.fontStyle)} placeholder="e.g. Bold Serif" />
                   <div className="text-xs text-slate-500 dark:text-slate-400 mt-2">
@@ -696,10 +696,10 @@ ${hashtags}`.trim();
                   Drag & drop variables here or click them
                 </span>
               </div>
-              <textarea 
-                name="summary" 
-                value={config.summary || ''} 
-                onChange={handleInputChange} 
+              <textarea
+                name="summary"
+                value={config.summary || ''}
+                onChange={handleInputChange}
                 rows={4}
                 onFocus={() => setLastFocusedInput('summary')}
                 onDragEnter={(e) => { e.preventDefault(); setIsDraggingOverSummary(true); }}
@@ -718,18 +718,17 @@ ${hashtags}`.trim();
                     const after = text.substring(end, text.length);
                     const newText = before + varText + after;
                     setConfig(prev => ({ ...prev, summary: newText }));
-                    
+
                     setTimeout(() => {
                       textarea.focus();
                       textarea.setSelectionRange(start + varText.length, start + varText.length);
                     }, 10);
                   }
                 }}
-                className={`w-full bg-white dark:bg-[#1e1e1e] border rounded-xl p-3.5 text-sm text-slate-900 dark:text-slate-200 outline-none resize-none transition-all font-mono leading-relaxed ${
-                  isDraggingOverSummary 
-                    ? 'border-indigo-500 dark:border-indigo-400 bg-indigo-50/10 dark:bg-indigo-950/10 ring-2 ring-indigo-500/20 scale-[1.01] border-dashed shadow-inner' 
+                className={`w-full bg-white dark:bg-[#1e1e1e] border rounded-xl p-3.5 text-sm text-slate-900 dark:text-slate-200 outline-none resize-none transition-all font-mono leading-relaxed ${isDraggingOverSummary
+                    ? 'border-indigo-500 dark:border-indigo-400 bg-indigo-50/10 dark:bg-indigo-950/10 ring-2 ring-indigo-500/20 scale-[1.01] border-dashed shadow-inner'
                     : 'border-gray-300 dark:border-[#333] focus:border-indigo-500 shadow-sm'
-                }`}
+                  }`}
                 placeholder="Weave your variables together here (e.g. 'A warrior in {{subjectId}} exploring under {{timeOfDay}} skies, rendered in {{imageStyle}}.')"
               />
             </div>
@@ -745,8 +744,8 @@ ${hashtags}`.trim();
         )}
 
         {/* Output (Right) */}
-        <div 
-          className="h-full bg-white dark:bg-[#18181b] flex flex-col border-l border-gray-200 dark:border-[#333]" 
+        <div
+          className="h-full bg-white dark:bg-[#18181b] flex flex-col border-l border-gray-200 dark:border-[#333]"
           style={{ width: isMobile ? '100%' : `${100 - leftWidthPct}%`, display: isMobile && mobileActiveTab !== 'output' ? 'none' : 'flex' }}
         >
           <div className="p-4 md:p-6 border-b border-gray-200 dark:border-[#2a2a2a] flex flex-wrap gap-4 items-center justify-between bg-gray-50 dark:bg-[#18181b] flex-none">
@@ -775,21 +774,20 @@ ${hashtags}`.trim();
                   type="button"
                   onClick={handleManualCompile}
                   disabled={!isCompiling}
-                  className={`px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold rounded transition-all ${
-                    isCompiling 
-                      ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/20 active:scale-95' 
+                  className={`px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold rounded transition-all ${isCompiling
+                      ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/20 active:scale-95'
                       : 'bg-gray-100 dark:bg-[#25252b] text-slate-400 border border-gray-200 dark:border-[#333] cursor-not-allowed'
-                  }`}
+                    }`}
                   title="Force compile immediate output changes"
                 >
                   Push Now
                 </button>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-2">
               {config.compiledOutputOverride !== undefined && (
-                <button 
+                <button
                   onClick={handleResetOutput}
                   title="Reset to standard template output"
                   className="flex items-center gap-1.5 px-3 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-[#25252b] dark:hover:bg-[#2d2d33] border border-gray-300 dark:border-[#3c3c43] text-slate-700 dark:text-slate-300 rounded text-sm font-semibold transition-all"
@@ -798,8 +796,8 @@ ${hashtags}`.trim();
                   <span className="hidden sm:inline">Reset</span>
                 </button>
               )}
-              
-              <button 
+
+              <button
                 onClick={handleEnhanceOutput}
                 disabled={isEnhancingOutput || !displayOutput}
                 className="flex items-center gap-1.5 px-3 py-2 bg-gradient-to-r from-indigo-600 to-fuchsia-600 hover:from-indigo-500 hover:to-fuchsia-500 text-white rounded text-sm font-semibold transition-all disabled:opacity-50 shadow-md"
@@ -816,7 +814,7 @@ ${hashtags}`.trim();
           </div>
 
           <div className="flex-1 p-4 md:p-6 overflow-y-auto custom-scrollbar bg-gray-50 dark:bg-[#131314]">
-            <textarea 
+            <textarea
               className="w-full h-full bg-white dark:bg-[#1e1e1e] border border-gray-300 dark:border-[#333] rounded-xl p-4 md:p-6 text-sm md:text-base text-slate-800 dark:text-slate-300 leading-relaxed outline-none resize-none focus:border-indigo-500 transition-colors shadow-inner font-mono"
               value={displayOutput}
               onChange={(e) => setConfig(prev => ({ ...prev, compiledOutputOverride: e.target.value }))}
