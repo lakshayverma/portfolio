@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from 'react';
-import { Search, Save, Plus, ChevronDown, Image as ImageIcon, Sun, Moon, Monitor } from 'lucide-react';
+import { Search, Save, Plus, ChevronDown, Image as ImageIcon, Sun, Moon, Monitor, Settings } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { PromptConfig } from '../services/db';
+import { AISettingsModal } from './AISettingsModal';
 
 interface HeaderProps {
   searchQuery: string;
@@ -14,7 +15,7 @@ interface HeaderProps {
   onSelectConfig: (config: PromptConfig) => void;
   onNewConfig: () => void;
   onSave: (isNew: boolean) => void;
-  availableGames?: string[];
+  availableGames?: { value: string; label: string }[];
 }
 
 export function Header({
@@ -23,6 +24,7 @@ export function Header({
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isAISettingsOpen, setIsAISettingsOpen] = useState(false);
   const [selectedGame, setSelectedGame] = useState<string>('All');
   const searchRef = useRef<HTMLDivElement>(null);
 
@@ -91,7 +93,7 @@ export function Header({
             >
               <option value="All">All Games</option>
               {availableGames.map(game => (
-                <option key={game} value={game}>{game}</option>
+                <option key={game.value} value={game.value}>{game.label}</option>
               ))}
             </select>
           )}
@@ -130,12 +132,22 @@ export function Header({
 
       <div className="flex items-center gap-2 md:gap-3">
         {mounted && (
-          <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-[#363636] text-slate-600 dark:text-slate-300 transition-colors"
-          >
-            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
+          <>
+            <button
+              onClick={() => setIsAISettingsOpen(true)}
+              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-[#363636] text-slate-600 dark:text-slate-300 transition-colors"
+              title="AI Provider Settings"
+            >
+              <Settings className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-[#363636] text-slate-600 dark:text-slate-300 transition-colors"
+              title="Toggle Theme"
+            >
+              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
+          </>
         )}
         <button onClick={() => onSave(false)} className="text-xs md:text-sm font-medium px-3 md:px-4 py-2 bg-gray-200 dark:bg-[#2d2d2d] hover:bg-gray-300 dark:hover:bg-[#363636] text-slate-800 dark:text-slate-200 rounded-full flex items-center gap-2">
           <Save className="w-3 h-3 md:w-4 md:h-4" /><span className="hidden sm:inline">Save</span>
@@ -144,6 +156,7 @@ export function Header({
           <span className="hidden sm:inline">Save as New</span><span className="sm:hidden">New</span>
         </button>
       </div>
+      <AISettingsModal isOpen={isAISettingsOpen} onClose={() => setIsAISettingsOpen(false)} />
     </header>
   );
 }

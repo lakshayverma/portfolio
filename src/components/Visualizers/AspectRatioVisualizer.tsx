@@ -12,7 +12,7 @@ export function AspectRatioVisualizer({ primary, secondary }: { primary: string,
   const sRatio = parseRatio(secondary);
 
   return (
-    <div className="w-full flex justify-center items-center h-32 bg-gray-50 dark:bg-[#1a1c23] border border-gray-200 dark:border-[#333] rounded-xl overflow-hidden p-4">
+    <div className="w-full bg-gray-50 dark:bg-[#1a1c23] border border-gray-200 dark:border-[#333] rounded-xl p-4 flex items-center justify-center gap-4 relative overflow-hidden h-48">
       <div 
         className="relative bg-white dark:bg-slate-800 border-2 border-indigo-500 rounded flex items-center justify-center shadow-lg transition-all duration-300"
         style={{ aspectRatio: pRatio, height: pRatio >= 1 ? '100%' : 'auto', width: pRatio < 1 ? '100%' : 'auto', maxHeight: '100%', maxWidth: '100%' }}

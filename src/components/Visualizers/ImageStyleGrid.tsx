@@ -21,12 +21,12 @@ export function ImageStyleGrid({ value, onChange, styles }: { value: string, onC
   });
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+    <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 h-48">
       {displayStyles.map((style) => {
         const Icon = style.icon;
         const isSelected = value === style.name;
         return (
-          <button key={style.name} onClick={() => onChange(style.name)} className={`relative overflow-hidden h-24 rounded-xl flex flex-col items-center justify-center gap-2 transition-all border-2 ${isSelected ? 'border-indigo-500 scale-105 shadow-lg shadow-indigo-500/20' : 'border-transparent opacity-60 hover:opacity-100 hover:scale-105'}`}>
+          <button key={style.name} onClick={() => onChange(style.name)} className={`relative overflow-hidden h-full rounded-xl flex flex-col items-center justify-center gap-2 transition-all border-2 ${isSelected ? 'border-indigo-500 scale-105 shadow-lg shadow-indigo-500/20' : 'border-transparent opacity-60 hover:opacity-100 hover:scale-105'}`}>
             <div className={`absolute inset-0 opacity-80 ${style.bg}`} />
             <Icon className="w-6 h-6 text-white relative z-10" />
             <span className="text-[10px] font-bold text-white relative z-10 text-center px-1 leading-tight">{style.name}</span>

@@ -6,7 +6,7 @@ export function TextPlacementGrid({ value, onChange }: { value: string, onChange
   const grids = ['Top Left', 'Top Center', 'Top Right', 'Center Left', 'Center', 'Center Right', 'Bottom Left', 'Bottom Center', 'Bottom Right'];
   
   return (
-    <div className="w-32 h-32 grid grid-cols-3 grid-rows-3 gap-1 bg-gray-50 dark:bg-[#1a1c23] p-1 border border-gray-200 dark:border-[#333] rounded-xl flex-shrink-0">
+    <div className="w-48 h-48 grid grid-cols-3 grid-rows-3 gap-1 bg-gray-50 dark:bg-[#1a1c23] p-1 border border-gray-200 dark:border-[#333] rounded-xl flex-shrink-0">
       {grids.map(pos => (
         <button
           key={pos} onClick={() => onChange(pos)} title={pos}

@@ -10,9 +10,10 @@ interface MultiSelectProps {
   suggestions: string[];
   iconMap?: Record<string, React.ElementType>;
   tagSets?: Record<string, string[]>;
+  colorCode?: string;
 }
 
-export function MultiSelect({ label, values, onChange, suggestions, iconMap, tagSets }: MultiSelectProps) {
+export function MultiSelect({ label, values, onChange, suggestions, iconMap, tagSets, colorCode }: MultiSelectProps) {
   const [input, setInput] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -50,7 +51,10 @@ export function MultiSelect({ label, values, onChange, suggestions, iconMap, tag
 
   return (
     <div className="space-y-2 relative" ref={wrapperRef}>
-      <label className="text-sm font-medium text-slate-700 dark:text-slate-400">{label}</label>
+      <label className="text-sm font-medium text-slate-700 dark:text-slate-400 flex items-center">
+        {colorCode && <span className={`w-2 h-2 rounded-full ${colorCode} mr-2 shadow-sm`}></span>}
+        {label}
+      </label>
       <div className="min-h-[46px] bg-white dark:bg-[#1e1e1e] border border-gray-300 dark:border-[#333] rounded-xl p-2 flex flex-wrap gap-2 focus-within:border-indigo-500 transition-colors">
         {values.map(val => {
           const Icon = iconMap?.[val];

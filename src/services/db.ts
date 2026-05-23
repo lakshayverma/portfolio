@@ -3,8 +3,9 @@ export interface PromptConfig {
   title: string;
   outputContext: string;
   promptSyntax: string;
+  outputEngineId?: string;
   subjectId: string;
-  goal: string;
+  goal: string[];
   description: string;
   timeOfDay: string;
   tone: string[];
@@ -18,7 +19,7 @@ export interface PromptConfig {
   scenery: string;
   additionalElements: Record<string, boolean>;
   customAdditions: string;
-  compiledOutputOverride?: string;
+  compiledOutputOverrides?: Record<string, string>;
   summary: string;
 }
 

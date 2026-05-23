@@ -19,11 +19,11 @@ export function TimeOfDayVisualizer({ value, onChange, timesOptions }: { value: 
   });
 
   return (
-    <div className="w-full bg-gray-50 dark:bg-[#1a1c23] border border-gray-200 dark:border-[#333] rounded-xl p-6 relative overflow-hidden h-36 flex flex-col justify-end">
+    <div className="w-full bg-gray-50 dark:bg-[#1a1c23] border border-gray-200 dark:border-[#333] rounded-xl p-6 relative overflow-hidden h-48 flex flex-col justify-end">
       <svg className="absolute top-8 left-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
         <path d="M 0,100 Q 50,0 100,100" fill="none" stroke="currentColor" className="text-gray-300 dark:text-[#333]" strokeWidth="1" strokeDasharray="4 4" />
       </svg>
-      <div className="flex justify-between items-end relative z-10 w-full h-full px-2">
+      <div className="flex justify-between items-end relative z-10 w-full h-full px-2 pb-2">
         {displayTimes.map((time, i) => {
           const Icon = time.icon;
           const isSelected = value === time.name;

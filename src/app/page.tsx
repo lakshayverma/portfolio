@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Loader2, Sparkles, Copy, CheckCircle2, SplitSquareHorizontal, RotateCcw, Undo2 } from 'lucide-react';
+import { Loader2, Sparkles, Copy, CheckCircle2, SplitSquareHorizontal, RotateCcw, Undo2, Wand2, Check } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Combobox } from '@/components/Combobox';
 import { MultiSelect } from '@/components/MultiSelect';
@@ -9,8 +9,13 @@ import { AspectRatioVisualizer } from '@/components/Visualizers/AspectRatioVisua
 import { TextPlacementGrid } from '@/components/Visualizers/TextPlacementGrid';
 import { ImageStyleGrid } from '@/components/Visualizers/ImageStyleGrid';
 import { TimeOfDayVisualizer } from '@/components/Visualizers/TimeOfDayVisualizer';
+import { ToneVisualizer } from '@/components/Visualizers/ToneVisualizer';
+import { FontStyleGrid } from '@/components/Visualizers/FontStyleGrid';
+import { GoalVisualizer } from '@/components/Visualizers/GoalVisualizer';
+import { SubjectVisualizer } from '@/components/Visualizers/SubjectVisualizer';
+import { PlatformVisualizer } from '@/components/Visualizers/PlatformVisualizer';
 import { PromptConfig, getAllFromDB, saveToDB } from '@/services/db';
-import { fetchGemini } from '@/services/gemini';
+import { fetchAI, getAIConfigs, ProviderConfig } from '@/services/aiProvider';
 import { resolveDeepTemplate, interpolateTemplate } from '@/services/promptEngine';
 import { Flame, Tent, TreePine, Mountain, Star, CloudFog, Snowflake, Droplet, Skull, Coffee, Eye, Zap, Target, CloudRain } from 'lucide-react';
 
@@ -29,8 +34,9 @@ const DEFAULT_CONFIG: PromptConfig = {
   title: 'Untitled Prompt',
   outputContext: 'Image Prompt',
   promptSyntax: 'Midjourney',
+  outputEngineId: 'default-gemini',
   subjectId: '',
-  goal: '',
+  goal: [],
   description: '',
   timeOfDay: '',
   tone: [],
@@ -47,11 +53,28 @@ const DEFAULT_CONFIG: PromptConfig = {
   summary: ''
 };
 
+const VARIABLE_COLORS: Record<string, string> = {
+  subjectId: 'bg-red-500',
+  goal: 'bg-orange-500',
+  description: 'bg-yellow-500',
+  timeOfDay: 'bg-emerald-500',
+  imageStyle: 'bg-teal-500',
+  fontStyle: 'bg-cyan-500',
+  textPlacements: 'bg-sky-500',
+  scenery: 'bg-blue-500',
+  tone: 'bg-indigo-500',
+  platform: 'bg-violet-500',
+  keywords: 'bg-fuchsia-500',
+  additionalElements: 'bg-pink-500',
+  summary: 'bg-rose-500'
+};
+
 export default function Page() {
   const [appData, setAppData] = useState<any>(null);
   const [config, setConfig] = useState<PromptConfig>({ ...DEFAULT_CONFIG, id: Date.now().toString() });
   const [savedPrompts, setSavedPrompts] = useState<PromptConfig[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [aiEngines, setAiEngines] = useState<ProviderConfig[]>([]);
 
   const [leftWidthPct, setLeftWidthPct] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
@@ -60,38 +83,51 @@ export default function Page() {
 
   const [isEnhancing, setIsEnhancing] = useState(false);
   const [isMagicFilling, setIsMagicFilling] = useState(false);
-  const [isEnhancingOutput, setIsEnhancingOutput] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [isEnhancingOutput, setIsEnhancingOutput] = useState<string | null>(null);
+  const [copied, setCopied] = useState<string | null>(null);
   const [isDraggingOver, setIsDraggingOver] = useState(false);
   const [isDraggingOverSummary, setIsDraggingOverSummary] = useState(false);
-  const [compiledOutput, setCompiledOutput] = useState('');
+  const [compiledOutputs, setCompiledOutputs] = useState<Record<string, string>>({});
   const [isCompiling, setIsCompiling] = useState(false);
   const [lastFocusedInput, setLastFocusedInput] = useState<'description' | 'summary'>('summary');
+  const [hasAIKey, setHasAIKey] = useState(false);
+  const [magicFillController, setMagicFillController] = useState<AbortController | null>(null);
+  const [enhanceController, setEnhanceController] = useState<AbortController | null>(null);
+  const [enhancingOutputController, setEnhancingOutputController] = useState<AbortController | null>(null);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 800);
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    // Load local storage split pref
     const savedSplit = localStorage.getItem('thumbnailAppSplitNext');
     if (savedSplit) setLeftWidthPct(parseFloat(savedSplit));
 
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    const checkKey = () => {
+      const configs = getAIConfigs();
+      setAiEngines(configs);
+      const activeEngine = configs.find(c => c.id === config.outputEngineId) || configs[0];
+      const hasKeys = !!activeEngine?.apiKey || activeEngine?.provider === 'custom';
+      setHasAIKey(hasKeys);
+    };
+    checkKey();
+    window.addEventListener('ai_config_updated', checkKey);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('ai_config_updated', checkKey);
+    };
+  }, [config.outputEngineId]);
 
   useEffect(() => {
     const initApp = async () => {
       try {
-        // Fetch API Data
         const res = await fetch('/api/config');
         const data = await res.json();
         setAppData(data);
 
-        // Fetch IndexedDB Data
         let savedData = await getAllFromDB();
 
-        // If empty DB, populate with some templates from API
         if (savedData.length === 0 && data.subjects) {
           const templates: PromptConfig[] = [];
           data.subjects.forEach((subj: any) => {
@@ -101,7 +137,7 @@ export default function Page() {
                   templates.push({
                     ...DEFAULT_CONFIG,
                     id: `template-${subj.id}-${i}`,
-                    title: `${subj.name}: ${t.substring(0, 20)}...`,
+                    title: `${subj.name}: ${t}`,
                     subjectId: subj.id,
                     description: t,
                     summary: t,
@@ -119,11 +155,13 @@ export default function Page() {
                     description: t.description || '',
                     summary: t.summary || t.description || '',
                     timeOfDay: t.timeOfDay || '',
-                    tone: t.tone || [],
+                    tone: Array.isArray(t.tone) ? t.tone : (t.tone ? [t.tone] : []),
                     imageStyle: t.imageStyle || '',
-                    goal: t.goal || '',
+                    goal: Array.isArray(t.goal) ? t.goal : (t.goal ? [t.goal] : []),
+                    platform: Array.isArray(t.platform) ? t.platform : (t.platform ? [t.platform] : []),
                     primaryRatio: t.primaryRatio || '16:9',
-                    additionalElements: addElements
+                    additionalElements: addElements,
+                    keywords: t.keywords || []
                   });
                 }
               });
@@ -177,7 +215,7 @@ export default function Page() {
     };
   }, [isDragging, leftWidthPct, isMobile]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> | { target: { name: string; value: string } }) => {
     const { name, value } = e.target;
     setConfig((prev) => ({ ...prev, [name]: value }));
   };
@@ -202,8 +240,14 @@ export default function Page() {
   };
 
   const handleEnhanceSubject = async () => {
-    if (!config.description) return;
+    if (isEnhancing && enhanceController) {
+      enhanceController.abort();
+      return;
+    }
+    if (!config.description || !hasAIKey) return;
     setIsEnhancing(true);
+    const controller = new AbortController();
+    setEnhanceController(controller);
     try {
       const activeSubject = appData?.subjects.find((s: any) => s.id === config.subjectId);
       const subjectName = activeSubject ? activeSubject.name : 'Unknown';
@@ -212,18 +256,29 @@ export default function Page() {
       Universe: ${subjectName}
       Current Idea: ${config.description}`;
 
-      const result = await fetchGemini(prompt, "You are a master art director creating vivid descriptions.");
+      const result = await fetchAI(prompt, "You are a master art director creating vivid descriptions.", controller.signal);
       if (result) {
         setConfig(prev => ({ ...prev, description: result.trim() }));
       }
+    } catch (error: any) {
+      if (error.name !== 'AbortError') {
+        console.error("Enhance Error:", error);
+      }
     } finally {
       setIsEnhancing(false);
+      setEnhanceController(null);
     }
   };
 
   const handleMagicFill = async () => {
-    if (!config.description || !appData) return;
+    if (isMagicFilling && magicFillController) {
+      magicFillController.abort();
+      return;
+    }
+    if (!config.description || !appData || !hasAIKey) return;
     setIsMagicFilling(true);
+    const controller = new AbortController();
+    setMagicFillController(controller);
     try {
       const subjects = appData.subjects?.map((s: any) => ({ id: s.id, name: s.name })) || [];
       const goals = Object.keys(appData.global?.dictionaries?.goal || {});
@@ -269,7 +324,7 @@ Schema:
 }
 `;
 
-      const result = await fetchGemini(prompt, "You are a precise JSON configuration generator. Output raw JSON only.");
+      const result = await fetchAI(prompt, "You are a precise JSON configuration generator. Output raw JSON only.");
       if (result) {
         const cleaned = result.replace(/```json/g, '').replace(/```/g, '').trim();
         const parsed = JSON.parse(cleaned);
@@ -283,7 +338,7 @@ Schema:
           return {
             ...prev,
             subjectId: parsed.subjectId || prev.subjectId,
-            goal: parsed.goal || prev.goal,
+            goal: parsed.goal ? [parsed.goal] : prev.goal,
             timeOfDay: parsed.timeOfDay || prev.timeOfDay,
             imageStyle: parsed.imageStyle || prev.imageStyle,
             tone: Array.isArray(parsed.tone) ? parsed.tone.filter((t: string) => tones.includes(t)) : prev.tone,
@@ -296,21 +351,32 @@ Schema:
           };
         });
       }
-    } catch (error) {
-      console.error("Magic Fill Error:", error);
-      alert("Failed to auto-configure. Please try again or refine your description.");
+    } catch (error: any) {
+      if (error.name !== 'AbortError') {
+        console.error("Magic Fill Error:", error);
+        alert("Failed to auto-configure. Please try again or refine your description.");
+      }
     } finally {
       setIsMagicFilling(false);
+      setMagicFillController(null);
     }
   };
 
-  const handleEnhanceOutput = async () => {
-    if (!displayOutput) return;
-    setIsEnhancingOutput(true);
+  const handleEnhanceOutput = async (contextKey: string) => {
+    if (isEnhancingOutput === contextKey && enhancingOutputController) {
+      enhancingOutputController.abort();
+      return;
+    }
+    const textToEnhance = config.compiledOutputOverrides?.[contextKey] || compiledOutputs[contextKey];
+    if (!textToEnhance || !hasAIKey) return;
+    
+    setIsEnhancingOutput(contextKey);
+    const controller = new AbortController();
+    setEnhancingOutputController(controller);
+    
     try {
-      const context = config.outputContext || 'Image Prompt';
       let prompt = '';
-      if (context === 'Image Prompt') {
+      if (contextKey === 'Image Prompt') {
         prompt = `You are a master digital art director. Take the raw image generation prompt below and enhance it to be extremely vivid, cinematic, and detailed. Add lighting, sensory, texture, and composition details.
         
 Rules:
@@ -319,34 +385,42 @@ Rules:
 3. Output ONLY the enhanced prompt itself. No quotes, no markdown code blocks, no conversation.
 
 Raw Prompt:
-"${displayOutput}"`;
+"${textToEnhance}"`;
       } else {
-        prompt = `You are a professional social media manager. Take the following generated content for ${context} and enhance it to be highly engaging, premium, and well-structured.
+        prompt = `You are a professional social media manager. Take the following generated content for ${contextKey} and enhance it to be highly engaging, premium, and well-structured.
         
 Rules:
 1. Preserve all hashtags and core information.
 2. Output ONLY the final enhanced content. No quotes, no markdown blocks, no conversation.
 
 Original Content:
-"${displayOutput}"`;
+"${textToEnhance}"`;
       }
 
-      const result = await fetchGemini(prompt, "You are a master content enhancer. You output ONLY the finalized enhanced text, with no preamble.");
+      const result = await fetchAI(prompt, "You are a master content enhancer. You output ONLY the finalized enhanced text, with no preamble.", controller.signal);
       if (result) {
-        setConfig(prev => ({ ...prev, compiledOutputOverride: result.trim() }));
+        setConfig(prev => ({ 
+          ...prev, 
+          compiledOutputOverrides: { ...(prev.compiledOutputOverrides || {}), [contextKey]: result.trim() }
+        }));
       }
-    } catch (error) {
-      console.error("Enhance Output Error:", error);
-      alert("Failed to enhance the output. Please try again.");
+    } catch (error: any) {
+      if (error.name !== 'AbortError') {
+        console.error("Enhance Output Error:", error);
+        alert("Failed to enhance the output. Please try again.");
+      }
     } finally {
-      setIsEnhancingOutput(false);
+      setIsEnhancingOutput(null);
+      setEnhancingOutputController(null);
     }
   };
 
-  const handleResetOutput = () => {
+  const handleResetOutput = (contextKey: string) => {
     setConfig(prev => {
       const next = { ...prev };
-      delete next.compiledOutputOverride;
+      if (next.compiledOutputOverrides) {
+        delete next.compiledOutputOverrides[contextKey];
+      }
       return next;
     });
   };
@@ -369,9 +443,27 @@ Original Content:
     }
   };
 
-  const compileOutput = (configData: PromptConfig): string => {
-    if (!appData) return '';
-    const context = configData.outputContext || 'Image Prompt';
+  const compileOutput = (configData: PromptConfig): Record<string, string> => {
+    if (!appData) return {};
+    
+    const engine = aiEngines.find(e => e.id === configData.outputEngineId) || aiEngines[0];
+    const isImageEngine = engine?.type === 'image-engine';
+    
+    let contexts: string[] = [];
+    if (isImageEngine) {
+      contexts = ['Image Prompt'];
+    } else {
+      const platforms = configData.platform || [];
+      if (platforms.length === 0) {
+        contexts = ['Social Media Post'];
+      } else {
+        if (platforms.includes('YouTube') || platforms.includes('YouTube Shorts')) contexts.push('YouTube Description');
+        if (platforms.includes('Twitter / X')) contexts.push('Twitter/X Post');
+        if (platforms.includes('Instagram') || platforms.includes('TikTok')) contexts.push('Instagram Caption');
+        if (contexts.length === 0) contexts = ['Social Media Post'];
+      }
+    }
+    contexts = [...new Set(contexts)];
 
     const activeSubject = appData.subjects.find((s: any) => s.id === configData.subjectId);
     const subjectName = activeSubject ? activeSubject.name : configData.subjectId;
@@ -383,7 +475,7 @@ Original Content:
     const expandedStyle = resolveDeepTemplate('imageStyle', configData.imageStyle, 'rendered in a', configData, dicts);
     const expandedPlacement = resolveDeepTemplate('textPlacements', configData.textPlacements, 'leave space at', configData, dicts);
     const expandedFont = resolveDeepTemplate('fontStyle', configData.fontStyle, 'for', configData, dicts);
-    const expandedGoal = resolveDeepTemplate('goal', configData.goal, 'aiming for', configData, dicts);
+    const expandedGoals = (configData.goal || []).map(g => resolveDeepTemplate('goal', g, 'aiming for', configData, dicts)).join(' and ');
 
     const expandedTones = (configData.tone || []).map(t => resolveDeepTemplate('tone', t, 'feeling', configData, dicts)).join(' and ');
     const activeElementsList = Object.entries(configData.additionalElements || {}).filter(([_, v]) => v).map(([k]) => k);
@@ -402,51 +494,39 @@ Original Content:
     const hashtags = [...new Set([subjectName.replace(/\s+/g, ''), ...(configData.keywords || []).map(k => k.replace(/[\s@]+/g, ''))])]
       .filter(Boolean).map(t => `#${t}`).join(' ');
 
-    if (context === 'YouTube Description') {
-      return `🔥 ${configData.title} | ${subjectName}
+    const results: Record<string, string> = {};
 
-${interpolateTemplate(configData.summary || configData.description, configData)}
+    contexts.forEach(context => {
+      if (context === 'YouTube Description') {
+        results[context] = `🔥 ${configData.title} | ${subjectName}\n\n${interpolateTemplate(configData.summary || configData.description, configData)}\n\nWe are diving deep into ${subjectName} today. ${expandedSubject}. The vibe is ${configData.tone?.join(', ') || 'epic'} as our primary objective is: ${expandedGoals || 'exploration'}. \n\n${configData.scenery ? 'Current Location: ' + interpolateTemplate(configData.scenery, configData) : ''}\n${activeElements ? 'Things to look out for: ' + activeElements : ''}\n\n${interpolateTemplate(configData.customAdditions, configData)}\n\n${hashtags}`.trim();
+      } else if (context === 'Image Prompt') {
+        const baseDesc = `${interpolateTemplate(configData.summary || configData.description, configData)}. ${configData.scenery ? interpolateTemplate(configData.scenery, configData) + '.' : ''} ${expandedSubject}. ${expandedTime}. ${expandedStyle}. ${expandedTones ? 'Atmosphere is ' + expandedTones + '.' : ''} ${activeElements ? 'Featuring ' + activeElements + '.' : ''} ${expandedPlacement} ${expandedFont}. ${expandedGoals}. ${interpolateTemplate(configData.customAdditions, configData)}. ${(configData.keywords || []).join(', ')}`.replace(/\s+/g, ' ').trim();
 
-We are diving deep into ${subjectName} today. ${expandedSubject}. The vibe is ${configData.tone?.join(', ') || 'epic'} as our primary objective is: ${configData.goal}. 
-
-${configData.scenery ? 'Current Location: ' + interpolateTemplate(configData.scenery, configData) : ''}
-${activeElements ? 'Things to look out for: ' + activeElements : ''}
-
-${interpolateTemplate(configData.customAdditions, configData)}
-
-${hashtags}`.trim();
-    }
-
-    if (context === 'Image Prompt') {
-      const baseDesc = `${interpolateTemplate(configData.summary || configData.description, configData)}. ${configData.scenery ? interpolateTemplate(configData.scenery, configData) + '.' : ''} ${expandedSubject}. ${expandedTime}. ${expandedStyle}. ${expandedTones ? 'Atmosphere is ' + expandedTones + '.' : ''} ${activeElements ? 'Featuring ' + activeElements + '.' : ''} ${expandedPlacement} ${expandedFont}. ${expandedGoal}. ${interpolateTemplate(configData.customAdditions, configData)}. ${(configData.keywords || []).join(', ')}`.replace(/\s+/g, ' ').trim();
-
-      if (configData.promptSyntax === 'Midjourney') {
-        return `${baseDesc} --ar ${configData.primaryRatio} --style raw --v 6.0`;
-      } else if (configData.promptSyntax === 'Gemini' || configData.promptSyntax === 'ChatGPT') {
-        return `Write a highly detailed and evocative image generation prompt describing the following scene:\n\n${baseDesc}\n\nEnsure it is vivid, cinematic, and tailored for an AI image generator to produce a stunning, high-quality result.`;
+        if (engine?.provider === 'midjourney') {
+          results[context] = `${baseDesc} --ar ${configData.primaryRatio} --style raw --v 6.0`;
+        } else if (engine?.provider === 'google' || engine?.provider === 'openai') {
+          results[context] = `Write a highly detailed and evocative image generation prompt describing the following scene:\n\n${baseDesc}\n\nEnsure it is vivid, cinematic, and tailored for an AI image generator to produce a stunning, high-quality result.`;
+        } else {
+          results[context] = `/generate prompt: ${baseDesc}`;
+        }
+      } else if (context === 'Twitter/X Post') {
+        results[context] = `🎮 ${configData.title}\n\n${interpolateTemplate(configData.summary || configData.description, configData)}\n\n${expandedSubject} ${expandedTime}.\n\n${activeElements ? 'Highlighting: ' + activeElements : ''}\n\n${hashtags}`.trim();
+      } else if (context === 'Instagram Caption') {
+        results[context] = `✨ ${configData.title}\n\n${interpolateTemplate(configData.summary || configData.description, configData)}\n\nCaptured in ${subjectName}. ${expandedSubject}. ${expandedTime}.\n\n${activeElements ? 'Featuring: ' + activeElements : ''}\n\n📸 Let me know what you think below!\n\n${hashtags}`.trim();
       } else {
-        return `/generate prompt: ${baseDesc}`;
+        results[context] = `📝 ${configData.title}\n\n${interpolateTemplate(configData.summary || configData.description, configData)}\n\n${expandedSubject}\n\n${hashtags}`.trim();
       }
-    }
+    });
 
-    if (context === 'Twitter/X Post') {
-      return `🎮 ${configData.title}\n\n${interpolateTemplate(configData.summary || configData.description, configData)}\n\n${expandedSubject} ${expandedTime}.\n\n${activeElements ? 'Highlighting: ' + activeElements : ''}\n\n${hashtags}`.trim();
-    }
-
-    if (context === 'Instagram Caption') {
-      return `✨ ${configData.title}\n\n${interpolateTemplate(configData.summary || configData.description, configData)}\n\nCaptured in ${subjectName}. ${expandedSubject}. ${expandedTime}.\n\n${activeElements ? 'Featuring: ' + activeElements : ''}\n\n📸 Let me know what you think below!\n\n${hashtags}`.trim();
-    }
-
-    return 'Select a context';
+    return results;
   };
 
-  // Debounced output compiler
   useEffect(() => {
     if (!appData) return;
     setIsCompiling(true);
     const delay = setTimeout(() => {
       const compiled = compileOutput(config);
-      setCompiledOutput(compiled);
+      setCompiledOutputs(compiled);
       setIsCompiling(false);
     }, 1700);
 
@@ -457,15 +537,13 @@ ${hashtags}`.trim();
     if (!appData) return;
     setIsCompiling(false);
     const compiled = compileOutput(config);
-    setCompiledOutput(compiled);
+    setCompiledOutputs(compiled);
   };
 
-  const displayOutput = config.compiledOutputOverride ?? compiledOutput;
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(displayOutput).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+  const copyToClipboard = (text: string, key: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(key);
+      setTimeout(() => setCopied(null), 2000);
     });
   };
 
@@ -473,7 +551,7 @@ ${hashtags}`.trim();
     return <div className="h-screen w-full flex items-center justify-center bg-gray-50 dark:bg-[#131314] text-indigo-500"><Loader2 className="w-8 h-8 animate-spin" /></div>;
   }
 
-  const subjectOptions = appData.subjects.map((s: any) => s.id);
+  const subjectOptions = appData.subjects.map((s: any) => ({ value: s.id, label: s.name }));
 
   return (
     <div className="h-screen w-full flex flex-col overflow-hidden bg-gray-50 dark:bg-[#131314] text-slate-800 dark:text-slate-200">
@@ -496,7 +574,6 @@ ${hashtags}`.trim();
       )}
 
       <main className="flex-1 flex overflow-hidden relative">
-        {/* Editor (Left) */}
         <div
           className="h-full overflow-y-auto custom-scrollbar pb-20"
           style={{ width: isMobile ? '100%' : `${leftWidthPct}%`, display: isMobile && mobileActiveTab !== 'form' ? 'none' : 'block' }}
@@ -506,7 +583,6 @@ ${hashtags}`.trim();
               <input name="title" value={config.title} onChange={handleInputChange} className="w-full bg-transparent text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-100 focus:outline-none" placeholder="Config Title" />
             </div>
 
-            {/* Sticky Variables Toolbar */}
             <div className="sticky top-0 z-30 bg-gray-50/95 dark:bg-[#131314]/95 backdrop-blur-md border-b border-gray-200 dark:border-[#2a2a2a] py-3 -mx-4 md:-mx-8 px-4 md:px-8 mb-6 transition-all shadow-sm">
               <div className="max-w-4xl mx-auto space-y-2">
                 <div className="flex items-center justify-between">
@@ -536,9 +612,6 @@ ${hashtags}`.trim();
                     } else {
                       val = (config as any)[variable.name] || '';
                     }
-
-                    const displayVal = val ? `"${val}"` : 'empty';
-
                     return (
                       <button
                         key={variable.name}
@@ -550,12 +623,9 @@ ${hashtags}`.trim();
                         }}
                         onClick={() => insertVariable(`{{${variable.name}}}`)}
                         className="px-2.5 py-1 text-[10px] bg-white dark:bg-[#1e1e1f] hover:bg-indigo-50 dark:hover:bg-[#25252b] text-indigo-600 dark:text-indigo-400 rounded-md border border-gray-200 dark:border-[#2f2f35] font-mono transition-all flex items-center gap-1 active:scale-95 cursor-grab active:cursor-grabbing hover:shadow-sm hover:border-indigo-300 dark:hover:border-indigo-900 group"
-                        title={`Drag or click to insert {{${variable.name}}}`}
                       >
+                        <span className={`w-1.5 h-1.5 rounded-full ${VARIABLE_COLORS[variable.name] || 'bg-indigo-500'} mr-1`}></span>
                         <span className="font-bold text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">{`{{${variable.name}}}`}</span>
-                        <span className="text-[9px] text-slate-400 dark:text-slate-500 font-sans italic max-w-[120px] truncate">
-                          ({displayVal})
-                        </span>
                       </button>
                     );
                   })}
@@ -564,261 +634,227 @@ ${hashtags}`.trim();
             </div>
 
             <div className="space-y-6">
-              {/* Core Subject (At the top of the form) */}
               <div className="space-y-2 relative">
-                <div className="flex justify-between items-end mb-1">
-                  <label className="text-sm font-medium text-slate-700 dark:text-slate-400">Core Subject (Supports {'{{variables}}'})</label>
+                <label className="text-sm font-semibold text-slate-800 dark:text-slate-300 uppercase tracking-widest border-b border-gray-200 dark:border-[#333] pb-2 flex items-center justify-between">
+                  <span>Core Idea</span>
                   <div className="flex gap-2">
                     <button
-                      onClick={handleMagicFill}
-                      disabled={isMagicFilling || !config.description}
-                      className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider bg-gradient-to-r from-amber-500 to-rose-500 text-white px-3 py-1.5 rounded shadow-lg hover:shadow-amber-500/25 disabled:opacity-50 transition-all"
+                      type="button"
+                      onClick={handleEnhanceSubject}
+                      disabled={!hasAIKey || isEnhancing || isMagicFilling}
+                      className="px-3 py-1 bg-gradient-to-r from-indigo-500 to-fuchsia-500 hover:from-indigo-600 hover:to-fuchsia-600 text-white rounded text-xs font-semibold shadow-sm flex items-center gap-1.5 transition-all disabled:opacity-50"
                     >
-                      {isMagicFilling ? <Loader2 className="w-3 h-3 animate-spin" /> : <Zap className="w-3 h-3" />}
-                      Magic Fill
+                      {isEnhancing ? (
+                        <>
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" /> Stop
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles className="w-3.5 h-3.5" /> Expand Idea
+                        </>
+                      )}
                     </button>
                     <button
-                      onClick={handleEnhanceSubject}
-                      disabled={isEnhancing || !config.description}
-                      className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider bg-gradient-to-r from-fuchsia-600 to-indigo-600 text-white px-3 py-1.5 rounded shadow-lg hover:shadow-indigo-500/25 disabled:opacity-50 transition-all"
+                      type="button"
+                      onClick={handleMagicFill}
+                      disabled={!hasAIKey || isEnhancing || isMagicFilling}
+                      className="px-3 py-1 bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 dark:hover:bg-slate-600 text-white rounded text-xs font-semibold shadow-sm flex items-center gap-1.5 transition-all disabled:opacity-50"
                     >
-                      {isEnhancing ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
-                      Enhance
+                      {isMagicFilling ? (
+                        <>
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" /> Stop
+                        </>
+                      ) : (
+                        <>
+                          <Wand2 className="w-3.5 h-3.5" /> Magic Fill Form
+                        </>
+                      )}
                     </button>
                   </div>
-                </div>
+                </label>
                 <textarea
                   name="description" value={config.description} onChange={handleInputChange} rows={3}
                   onFocus={() => setLastFocusedInput('description')}
-                  onDragEnter={(e) => { e.preventDefault(); setIsDraggingOver(true); }}
-                  onDragOver={(e) => { e.preventDefault(); }}
-                  onDragLeave={() => setIsDraggingOver(false)}
-                  onDrop={(e) => {
-                    e.preventDefault();
-                    setIsDraggingOver(false);
-                    const varText = e.dataTransfer.getData("text/plain");
-                    if (varText && varText.startsWith("{{") && varText.endsWith("}}")) {
-                      const textarea = e.currentTarget;
-                      const start = textarea.selectionStart;
-                      const end = textarea.selectionEnd;
-                      const text = textarea.value;
-                      const before = text.substring(0, start);
-                      const after = text.substring(end, text.length);
-                      const newText = before + varText + after;
-                      setConfig(prev => ({ ...prev, description: newText }));
-
-                      setTimeout(() => {
-                        textarea.focus();
-                        textarea.setSelectionRange(start + varText.length, start + varText.length);
-                      }, 10);
-                    }
-                  }}
-                  className={`w-full bg-white dark:bg-[#1e1e1e] border rounded-xl p-3 text-sm text-slate-900 dark:text-slate-200 outline-none resize-none transition-all ${isDraggingOver
-                      ? 'border-indigo-500 dark:border-indigo-400 bg-indigo-50/10 dark:bg-indigo-950/10 ring-2 ring-indigo-500/20 scale-[1.01] border-dashed shadow-inner'
-                      : 'border-gray-300 dark:border-[#333] focus:border-indigo-500'
-                    }`}
-                  placeholder="Describe the central character or action... Click Enhance to expand it or Magic Fill to configure the form."
+                  className="w-full bg-white dark:bg-[#1e1e1e] border border-gray-300 dark:border-[#333] rounded-xl p-3 text-sm text-slate-900 dark:text-slate-200 outline-none resize-none transition-all focus:border-indigo-500"
+                  placeholder="Describe the central character or action... Click Expand or Magic Fill."
                 />
               </div>
 
-              {/* Subject & Goal (Now below Core Subject) */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Combobox label="Subject / Universe" name="subjectId" value={config.subjectId} onChange={handleInputChange} options={subjectOptions} placeholder="e.g. elden-ring" />
-                <Combobox label="Goal / Objective" name="goal" value={config.goal} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.goal)} placeholder="e.g. High CTR" />
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium text-slate-700 dark:text-slate-400 flex items-center">
+                    <span className={`w-2 h-2 rounded-full ${VARIABLE_COLORS.subjectId} mr-2 shadow-sm`}></span>
+                    Subject / Universe
+                  </label>
+                  <div className="mb-2"><SubjectVisualizer value={config.subjectId} onChange={(val) => setConfig(prev => ({ ...prev, subjectId: val }))} subjects={appData.subjects.map((s: any) => ({ id: s.id, name: s.name }))} /></div>
+                  <Combobox label="Subject / Universe (Fallback)" name="subjectId" value={config.subjectId} onChange={handleInputChange} options={subjectOptions} placeholder="e.g. elden-ring" colorCode={VARIABLE_COLORS.subjectId} />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium text-slate-700 dark:text-slate-400 flex items-center">
+                    <span className={`w-2 h-2 rounded-full ${VARIABLE_COLORS.goal} mr-2 shadow-sm`}></span>
+                    Goal / Objective
+                  </label>
+                  <div className="mb-2"><GoalVisualizer values={config.goal || []} onChange={(val) => setConfig(prev => ({ ...prev, goal: val }))} availableGoals={Object.keys(appData.global.dictionaries.goal)} /></div>
+                  <MultiSelect label="Goal / Objective (Fallback)" values={config.goal || []} onChange={(v) => setConfig(prev => ({ ...prev, goal: v }))} suggestions={Object.keys(appData.global.dictionaries.goal)} colorCode={VARIABLE_COLORS.goal} />
+                </div>
               </div>
             </div>
 
             <div className="space-y-6 pt-4">
               <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-300 uppercase tracking-widest border-b border-gray-200 dark:border-[#333] pb-2">Environment & Vibe</h3>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="space-y-2 flex flex-col">
-                  <Combobox label="Time of Day" name="timeOfDay" value={config.timeOfDay} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.timeOfDay)} placeholder="e.g. Golden Hour" />
-                  <div className="mt-2"><TimeOfDayVisualizer value={config.timeOfDay} onChange={(val) => setConfig(prev => ({ ...prev, timeOfDay: val }))} timesOptions={Object.keys(appData.global.dictionaries.timeOfDay)} /></div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium text-slate-700 dark:text-slate-400 flex items-center">
+                    <span className={`w-2 h-2 rounded-full ${VARIABLE_COLORS.timeOfDay} mr-2 shadow-sm`}></span>
+                    Time of Day
+                  </label>
+                  <div className="mb-2"><TimeOfDayVisualizer value={config.timeOfDay} onChange={(val) => setConfig(prev => ({ ...prev, timeOfDay: val }))} timesOptions={Object.keys(appData.global.dictionaries.timeOfDay)} /></div>
+                  <Combobox label="Time of Day (Fallback)" name="timeOfDay" value={config.timeOfDay} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.timeOfDay)} placeholder="e.g. Golden Hour" colorCode={VARIABLE_COLORS.timeOfDay} />
                 </div>
 
-                <div className="space-y-2 flex flex-col">
-                  <Combobox label="Image Style" name="imageStyle" value={config.imageStyle} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.imageStyle)} placeholder="e.g. Cinematic 3D" />
-                  <div className="mt-2"><ImageStyleGrid value={config.imageStyle} onChange={(val) => setConfig(prev => ({ ...prev, imageStyle: val }))} styles={Object.keys(appData.global.dictionaries.imageStyle)} /></div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <MultiSelect label="Tones & Mood" values={config.tone} onChange={(v) => setConfig(prev => ({ ...prev, tone: v }))} suggestions={Object.keys(appData.global.dictionaries.tone).concat(Object.keys(appData.macros.tones))} tagSets={appData.macros.tones} iconMap={TONE_ICONS} />
-                <MultiSelect label="Keywords & Tags" values={config.keywords} onChange={(v) => setConfig(prev => ({ ...prev, keywords: v }))} suggestions={Object.keys(appData.macros.keywords)} tagSets={appData.macros.keywords} />
-              </div>
-            </div>
-
-            {/* Typography & Layout Section */}
-            <div className="space-y-6 pt-4">
-              <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-300 uppercase tracking-widest border-b border-gray-200 dark:border-[#333] pb-2">Typography & Layout</h3>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="space-y-2 flex flex-col">
-                  <Combobox label="Text Placement / Alignment" name="textPlacements" value={config.textPlacements} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.textPlacements)} placeholder="e.g. Top Left" />
-                  <div className="mt-2 flex items-center gap-4">
-                    <TextPlacementGrid value={config.textPlacements} onChange={(val) => setConfig(prev => ({ ...prev, textPlacements: val }))} />
-                    <div className="text-xs text-slate-500 dark:text-slate-400">
-                      Select layout alignment to reserve clear negative space for text overlays.
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-2 flex flex-col justify-start">
-                  <Combobox label="Font Style Context" name="fontStyle" value={config.fontStyle} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.fontStyle)} placeholder="e.g. Bold Serif" />
-                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-2">
-                    Select typography target style so the AI adjusts color weight, contrast thresholds, and visual motifs to complement the font.
-                  </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium text-slate-700 dark:text-slate-400 flex items-center">
+                    <span className={`w-2 h-2 rounded-full ${VARIABLE_COLORS.imageStyle} mr-2 shadow-sm`}></span>
+                    Image Style
+                  </label>
+                  <div className="mb-2"><ImageStyleGrid value={config.imageStyle} onChange={(val) => setConfig(prev => ({ ...prev, imageStyle: val }))} styles={Object.keys(appData.global.dictionaries.imageStyle)} /></div>
+                  <Combobox label="Image Style (Fallback)" name="imageStyle" value={config.imageStyle} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.imageStyle)} placeholder="e.g. Cinematic 3D" colorCode={VARIABLE_COLORS.imageStyle} />
                 </div>
               </div>
             </div>
 
             <div className="space-y-6 pt-4">
-              <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-300 uppercase tracking-widest border-b border-gray-200 dark:border-[#333] pb-2">Additional Elements</h3>
-              <div className="flex flex-wrap gap-2">
-                {appData.global.options.elements.concat(Object.keys(appData.macros.elements || {})).map((el: string) => {
-                  const Icon = ELEMENT_ICONS[el] || Sparkles;
-                  const isActive = config.additionalElements[el];
-                  return (
-                    <button key={el} onClick={() => handleElementToggle(el)} className={`px-3 py-1.5 rounded flex items-center gap-2 text-sm transition-all border ${isActive ? 'bg-indigo-600 text-white border-indigo-500 shadow-lg shadow-indigo-500/20' : 'bg-white dark:bg-[#1e1e1e] text-slate-600 dark:text-slate-400 border-gray-200 dark:border-[#333] hover:border-indigo-500/50'}`}>
-                      {Icon && <Icon className="w-4 h-4" />} {el.replace('@', '')}
-                    </button>
-                  );
-                })}
+              <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-300 uppercase tracking-widest border-b border-gray-200 dark:border-[#333] pb-2 flex items-center">
+                <span className={`w-2 h-2 rounded-full ${VARIABLE_COLORS.additionalElements} mr-2 shadow-sm`}></span>
+                Additional Elements
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium text-slate-700 dark:text-slate-400 flex items-center">
+                    <span className={`w-2 h-2 rounded-full ${VARIABLE_COLORS.tone} mr-2 shadow-sm`}></span>
+                    Tones & Mood
+                  </label>
+                  <div className="mb-2"><ToneVisualizer values={config.tone || []} onChange={(v) => setConfig(prev => ({ ...prev, tone: v }))} availableTones={Object.keys(appData.global.dictionaries.tone)} /></div>
+                  <MultiSelect label="Tones & Mood (Fallback)" values={config.tone} onChange={(v) => setConfig(prev => ({ ...prev, tone: v }))} suggestions={Object.keys(appData.global.dictionaries.tone).concat(Object.keys(appData.macros.tones))} tagSets={appData.macros.tones} iconMap={TONE_ICONS} colorCode={VARIABLE_COLORS.tone} />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium text-slate-700 dark:text-slate-400 flex items-center">
+                    <span className={`w-2 h-2 rounded-full ${VARIABLE_COLORS.platform} mr-2 shadow-sm`}></span>
+                    Platforms
+                  </label>
+                  <div className="mb-2"><PlatformVisualizer values={config.platform || []} onChange={(v) => setConfig(prev => ({ ...prev, platform: v }))} platforms={['YouTube', 'YouTube Shorts', 'Instagram', 'Twitter / X', 'TikTok']} /></div>
+                  <MultiSelect label="Platforms (Fallback)" values={config.platform || []} onChange={(v) => setConfig(prev => ({ ...prev, platform: v }))} suggestions={['YouTube', 'YouTube Shorts', 'Instagram', 'Twitter / X', 'TikTok']} colorCode={VARIABLE_COLORS.platform} />
+                </div>
               </div>
-            </div>
 
-            {/* Prompt Summary (Final manual pass) */}
-            <div className="space-y-4 pt-6 border-t border-gray-200 dark:border-[#2a2a2a]">
-              <div className="flex justify-between items-end">
-                <label className="text-sm font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
-                  Prompt Summary (Final manual pass)
+              {/* Typography & Layout Section */}
+              <div className="space-y-6 pt-4">
+                <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-300 uppercase tracking-widest border-b border-gray-200 dark:border-[#333] pb-2">Typography & Layout</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className="flex flex-col gap-2">
+                    <label className="text-sm font-medium text-slate-700 dark:text-slate-400 flex items-center">
+                      <span className={`w-2 h-2 rounded-full ${VARIABLE_COLORS.textPlacements} mr-2 shadow-sm`}></span>
+                      Text Placement / Alignment
+                    </label>
+                    <div className="mb-2"><TextPlacementGrid value={config.textPlacements} onChange={(val) => setConfig(prev => ({ ...prev, textPlacements: val }))} placements={Object.keys(appData.global.dictionaries.textPlacements)} /></div>
+                    <Combobox label="Text Placement / Alignment (Fallback)" name="textPlacements" value={config.textPlacements} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.textPlacements)} placeholder="e.g. Top Left" colorCode={VARIABLE_COLORS.textPlacements} />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-sm font-medium text-slate-700 dark:text-slate-400 flex items-center">
+                      <span className={`w-2 h-2 rounded-full ${VARIABLE_COLORS.fontStyle} mr-2 shadow-sm`}></span>
+                      Font Style Context
+                    </label>
+                    <div className="mb-2"><FontStyleGrid value={config.fontStyle} onChange={(val) => setConfig(prev => ({ ...prev, fontStyle: val }))} availableStyles={Object.keys(appData.global.dictionaries.fontStyle)} /></div>
+                    <Combobox label="Font Style Context (Fallback)" name="fontStyle" value={config.fontStyle} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.fontStyle)} placeholder="e.g. Bold Serif" colorCode={VARIABLE_COLORS.fontStyle} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 pt-4 border-t border-gray-200 dark:border-[#333]">
+                <MultiSelect label="Keywords & Focus" values={config.keywords || []} onChange={(v) => setConfig(prev => ({ ...prev, keywords: v }))} suggestions={Object.keys(appData.global.dictionaries.keywords || {}).concat(Object.keys(appData.macros.keywords || {}))} tagSets={appData.macros.keywords} colorCode={VARIABLE_COLORS.keywords} />
+              </div>
+
+              <div className="mt-4 pt-4 border-t border-gray-200 dark:border-[#333]">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-400 mb-2 flex items-center justify-between">
+                  Additional Elements
                 </label>
-                <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider hidden sm:inline">
-                  Drag & drop variables here or click them
-                </span>
+                <div className="flex flex-wrap gap-2 max-h-36 overflow-y-auto custom-scrollbar p-1">
+                  {appData.global.options.elements.concat(Object.keys(appData.macros.elements || {})).map((el: string) => {
+                    const isActive = config.additionalElements?.[el];
+                    return (
+                      <button key={el} onClick={() => handleElementToggle(el)} className={`px-3 py-1.5 rounded flex items-center gap-2 text-sm transition-all border ${isActive ? 'bg-indigo-600 text-white border-indigo-500 shadow-lg shadow-indigo-500/20' : 'bg-white dark:bg-[#1e1e1e] text-slate-600 dark:text-slate-400 border-gray-200 dark:border-[#333] hover:border-indigo-500/50'}`}>
+                        {isActive && <Check className="w-3.5 h-3.5" />}
+                        {el}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
+            </div>
+
+            <div className="space-y-4 pt-6 border-t border-gray-200 dark:border-[#2a2a2a]">
+              <label className="text-sm font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">Prompt Summary</label>
               <textarea
                 name="summary"
                 value={config.summary || ''}
                 onChange={handleInputChange}
                 rows={4}
                 onFocus={() => setLastFocusedInput('summary')}
-                onDragEnter={(e) => { e.preventDefault(); setIsDraggingOverSummary(true); }}
-                onDragOver={(e) => { e.preventDefault(); }}
-                onDragLeave={() => setIsDraggingOverSummary(false)}
-                onDrop={(e) => {
-                  e.preventDefault();
-                  setIsDraggingOverSummary(false);
-                  const varText = e.dataTransfer.getData("text/plain");
-                  if (varText && varText.startsWith("{{") && varText.endsWith("}}")) {
-                    const textarea = e.currentTarget;
-                    const start = textarea.selectionStart;
-                    const end = textarea.selectionEnd;
-                    const text = textarea.value;
-                    const before = text.substring(0, start);
-                    const after = text.substring(end, text.length);
-                    const newText = before + varText + after;
-                    setConfig(prev => ({ ...prev, summary: newText }));
-
-                    setTimeout(() => {
-                      textarea.focus();
-                      textarea.setSelectionRange(start + varText.length, start + varText.length);
-                    }, 10);
-                  }
-                }}
-                className={`w-full bg-white dark:bg-[#1e1e1e] border rounded-xl p-3.5 text-sm text-slate-900 dark:text-slate-200 outline-none resize-none transition-all font-mono leading-relaxed ${isDraggingOverSummary
-                    ? 'border-indigo-500 dark:border-indigo-400 bg-indigo-50/10 dark:bg-indigo-950/10 ring-2 ring-indigo-500/20 scale-[1.01] border-dashed shadow-inner'
-                    : 'border-gray-300 dark:border-[#333] focus:border-indigo-500 shadow-sm'
-                  }`}
-                placeholder="Weave your variables together here (e.g. 'A warrior in {{subjectId}} exploring under {{timeOfDay}} skies, rendered in {{imageStyle}}.')"
+                className="w-full bg-white dark:bg-[#1e1e1e] border border-gray-300 dark:border-[#333] rounded-xl p-3.5 text-sm text-slate-900 dark:text-slate-200 outline-none resize-none transition-all font-mono"
               />
             </div>
-
           </div>
         </div>
 
-        {/* Resizer */}
         {!isMobile && (
-          <div className="w-1.5 bg-gray-200 dark:bg-[#25252b] hover:bg-indigo-500 cursor-col-resize z-10 flex items-center justify-center transition-colors shadow-inner" onMouseDown={(e) => { e.preventDefault(); setIsDragging(true); }}>
-            <SplitSquareHorizontal className="w-3 h-3 text-slate-400 rotate-90" />
-          </div>
+          <div className="w-1.5 bg-gray-200 dark:bg-[#25252b] hover:bg-indigo-500 cursor-col-resize z-10" onMouseDown={() => setIsDragging(true)} />
         )}
 
-        {/* Output (Right) */}
         <div
           className="h-full bg-white dark:bg-[#18181b] flex flex-col border-l border-gray-200 dark:border-[#333]"
           style={{ width: isMobile ? '100%' : `${100 - leftWidthPct}%`, display: isMobile && mobileActiveTab !== 'output' ? 'none' : 'flex' }}
         >
           <div className="p-4 md:p-6 border-b border-gray-200 dark:border-[#2a2a2a] flex flex-wrap gap-4 items-center justify-between bg-gray-50 dark:bg-[#18181b] flex-none">
-            <div className="flex gap-4 items-center">
-              <select name="outputContext" value={config.outputContext} onChange={handleInputChange} className="bg-white dark:bg-[#25252b] text-slate-900 dark:text-slate-200 text-sm border border-gray-300 dark:border-[#333] rounded px-3 py-1.5 outline-none focus:border-indigo-500">
-                {appData.global.options.contexts.map((c: string) => <option key={c} value={c}>{c}</option>)}
-              </select>
-              <select name="promptSyntax" value={config.promptSyntax} onChange={handleInputChange} className="bg-white dark:bg-[#25252b] text-slate-900 dark:text-slate-200 text-sm border border-gray-300 dark:border-[#333] rounded px-3 py-1.5 outline-none focus:border-indigo-500">
-                {appData.global.options.syntaxes.map((s: string) => <option key={s} value={s}>{s}</option>)}
-              </select>
-
-              {/* Compile Status & Bypass Button */}
-              <div className="flex items-center gap-2 pl-3 border-l border-gray-200 dark:border-[#2a2a2a]">
-                {isCompiling ? (
-                  <div className="flex items-center gap-1.5 text-xs text-amber-500 font-medium">
-                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                    <span className="hidden lg:inline">Compiling...</span>
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-1.5 text-xs text-emerald-500 font-medium">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span className="hidden lg:inline">Compiled</span>
-                  </div>
-                )}
-                <button
-                  type="button"
-                  onClick={handleManualCompile}
-                  disabled={!isCompiling}
-                  className={`px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold rounded transition-all ${isCompiling
-                      ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/20 active:scale-95'
-                      : 'bg-gray-100 dark:bg-[#25252b] text-slate-400 border border-gray-200 dark:border-[#333] cursor-not-allowed'
-                    }`}
-                  title="Force compile immediate output changes"
-                >
-                  Push Now
-                </button>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              {config.compiledOutputOverride !== undefined && (
-                <button
-                  onClick={handleResetOutput}
-                  title="Reset to standard template output"
-                  className="flex items-center gap-1.5 px-3 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-[#25252b] dark:hover:bg-[#2d2d33] border border-gray-300 dark:border-[#3c3c43] text-slate-700 dark:text-slate-300 rounded text-sm font-semibold transition-all"
-                >
-                  <RotateCcw className="w-4 h-4" />
-                  <span className="hidden sm:inline">Reset</span>
-                </button>
-              )}
-
-              <button
-                onClick={handleEnhanceOutput}
-                disabled={isEnhancingOutput || !displayOutput}
-                className="flex items-center gap-1.5 px-3 py-2 bg-gradient-to-r from-indigo-600 to-fuchsia-600 hover:from-indigo-500 hover:to-fuchsia-500 text-white rounded text-sm font-semibold transition-all disabled:opacity-50 shadow-md"
-              >
-                {isEnhancingOutput ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-                <span>AI Enhance</span>
-              </button>
-
-              <button onClick={copyToClipboard} className={`flex items-center gap-2 px-4 py-2 rounded text-sm font-semibold transition-all ${copied ? 'bg-emerald-500 text-white' : 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'}`}>
-                {copied ? <CheckCircle2 className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                {copied ? 'Copied!' : 'Copy'}
-              </button>
-            </div>
+            <select name="outputEngineId" value={config.outputEngineId} onChange={handleInputChange} className="bg-white dark:bg-[#25252b] text-sm border border-gray-300 dark:border-[#333] rounded-lg px-3 py-1.5 outline-none">
+              {aiEngines.map(e => <option key={e.id} value={e.id}>{e.name}</option>)}
+            </select>
           </div>
-
-          <div className="flex-1 p-4 md:p-6 overflow-y-auto custom-scrollbar bg-gray-50 dark:bg-[#131314]">
-            <textarea
-              className="w-full h-full bg-white dark:bg-[#1e1e1e] border border-gray-300 dark:border-[#333] rounded-xl p-4 md:p-6 text-sm md:text-base text-slate-800 dark:text-slate-300 leading-relaxed outline-none resize-none focus:border-indigo-500 transition-colors shadow-inner font-mono"
-              value={displayOutput}
-              onChange={(e) => setConfig(prev => ({ ...prev, compiledOutputOverride: e.target.value }))}
-            />
+          <div className="flex-1 p-4 md:p-6 overflow-y-auto custom-scrollbar bg-gray-50 dark:bg-[#131314] flex flex-col gap-6">
+            {Object.entries(compiledOutputs).map(([contextKey, compiledText]) => {
+              const displayOutput = config.compiledOutputOverrides?.[contextKey] ?? compiledText;
+              return (
+                <div key={contextKey} className="flex flex-col bg-white dark:bg-[#1e1e1e] border border-gray-300 dark:border-[#333] rounded-xl overflow-hidden shadow-sm">
+                  <div className="px-4 py-3 border-b border-gray-200 dark:border-[#2a2a2a] bg-gray-50 dark:bg-[#25252b] flex items-center justify-between">
+                    <span className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest">{contextKey}</span>
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => handleResetOutput(contextKey)} className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 hover:bg-gray-200 dark:bg-[#2d2d33] border border-gray-300 dark:border-[#444] text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold transition-all">
+                        <RotateCcw className="w-3 h-3" /> <span>Reset</span>
+                      </button>
+                      <button
+                        onClick={() => handleEnhanceOutput(contextKey)}
+                        disabled={!hasAIKey || (isEnhancingOutput !== null && isEnhancingOutput !== contextKey) || !displayOutput}
+                        className="flex items-center gap-1.5 px-2 py-1 bg-gradient-to-r from-indigo-600 to-fuchsia-600 hover:from-indigo-500 hover:to-fuchsia-500 text-white rounded text-[10px] font-semibold transition-all disabled:opacity-50"
+                      >
+                        {isEnhancingOutput === contextKey ? <><Loader2 className="w-3 h-3 animate-spin" /> Stop</> : <><Sparkles className="w-3 h-3" /> Enhance</>}
+                      </button>
+                      <button onClick={() => copyToClipboard(displayOutput, contextKey)} className={`flex items-center gap-1 px-2 py-1 rounded text-[10px] font-semibold transition-all ${copied === contextKey ? 'bg-emerald-500 text-white' : 'bg-indigo-600 hover:bg-indigo-500 text-white'}`}>
+                        {copied === contextKey ? <CheckCircle2 className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                        {copied === contextKey ? 'Copied' : 'Copy'}
+                      </button>
+                    </div>
+                  </div>
+                  <textarea
+                    className="w-full bg-transparent p-4 text-sm text-slate-800 dark:text-slate-300 leading-relaxed outline-none resize-none focus:ring-0 font-mono"
+                    rows={6}
+                    value={displayOutput}
+                    onChange={(e) => setConfig(prev => ({ 
+                      ...prev, 
+                      compiledOutputOverrides: { ...(prev.compiledOutputOverrides || {}), [contextKey]: e.target.value } 
+                    }))}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </main>
