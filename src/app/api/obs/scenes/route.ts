@@ -1,0 +1,647 @@
+import { NextRequest, NextResponse } from 'next/server';
+import fs from 'fs';
+import path from 'path';
+
+// Seed data in case the file doesn't exist or is empty (6 Premium Stream Presets)
+const DEFAULT_SCENES = [
+  {
+    "id": "gaming-hud",
+    "title": "Gaming HUD Overlay",
+    "description": "Premium gamer-themed streaming overlay featuring a glowing header, a webcam frame, and dynamic neon alerts.",
+    "width": 1920,
+    "height": 1080,
+    "layers": [
+      {
+        "id": "animated-header-bg",
+        "name": "Top Bar Animated Flow",
+        "type": "animated-gradient",
+        "visible": true,
+        "opacity": 0.9,
+        "top": 0,
+        "left": 0,
+        "width": 100,
+        "height": 5,
+        "zIndex": 1,
+        "gradientType": "linear",
+        "gradientAngle": 90,
+        "gradientColors": ["#ec4899", "#8b5cf6", "#3b82f6"],
+        "animationSpeed": 6,
+        "animationType": "shift"
+      },
+      {
+        "id": "header-title-text",
+        "name": "Stream Alert Text",
+        "type": "text",
+        "visible": true,
+        "opacity": 1,
+        "top": 0.5,
+        "left": 5,
+        "width": 90,
+        "height": 4,
+        "zIndex": 5,
+        "text": "🔴 MATCH IN PROGRESS | NEXT GOAL: 500 SUBS",
+        "fontFamily": "Orbitron",
+        "fontSize": 18,
+        "color": "#ffffff",
+        "textPlacement": "center-left",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textTransform": "uppercase",
+        "letterSpacing": 2,
+        "shadowColor": "#000000",
+        "shadowBlur": 4,
+        "shadowOffset": { "x": 2, "y": 2 },
+        "outerGlowColor": "#ec4899",
+        "outerGlowBlur": 8
+      },
+      {
+        "id": "webcam-border",
+        "name": "Webcam Gradient Border",
+        "type": "gradient",
+        "visible": true,
+        "opacity": 0.85,
+        "top": 15,
+        "left": 75,
+        "width": 22,
+        "height": 22,
+        "zIndex": 2,
+        "gradientType": "linear",
+        "gradientAngle": 135,
+        "gradientColors": ["#ec4899", "#8b5cf6"],
+        "bgColor": "#ffffff"
+      },
+      {
+        "id": "webcam-cutout",
+        "name": "Webcam Inner Frame",
+        "type": "color",
+        "visible": true,
+        "opacity": 1,
+        "top": 15.5,
+        "left": 75.3,
+        "width": 21.4,
+        "height": 21,
+        "zIndex": 3,
+        "bgColor": "#131314"
+      },
+      {
+        "id": "webcam-label-glow",
+        "name": "Webcam Banner Label",
+        "type": "text",
+        "visible": true,
+        "opacity": 1,
+        "top": 33.5,
+        "left": 75,
+        "width": 22,
+        "height": 3,
+        "zIndex": 4,
+        "text": "LAKSHAY LIVE",
+        "fontFamily": "Impact",
+        "fontSize": 14,
+        "color": "#ffffff",
+        "textPlacement": "center",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textTransform": "uppercase",
+        "letterSpacing": 3,
+        "outerGlowColor": "#8b5cf6",
+        "outerGlowBlur": 10
+      }
+    ]
+  },
+  {
+    "id": "podcast-badge",
+    "title": "Minimal Lower Third",
+    "description": "Elegant glassmorphic badge for names and titles, perfect for talk shows, podcasts, or formal webinars.",
+    "width": 1920,
+    "height": 1080,
+    "layers": [
+      {
+        "id": "badge-base",
+        "name": "Glass Base Panel",
+        "type": "gradient",
+        "visible": true,
+        "opacity": 0.8,
+        "top": 78,
+        "left": 6,
+        "width": 30,
+        "height": 12,
+        "zIndex": 1,
+        "gradientType": "linear",
+        "gradientAngle": 90,
+        "gradientColors": ["rgba(30, 30, 30, 0.85)", "rgba(15, 15, 15, 0.95)"]
+      },
+      {
+        "id": "badge-border-accent",
+        "name": "Left Accent Stripe",
+        "type": "color",
+        "visible": true,
+        "opacity": 0.95,
+        "top": 78,
+        "left": 5.7,
+        "width": 0.3,
+        "height": 12,
+        "zIndex": 2,
+        "bgColor": "#6366f1"
+      },
+      {
+        "id": "badge-name",
+        "name": "Speaker Name Text",
+        "type": "text",
+        "visible": true,
+        "opacity": 1,
+        "top": 79.5,
+        "left": 7.5,
+        "width": 27,
+        "height": 5,
+        "zIndex": 3,
+        "text": "Dr. Helena Carter",
+        "fontFamily": "Montserrat",
+        "fontSize": 32,
+        "color": "#ffffff",
+        "textPlacement": "center-left",
+        "fontWeight": "700",
+        "fontStyle": "normal",
+        "textTransform": "none",
+        "letterSpacing": 1,
+        "shadowColor": "#000000",
+        "shadowBlur": 4,
+        "shadowOffset": { "x": 1, "y": 1 }
+      },
+      {
+        "id": "badge-title",
+        "name": "Speaker Subtitle Text",
+        "type": "text",
+        "visible": true,
+        "opacity": 0.9,
+        "top": 84.5,
+        "left": 7.5,
+        "width": 27,
+        "height": 4,
+        "zIndex": 4,
+        "text": "Director of Deep Learning Research",
+        "fontFamily": "Inter",
+        "fontSize": 16,
+        "color": "#a5b4fc",
+        "textPlacement": "center-left",
+        "fontWeight": "400",
+        "fontStyle": "italic",
+        "textTransform": "none",
+        "letterSpacing": 0.5,
+        "outerGlowColor": "rgba(99, 102, 241, 0.2)",
+        "outerGlowBlur": 5
+      }
+    ]
+  },
+  {
+    "id": "animated-welcome",
+    "title": "Cinematic Screen Overlay",
+    "description": "Mesmerizing full-screen animated background overlay featuring massive centered glowing text.",
+    "width": 1920,
+    "height": 1080,
+    "layers": [
+      {
+        "id": "fullscreen-animated-gradient",
+        "name": "Fluid Animated Gradient",
+        "type": "animated-gradient",
+        "visible": true,
+        "opacity": 1,
+        "top": 0,
+        "left": 0,
+        "width": 100,
+        "height": 100,
+        "zIndex": 1,
+        "gradientType": "linear",
+        "gradientAngle": 45,
+        "gradientColors": ["#1e1b4b", "#311042", "#0f172a", "#1e1b4b"],
+        "animationSpeed": 10,
+        "animationType": "shift"
+      },
+      {
+        "id": "welcome-large-text",
+        "name": "Main Welcome Text",
+        "type": "text",
+        "visible": true,
+        "opacity": 1,
+        "top": 35,
+        "left": 10,
+        "width": 80,
+        "height": 15,
+        "zIndex": 2,
+        "text": "STREAM STARTING SOON",
+        "fontFamily": "Orbitron",
+        "fontSize": 56,
+        "color": "#ffffff",
+        "textPlacement": "center",
+        "fontWeight": "900",
+        "fontStyle": "normal",
+        "textTransform": "uppercase",
+        "letterSpacing": 8,
+        "shadowColor": "#000000",
+        "shadowBlur": 15,
+        "shadowOffset": { "x": 0, "y": 4 },
+        "outerGlowColor": "#ec4899",
+        "outerGlowBlur": 20
+      },
+      {
+        "id": "subtext-countdown",
+        "name": "Subtext / Prompt Message",
+        "type": "text",
+        "visible": true,
+        "opacity": 0.8,
+        "top": 52,
+        "left": 20,
+        "width": 60,
+        "height": 8,
+        "zIndex": 3,
+        "text": "Grab some popcorn. We're launching in just a moment...",
+        "fontFamily": "Inter",
+        "fontSize": 20,
+        "color": "#cbd5e1",
+        "textPlacement": "center",
+        "fontWeight": "400",
+        "fontStyle": "normal",
+        "textTransform": "none",
+        "letterSpacing": 1
+      }
+    ]
+  },
+  {
+    "id": "esports-scoreboard",
+    "title": "Esports Scoreboard Overlay",
+    "description": "Premium tournament scoreboard frame placed at the top-center, complete with team indicators and timers.",
+    "width": 1920,
+    "height": 1080,
+    "layers": [
+      {
+        "id": "scoreboard-bg",
+        "name": "Base Glass Panel",
+        "type": "gradient",
+        "visible": true,
+        "opacity": 0.85,
+        "top": 2,
+        "left": 30,
+        "width": 40,
+        "height": 7,
+        "zIndex": 1,
+        "gradientType": "linear",
+        "gradientAngle": 90,
+        "gradientColors": ["rgba(15, 23, 42, 0.9)", "rgba(8, 8, 12, 0.95)"]
+      },
+      {
+        "id": "timer-indicator-bg",
+        "name": "Center Timer Panel",
+        "type": "color",
+        "visible": true,
+        "opacity": 0.95,
+        "top": 2,
+        "left": 47.5,
+        "width": 5,
+        "height": 7,
+        "zIndex": 2,
+        "bgColor": "#ec4899"
+      },
+      {
+        "id": "team-a-name",
+        "name": "Team A Label",
+        "type": "text",
+        "visible": true,
+        "opacity": 1,
+        "top": 2.5,
+        "left": 31,
+        "width": 12,
+        "height": 6,
+        "zIndex": 3,
+        "text": "ANTIGRAVITY",
+        "fontFamily": "Orbitron",
+        "fontSize": 20,
+        "color": "#60a5fa",
+        "textPlacement": "center-left",
+        "fontWeight": "bold"
+      },
+      {
+        "id": "team-b-name",
+        "name": "Team B Label",
+        "type": "text",
+        "visible": true,
+        "opacity": 1,
+        "top": 2.5,
+        "left": 57,
+        "width": 12,
+        "height": 6,
+        "zIndex": 3,
+        "text": "DEEPMIND FC",
+        "fontFamily": "Orbitron",
+        "fontSize": 20,
+        "color": "#f87171",
+        "textPlacement": "center-right",
+        "fontWeight": "bold"
+      },
+      {
+        "id": "scoreboard-score",
+        "name": "Match Score Text",
+        "type": "text",
+        "visible": true,
+        "opacity": 1,
+        "top": 2,
+        "left": 43,
+        "width": 14,
+        "height": 7,
+        "zIndex": 4,
+        "text": "3   -   2",
+        "fontFamily": "Impact",
+        "fontSize": 28,
+        "color": "#ffffff",
+        "textPlacement": "center",
+        "shadowColor": "#000000",
+        "shadowBlur": 4
+      },
+      {
+        "id": "round-timer",
+        "name": "Timer Text",
+        "type": "text",
+        "visible": true,
+        "opacity": 1,
+        "top": 2,
+        "left": 47.5,
+        "width": 5,
+        "height": 7,
+        "zIndex": 4,
+        "text": "14:35",
+        "fontFamily": "Bebas Neue",
+        "fontSize": 22,
+        "color": "#ffffff",
+        "textPlacement": "center"
+      }
+    ]
+  },
+  {
+    "id": "webcam-chat-overlay",
+    "title": "Webcam & Chat Frame",
+    "description": "Elegant visual frame featuring a large bottom-right webcam border and a tall, transparent chat deck on the left.",
+    "width": 1920,
+    "height": 1080,
+    "layers": [
+      {
+        "id": "chat-box-glass",
+        "name": "Chat Glass panel",
+        "type": "color",
+        "visible": true,
+        "opacity": 0.65,
+        "top": 15,
+        "left": 4,
+        "width": 24,
+        "height": 70,
+        "zIndex": 1,
+        "bgColor": "rgba(20, 20, 24, 0.75)"
+      },
+      {
+        "id": "chat-box-border",
+        "name": "Chat Frame Stripe",
+        "type": "gradient",
+        "visible": true,
+        "opacity": 0.9,
+        "top": 15,
+        "left": 3.7,
+        "width": 0.3,
+        "height": 70,
+        "zIndex": 2,
+        "gradientType": "linear",
+        "gradientAngle": 180,
+        "gradientColors": ["#ec4899", "#8b5cf6"]
+      },
+      {
+        "id": "chat-box-header",
+        "name": "Chat Box Header Label",
+        "type": "text",
+        "visible": true,
+        "opacity": 1,
+        "top": 16,
+        "left": 5,
+        "width": 22,
+        "height": 4,
+        "zIndex": 3,
+        "text": "💬 LIVE STREAM CHAT",
+        "fontFamily": "Orbitron",
+        "fontSize": 16,
+        "color": "#ffffff",
+        "textPlacement": "center-left",
+        "fontWeight": "bold",
+        "outerGlowColor": "#8b5cf6",
+        "outerGlowBlur": 4
+      },
+      {
+        "id": "webcam-border-br",
+        "name": "Webcam Border Frame",
+        "type": "gradient",
+        "visible": true,
+        "opacity": 0.9,
+        "top": 60,
+        "left": 70,
+        "width": 26,
+        "height": 30,
+        "zIndex": 1,
+        "gradientType": "linear",
+        "gradientAngle": 45,
+        "gradientColors": ["#8b5cf6", "#3b82f6"]
+      },
+      {
+        "id": "webcam-cutout-br",
+        "name": "Webcam Cutout Area",
+        "type": "color",
+        "visible": true,
+        "opacity": 1,
+        "top": 60.5,
+        "left": 70.3,
+        "width": 25.4,
+        "height": 29,
+        "zIndex": 2,
+        "bgColor": "#131314"
+      },
+      {
+        "id": "webcam-label-br",
+        "name": "Webcam Label",
+        "type": "text",
+        "visible": true,
+        "opacity": 1,
+        "top": 57.5,
+        "left": 70,
+        "width": 26,
+        "height": 2.5,
+        "zIndex": 3,
+        "text": "WEBCAM",
+        "fontFamily": "Bebas Neue",
+        "fontSize": 16,
+        "color": "#3b82f6",
+        "textPlacement": "center-left",
+        "letterSpacing": 2
+      }
+    ]
+  },
+  {
+    "id": "vtuber-dream",
+    "title": "VTuber Ambient Screen",
+    "description": "Vibrant visual setting with a slow animated dreamlike backdrop and dynamic frame borders.",
+    "width": 1920,
+    "height": 1080,
+    "layers": [
+      {
+        "id": "vtuber-background-gradient",
+        "name": "Dreamscape Ambient Flow",
+        "type": "animated-gradient",
+        "visible": true,
+        "opacity": 0.95,
+        "top": 0,
+        "left": 0,
+        "width": 100,
+        "height": 100,
+        "zIndex": 1,
+        "gradientType": "radial",
+        "gradientColors": ["#251535", "#0f081d", "#05020c"],
+        "animationSpeed": 15,
+        "animationType": "wave"
+      },
+      {
+        "id": "dream-top-overlay-bar",
+        "name": "Top Frame Border",
+        "type": "animated-gradient",
+        "visible": true,
+        "opacity": 0.8,
+        "top": 0,
+        "left": 0,
+        "width": 100,
+        "height": 1,
+        "zIndex": 5,
+        "gradientType": "linear",
+        "gradientAngle": 90,
+        "gradientColors": ["#f472b6", "#c084fc"],
+        "animationSpeed": 5,
+        "animationType": "shift"
+      },
+      {
+        "id": "ambient-title",
+        "name": "Centered Vibe Label",
+        "type": "text",
+        "visible": true,
+        "opacity": 0.9,
+        "top": 40,
+        "left": 20,
+        "width": 60,
+        "height": 10,
+        "zIndex": 10,
+        "text": "✨ RELAX & ENJOY THE VIBES ✨",
+        "fontFamily": "Outfit",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "textPlacement": "center",
+        "fontWeight": "bold",
+        "outerGlowColor": "#c084fc",
+        "outerGlowBlur": 15
+      },
+      {
+        "id": "ambient-sub",
+        "name": "Ambient Subtext",
+        "type": "text",
+        "visible": true,
+        "opacity": 0.65,
+        "top": 51,
+        "left": 30,
+        "width": 40,
+        "height": 5,
+        "zIndex": 10,
+        "text": "streaming standard ambient visualizer • v1.4",
+        "fontFamily": "Inter",
+        "fontSize": 14,
+        "color": "#e9d5ff",
+        "textPlacement": "center",
+        "textTransform": "uppercase",
+        "letterSpacing": 2
+      }
+    ]
+  }
+];
+
+const getFilePath = () => {
+  return path.join(process.cwd(), 'data', 'obs-scenes.json');
+};
+
+const readScenesFile = (): any[] => {
+  const filePath = getFilePath();
+  const dataDir = path.dirname(filePath);
+
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
+
+  if (!fs.existsSync(filePath)) {
+    fs.writeFileSync(filePath, JSON.stringify(DEFAULT_SCENES, null, 2), 'utf-8');
+    return DEFAULT_SCENES;
+  }
+
+  try {
+    const content = fs.readFileSync(filePath, 'utf-8');
+    return JSON.parse(content);
+  } catch (error) {
+    console.error('Error parsing obs-scenes.json, resetting to seed data:', error);
+    fs.writeFileSync(filePath, JSON.stringify(DEFAULT_SCENES, null, 2), 'utf-8');
+    return DEFAULT_SCENES;
+  }
+};
+
+const writeScenesFile = (scenes: any[]) => {
+  const filePath = getFilePath();
+  fs.writeFileSync(filePath, JSON.stringify(scenes, null, 2), 'utf-8');
+};
+
+export async function GET(request: NextRequest) {
+  try {
+    const scenes = readScenesFile();
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+
+    if (id) {
+      const scene = scenes.find((s: any) => s.id === id);
+      if (!scene) {
+        return NextResponse.json({ error: `Scene with ID ${id} not found` }, { status: 404 });
+      }
+      return NextResponse.json(scene);
+    }
+
+    return NextResponse.json(scenes);
+  } catch (error: any) {
+    console.error('Failed to load OBS scenes:', error);
+    return NextResponse.json({ error: 'Failed to load OBS scenes' }, { status: 500 });
+  }
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const reset = searchParams.get('reset');
+    if (reset === 'true') {
+      writeScenesFile(DEFAULT_SCENES);
+      return NextResponse.json({ success: true, message: 'Reset all scenes to factory defaults', count: DEFAULT_SCENES.length, scenes: DEFAULT_SCENES });
+    }
+
+    const scenes = readScenesFile();
+    const body = await request.json();
+
+    if (Array.isArray(body)) {
+      writeScenesFile(body);
+      return NextResponse.json({ success: true, message: 'Scenes array saved successfully', count: body.length });
+    } else if (body && body.id) {
+      const index = scenes.findIndex((s: any) => s.id === body.id);
+      if (index !== -1) {
+        scenes[index] = body;
+      } else {
+        scenes.push(body);
+      }
+      writeScenesFile(scenes);
+      return NextResponse.json({ success: true, message: `Scene ${body.id} saved successfully`, scene: body });
+    } else {
+      return NextResponse.json({ error: 'Invalid payload format. Expected scene object or scenes array' }, { status: 400 });
+    }
+  } catch (error: any) {
+    console.error('Failed to save OBS scene:', error);
+    return NextResponse.json({ error: 'Failed to save OBS scene', details: error.message }, { status: 500 });
+  }
+}

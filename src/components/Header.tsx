@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from 'react';
-import { Search, Save, Plus, ChevronDown, Image as ImageIcon, Sun, Moon } from 'lucide-react';
+import { Search, Save, Plus, ChevronDown, Image as ImageIcon, Sun, Moon, Monitor } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import Link from 'next/link';
 import { PromptConfig } from '../services/db';
 
 interface HeaderProps {
@@ -45,10 +46,17 @@ export function Header({
   return (
     <header className="h-16 flex-none bg-white dark:bg-[#1e1e1e] border-b border-gray-200 dark:border-[#333] px-4 md:px-6 flex items-center justify-between z-20">
       <div className="flex items-center gap-2 md:gap-3">
-        <ImageIcon className="w-5 h-5 md:w-6 md:h-6 text-indigo-500 dark:text-indigo-400" />
+        <ImageIcon className="w-5 h-5 md:w-6 md:h-6 text-indigo-500 dark:text-indigo-400 animate-pulse" />
         <h1 className="text-base md:text-lg font-medium text-slate-800 dark:text-slate-100 tracking-wide hidden sm:block">
           Prompt Studio<span className="text-xs text-indigo-500 ml-1 font-bold">Next</span>
         </h1>
+        <Link 
+          href="/obs/editor" 
+          className="ml-3 px-3 py-1.5 bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400 text-xs font-semibold rounded-lg hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 dark:hover:text-white transition-all flex items-center gap-1.5"
+        >
+          <Monitor className="w-3.5 h-3.5" />
+          <span>OBS Overlays</span>
+        </Link>
       </div>
 
       <div className="flex-1 max-w-xl mx-4 md:mx-8 relative" ref={searchRef}>
