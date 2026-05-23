@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Loader2, Sparkles, Copy, CheckCircle2, SplitSquareHorizontal } from 'lucide-react';
+import { Loader2, Sparkles, Copy, CheckCircle2, SplitSquareHorizontal, RotateCcw, Undo2 } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Combobox } from '@/components/Combobox';
 import { MultiSelect } from '@/components/MultiSelect';
@@ -58,7 +58,8 @@ export default function Page() {
   const [mobileActiveTab, setMobileActiveTab] = useState<'form' | 'output'>('form');
 
   const [isEnhancing, setIsEnhancing] = useState(false);
-  const [isDrafting, setIsDrafting] = useState(false);
+  const [isMagicFilling, setIsMagicFilling] = useState(false);
+  const [isEnhancingOutput, setIsEnhancingOutput] = useState(false);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -212,6 +213,129 @@ export default function Page() {
     }
   };
 
+  const handleMagicFill = async () => {
+    if (!config.description || !appData) return;
+    setIsMagicFilling(true);
+    try {
+      const subjects = appData.subjects?.map((s: any) => ({ id: s.id, name: s.name })) || [];
+      const goals = Object.keys(appData.global?.dictionaries?.goal || {});
+      const timesOfDay = Object.keys(appData.global?.dictionaries?.timeOfDay || {});
+      const imageStyles = Object.keys(appData.global?.dictionaries?.imageStyle || {});
+      const tones = Object.keys(appData.global?.dictionaries?.tone || {}).concat(Object.keys(appData.macros?.tones || {}));
+      const keywords = Object.keys(appData.macros?.keywords || {});
+      const elements = appData.global?.options?.elements || [];
+
+      const prompt = `Analyze the visual scene description below and extract the best matching parameters from the provided lists to configure an art direction form.
+
+Visual Description: "${config.description}"
+
+Available Option Lists (Select ONLY character-for-character exact matches from these lists):
+1. Subject ID (Must match one of these IDs): ${JSON.stringify(subjects.map((s: any) => s.id))} (For reference, names are: ${JSON.stringify(subjects)})
+2. Goal (Must match one of these): ${JSON.stringify(goals)}
+3. Time of Day (Must match one of these): ${JSON.stringify(timesOfDay)}
+4. Image Style (Must match one of these): ${JSON.stringify(imageStyles)}
+5. Tone (Select up to 3 best matching tones from this list): ${JSON.stringify(tones)}
+6. Additional Elements (Identify which elements from this list are present/relevant): ${JSON.stringify(elements)}
+7. Keywords (Select up to 5 matching tags from this list): ${JSON.stringify(keywords)}
+
+Return ONLY a valid, raw JSON object matching the schema below. Do NOT use markdown code blocks or add any comments.
+If no options match for a single-select field, return "". If no options match for a list field, return [].
+
+Schema:
+{
+  "subjectId": "string",
+  "goal": "string",
+  "timeOfDay": "string",
+  "imageStyle": "string",
+  "tone": ["string"],
+  "additionalElements": {
+    "elementName": true
+  },
+  "keywords": ["string"]
+}
+`;
+
+      const result = await fetchGemini(prompt, "You are a precise JSON configuration generator. Output raw JSON only.");
+      if (result) {
+        const cleaned = result.replace(/```json/g, '').replace(/```/g, '').trim();
+        const parsed = JSON.parse(cleaned);
+
+        setConfig(prev => {
+          const elementsMap: Record<string, boolean> = {};
+          elements.forEach((el: string) => {
+            elementsMap[el] = !!parsed.additionalElements?.[el];
+          });
+
+          return {
+            ...prev,
+            subjectId: parsed.subjectId || prev.subjectId,
+            goal: parsed.goal || prev.goal,
+            timeOfDay: parsed.timeOfDay || prev.timeOfDay,
+            imageStyle: parsed.imageStyle || prev.imageStyle,
+            tone: Array.isArray(parsed.tone) ? parsed.tone.filter((t: string) => tones.includes(t)) : prev.tone,
+            keywords: Array.isArray(parsed.keywords) ? parsed.keywords.filter((k: string) => keywords.includes(k)) : prev.keywords,
+            additionalElements: {
+              ...prev.additionalElements,
+              ...elementsMap
+            }
+          };
+        });
+      }
+    } catch (error) {
+      console.error("Magic Fill Error:", error);
+      alert("Failed to auto-configure. Please try again or refine your description.");
+    } finally {
+      setIsMagicFilling(false);
+    }
+  };
+
+  const handleEnhanceOutput = async () => {
+    if (!displayOutput) return;
+    setIsEnhancingOutput(true);
+    try {
+      const context = config.outputContext || 'Image Prompt';
+      let prompt = '';
+      if (context === 'Image Prompt') {
+        prompt = `You are a master digital art director. Take the raw image generation prompt below and enhance it to be extremely vivid, cinematic, and detailed. Add lighting, sensory, texture, and composition details.
+        
+Rules:
+1. Preserve all core content.
+2. If there are aspect ratio flags or versions at the end of the prompt (such as "--ar 16:9", "--style raw", "--v 6.0"), you MUST keep them EXACTLY as they are at the very end of your response.
+3. Output ONLY the enhanced prompt itself. No quotes, no markdown code blocks, no conversation.
+
+Raw Prompt:
+"${displayOutput}"`;
+      } else {
+        prompt = `You are a professional social media manager. Take the following generated content for ${context} and enhance it to be highly engaging, premium, and well-structured.
+        
+Rules:
+1. Preserve all hashtags and core information.
+2. Output ONLY the final enhanced content. No quotes, no markdown blocks, no conversation.
+
+Original Content:
+"${displayOutput}"`;
+      }
+
+      const result = await fetchGemini(prompt, "You are a master content enhancer. You output ONLY the finalized enhanced text, with no preamble.");
+      if (result) {
+        setConfig(prev => ({ ...prev, compiledOutputOverride: result.trim() }));
+      }
+    } catch (error) {
+      console.error("Enhance Output Error:", error);
+      alert("Failed to enhance the output. Please try again.");
+    } finally {
+      setIsEnhancingOutput(false);
+    }
+  };
+
+  const handleResetOutput = () => {
+    setConfig(prev => {
+      const next = { ...prev };
+      delete next.compiledOutputOverride;
+      return next;
+    });
+  };
+
   const generatedOutput = useMemo(() => {
     if (!appData) return '';
     const context = config.outputContext || 'Image Prompt';
@@ -332,27 +456,104 @@ ${hashtags}`.trim();
             </div>
 
             <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Combobox label="Subject / Universe" name="subjectId" value={config.subjectId} onChange={handleInputChange} options={subjectOptions} placeholder="e.g. elden-ring" />
-                <Combobox label="Goal / Objective" name="goal" value={config.goal} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.goal)} placeholder="e.g. High CTR" />
-              </div>
+              {/* Core Subject (Now at the top of the form) */}
               <div className="space-y-2 relative">
                 <div className="flex justify-between items-end mb-1">
                   <label className="text-sm font-medium text-slate-700 dark:text-slate-400">Core Subject (Supports {'{{variables}}'})</label>
-                  <button 
-                    onClick={handleEnhanceSubject}
-                    disabled={isEnhancing || !config.description}
-                    className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider bg-gradient-to-r from-fuchsia-600 to-indigo-600 text-white px-3 py-1.5 rounded shadow-lg hover:shadow-indigo-500/25 disabled:opacity-50 transition-all"
-                  >
-                    {isEnhancing ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
-                    Enhance
-                  </button>
+                  <div className="flex gap-2">
+                    <button 
+                      onClick={handleMagicFill}
+                      disabled={isMagicFilling || !config.description}
+                      className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider bg-gradient-to-r from-amber-500 to-rose-500 text-white px-3 py-1.5 rounded shadow-lg hover:shadow-amber-500/25 disabled:opacity-50 transition-all"
+                    >
+                      {isMagicFilling ? <Loader2 className="w-3 h-3 animate-spin" /> : <Zap className="w-3 h-3" />}
+                      Magic Fill
+                    </button>
+                    <button 
+                      onClick={handleEnhanceSubject}
+                      disabled={isEnhancing || !config.description}
+                      className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider bg-gradient-to-r from-fuchsia-600 to-indigo-600 text-white px-3 py-1.5 rounded shadow-lg hover:shadow-indigo-500/25 disabled:opacity-50 transition-all"
+                    >
+                      {isEnhancing ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
+                      Enhance
+                    </button>
+                  </div>
                 </div>
                 <textarea 
                   name="description" value={config.description} onChange={handleInputChange} rows={3} 
                   className="w-full bg-white dark:bg-[#1e1e1e] border border-gray-300 dark:border-[#333] rounded-xl p-3 text-sm text-slate-900 dark:text-slate-200 outline-none resize-none focus:border-indigo-500 transition-colors" 
-                  placeholder="Describe the central character or action... Click Enhance to expand it."
+                  placeholder="Describe the central character or action... Click Enhance to expand it or Magic Fill to configure the form."
                 />
+
+                {/* Variables Showcase & Click-to-Insert */}
+                <div className="mt-2 space-y-1.5">
+                  <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 block uppercase tracking-wider">
+                    Click to insert variables (Evaluating actual selected values):
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {[
+                      { name: 'subjectId', label: 'Universe/Subject' },
+                      { name: 'goal', label: 'Goal' },
+                      { name: 'timeOfDay', label: 'Time of Day' },
+                      { name: 'imageStyle', label: 'Image Style' },
+                      { name: 'fontStyle', label: 'Font Style' },
+                      { name: 'textPlacements', label: 'Text Placement' },
+                      { name: 'scenery', label: 'Scenery' },
+                      { name: 'tone', label: 'Tone(s)' },
+                      { name: 'platform', label: 'Platform(s)' },
+                    ].map((variable) => {
+                      let val = '';
+                      if (variable.name === 'tone') {
+                        val = Array.isArray(config.tone) ? config.tone.join(', ') : '';
+                      } else if (variable.name === 'platform') {
+                        val = Array.isArray(config.platform) ? config.platform.join(' and ') : '';
+                      } else {
+                        val = (config as any)[variable.name] || '';
+                      }
+                      
+                      const displayVal = val ? `"${val}"` : 'empty';
+
+                      return (
+                        <button
+                          key={variable.name}
+                          type="button"
+                          onClick={() => {
+                            const input = document.getElementsByName('description')[0] as HTMLTextAreaElement;
+                            if (input) {
+                              const start = input.selectionStart;
+                              const end = input.selectionEnd;
+                              const text = input.value;
+                              const before = text.substring(0, start);
+                              const after = text.substring(end, text.length);
+                              const varStr = `{{${variable.name}}}`;
+                              const newText = before + varStr + after;
+                              
+                              setConfig(prev => ({ ...prev, description: newText }));
+                              
+                              setTimeout(() => {
+                                input.focus();
+                                input.setSelectionRange(start + varStr.length, start + varStr.length);
+                              }, 10);
+                            }
+                          }}
+                          className="px-2 py-1 text-[10px] bg-indigo-50 hover:bg-indigo-100 dark:bg-[#1a1c24] dark:hover:bg-[#222633] text-indigo-600 dark:text-indigo-400 rounded border border-indigo-100 dark:border-indigo-950 font-mono transition-all flex items-center gap-1 group"
+                          title={`Insert {{${variable.name}}} into description`}
+                        >
+                          <span className="font-bold group-hover:scale-105 transition-transform">{`{{${variable.name}}}`}</span>
+                          <span className="text-[9px] text-slate-400 dark:text-slate-500 font-sans italic">
+                            ({displayVal})
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Subject & Goal (Now below Core Subject) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Combobox label="Subject / Universe" name="subjectId" value={config.subjectId} onChange={handleInputChange} options={subjectOptions} placeholder="e.g. elden-ring" />
+                <Combobox label="Goal / Objective" name="goal" value={config.goal} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.goal)} placeholder="e.g. High CTR" />
               </div>
             </div>
 
@@ -416,10 +617,32 @@ ${hashtags}`.trim();
               </select>
             </div>
             
-            <button onClick={copyToClipboard} className={`flex items-center gap-2 px-4 py-2 rounded text-sm font-semibold transition-all ${copied ? 'bg-emerald-500 text-white' : 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'}`}>
-              {copied ? <CheckCircle2 className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-              {copied ? 'Copied!' : 'Copy'}
-            </button>
+            <div className="flex items-center gap-2">
+              {config.compiledOutputOverride !== undefined && (
+                <button 
+                  onClick={handleResetOutput}
+                  title="Reset to standard template output"
+                  className="flex items-center gap-1.5 px-3 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-[#25252b] dark:hover:bg-[#2d2d33] border border-gray-300 dark:border-[#3c3c43] text-slate-700 dark:text-slate-300 rounded text-sm font-semibold transition-all"
+                >
+                  <RotateCcw className="w-4 h-4" />
+                  <span className="hidden sm:inline">Reset</span>
+                </button>
+              )}
+              
+              <button 
+                onClick={handleEnhanceOutput}
+                disabled={isEnhancingOutput || !displayOutput}
+                className="flex items-center gap-1.5 px-3 py-2 bg-gradient-to-r from-indigo-600 to-fuchsia-600 hover:from-indigo-500 hover:to-fuchsia-500 text-white rounded text-sm font-semibold transition-all disabled:opacity-50 shadow-md"
+              >
+                {isEnhancingOutput ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+                <span>AI Enhance</span>
+              </button>
+
+              <button onClick={copyToClipboard} className={`flex items-center gap-2 px-4 py-2 rounded text-sm font-semibold transition-all ${copied ? 'bg-emerald-500 text-white' : 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'}`}>
+                {copied ? <CheckCircle2 className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                {copied ? 'Copied!' : 'Copy'}
+              </button>
+            </div>
           </div>
 
           <div className="flex-1 p-4 md:p-6 overflow-y-auto custom-scrollbar bg-gray-50 dark:bg-[#131314]">

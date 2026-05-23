@@ -26,8 +26,28 @@ export function Header({
   const [selectedGame, setSelectedGame] = useState<string>('All');
   const searchRef = useRef<HTMLDivElement>(null);
 
+  const fuzzyMatch = (text: string, query: string): boolean => {
+    if (!query) return true;
+    const cleanText = text.toLowerCase();
+    const cleanQuery = query.toLowerCase();
+    
+    // Direct inclusion check
+    if (cleanText.includes(cleanQuery)) return true;
+    
+    let queryIdx = 0;
+    for (let textIdx = 0; textIdx < cleanText.length; textIdx++) {
+      if (cleanText[textIdx] === cleanQuery[queryIdx]) {
+        queryIdx++;
+        if (queryIdx === cleanQuery.length) return true;
+      }
+    }
+    return false;
+  };
+
   const finalPrompts = filteredPrompts.filter(p => {
-    const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = fuzzyMatch(p.title, searchQuery) || 
+                          fuzzyMatch(p.subjectId || '', searchQuery) || 
+                          fuzzyMatch(p.promptSyntax || '', searchQuery);
     const matchesGame = selectedGame === 'All' || p.subjectId === selectedGame;
     return matchesSearch && matchesGame;
   });
