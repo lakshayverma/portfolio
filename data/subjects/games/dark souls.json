@@ -1,0 +1,18 @@
+{
+  "id": "dark souls",
+  "category": "Games",
+  "name": "Dark Souls",
+  "descriptionTemplate": "steeped in a bleak, oppressive, and dying world aesthetic with ash-covered ruins",
+  "templates": [
+    "Lighting a bonfire",
+    "Praising the sun",
+    "Fighting Ornstein and Smough",
+    "Walking through Sen's Fortress",
+    "Parrying a black knight",
+    "Drinking estus flask",
+    "Dodging Asylum Demon",
+    "Opening a mimic chest",
+    "Staring at Anor Londo",
+    "Gwyn lord of cinder battle"
+  ]
+}

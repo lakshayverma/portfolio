@@ -1,0 +1,18 @@
+{
+  "id": "elden ring",
+  "category": "Games",
+  "name": "Elden Ring",
+  "descriptionTemplate": "inspired by the dark fantasy, decaying grandeur, and intricate gothic architecture of the Lands Between",
+  "templates": [
+    "Bandit dodging Maliketh",
+    "Malenia Waterfowl Dance",
+    "Tarnished looking at Erdtree",
+    "Fighting Radahn in the dunes",
+    "Casting Comet Azur beam",
+    "Godrick grafting a dragon head",
+    "Exploring deep Nokron",
+    "Ranni the Witch sitting",
+    "Riding Torrent in Caelid",
+    "Godskin Duo fight"
+  ]
+}

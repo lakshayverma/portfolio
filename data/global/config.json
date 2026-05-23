@@ -1,0 +1,85 @@
+{
+  "options": {
+    "contexts": [
+      "Image Prompt",
+      "YouTube Description",
+      "Twitter/X Post",
+      "Instagram Caption"
+    ],
+    "syntaxes": [
+      "Midjourney",
+      "Gemini",
+      "ChatGPT",
+      "NanoBanana"
+    ],
+    "ratios": [
+      "16:9",
+      "1:1",
+      "4:5",
+      "9:16",
+      "21:9"
+    ],
+    "platforms": [
+      "YouTube",
+      "Twitter/X",
+      "Instagram",
+      "TikTok",
+      "Twitch"
+    ],
+    "elements": [
+      "fire",
+      "camp",
+      "forest",
+      "mountains",
+      "stars",
+      "magic aura",
+      "rain",
+      "fog",
+      "snow",
+      "blood"
+    ]
+  },
+  "dictionaries": {
+    "timeOfDay": {
+      "Golden Hour": "bathed in warm, cinematic golden hour light, casting long dramatic shadows to emphasize the {{tone}} atmosphere",
+      "Midnight": "illuminated solely by stark moonlight and ambient emissive glows against a pitch-black, star-studded sky",
+      "Overcast": "under a flat, moody overcast sky providing soft, diffused lighting and muted colors",
+      "Stormy": "lit by sudden, dramatic flashes of lightning amidst churning, dark storm clouds",
+      "Neon Night": "illuminated by harsh, artificial neon lights casting deep, colorful reflections"
+    },
+    "tone": {
+      "Epic": "conveying a sense of grand, monumental scale and overwhelming awe",
+      "Grim": "steeped in a dark, oppressive, and melancholic atmosphere",
+      "Cozy": "evoking a profound sense of warmth, safety, and tranquil comfort",
+      "Mysterious": "shrouded in enigma and fog, suggesting hidden depths and untold secrets",
+      "Action-Packed": "capturing a frozen moment of high-kinetic energy and explosive motion",
+      "Tactical": "feeling calculated, precise, and high-stakes"
+    },
+    "imageStyle": {
+      "Cinematic 3D": "rendered in Unreal Engine 5 style, photorealistic, 35mm lens, volumetric fog, ray-traced lighting",
+      "Stylized 2D": "vibrant vector-style illustration, cel-shaded, clean lines, inspired by Studio Ghibli",
+      "Dark Fantasy Art": "painterly digital art style, heavy brushstrokes, chiaroscuro lighting, reminiscent of Frank Frazetta",
+      "Anime Style": "high-quality anime key visual style, dynamic perspective, vibrant FX animation frames",
+      "Broadcast Realism": "ultra-realistic, 8k resolution, sports photography style with deep depth of field"
+    },
+    "fontStyle": {
+      "Bold Serif": "designed to complement bold, elegant serif typography",
+      "Cyber Glitch": "designed to complement aggressive, neon-glitching cyberpunk typography",
+      "Soft Rounded": "designed to complement gentle, rounded, and playful typography",
+      "Blocky Impact": "designed to complement massive, high-impact block lettering",
+      "Elegant Script": "designed to complement flowing, historical calligraphy or script fonts"
+    },
+    "textPlacements": {
+      "Top Left": "ensure a clear, uncluttered negative space in the top-left quadrant",
+      "Center Bottom": "maintain a dark, low-detail area across the bottom center",
+      "Right Third": "keep the right-hand third of the composition relatively empty and low-contrast",
+      "Top Center": "leave the top-middle area free of complex details for centered text"
+    },
+    "goal": {
+      "High CTR": "optimized for thumbnail readability, utilizing extreme contrast, vibrant focal points, and clear silhouettes",
+      "Lore Focus": "packed with subtle environmental storytelling, authentic runic details, and canon-accurate artifacts",
+      "Vibe / Relaxing": "prioritizing a soothing color palette and harmonious composition to induce relaxation",
+      "Hype / Reaction": "designed to induce excitement with extreme facial expressions or explosive background action"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "keywords": {
+    "@ER_Dex": [
+      "Dexterity Build",
+      "Bleed",
+      "Katanas",
+      "Daggers",
+      "No Hit"
+    ],
+    "@BossFight": [
+      "Boss Battle",
+      "Hard Difficulty",
+      "Clutch",
+      "Epic Encounter",
+      "Sweaty"
+    ],
+    "@CozyVibe": [
+      "Relaxing",
+      "Chill Stream",
+      "No Commentary",
+      "Atmospheric",
+      "Background Music"
+    ],
+    "@Tactical": [
+      "High Kill",
+      "Meta Loadout",
+      "Clutch Win",
+      "Ranked Play",
+      "Sweaty"
+    ],
+    "@Lore": [
+      "Story Mode",
+      "Deep Lore",
+      "Secrets",
+      "Exploration",
+      "Easter Eggs"
+    ],
+    "@Cyberpunk_Hacker": [
+      "Netrunner",
+      "Quickhacks",
+      "Stealth",
+      "Overpowered"
+    ],
+    "@Sports_Hype": [
+      "Goal of the Season",
+      "Clutch Save",
+      "Last Minute",
+      "Career Mode"
+    ]
+  },
+  "tones": {
+    "@Dark": [
+      "Grim",
+      "Mysterious"
+    ],
+    "@Hype": [
+      "Epic",
+      "Action-Packed"
+    ],
+    "@Chill": [
+      "Cozy",
+      "Vibe / Relaxing"
+    ],
+    "@Sweaty": [
+      "Tactical",
+      "Action-Packed"
+    ]
+  },
+  "elements": {
+    "@Nature": [
+      "forest",
+      "mountains",
+      "rain"
+    ],
+    "@Combat": [
+      "blood",
+      "fire",
+      "magic aura"
+    ],
+    "@Cozy": [
+      "camp",
+      "stars",
+      "snow"
+    ],
+    "@Spooky": [
+      "fog",
+      "blood",
+      "stars"
+    ]
+  }
+}

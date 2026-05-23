@@ -1,0 +1,11 @@
+{
+  "id": "interstellar",
+  "category": "Movies",
+  "name": "Interstellar",
+  "descriptionTemplate": "A visually stunning epic featuring massive black holes, tesseracts, and endless cosmos with Hans Zimmer vibes",
+  "templates": [
+    "Docking scene",
+    "Miller's planet wave",
+    "Cooper inside the tesseract"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "nextjs-app",
+  "category": "Software",
+  "name": "Next.js App",
+  "descriptionTemplate": "A modern React application architecture focusing on server-side rendering and edge computing",
+  "templates": [
+    "Developer debugging",
+    "Deployment to Vercel",
+    "High performance Lighthouse score"
+  ]
+}
