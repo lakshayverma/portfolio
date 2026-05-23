@@ -64,7 +64,7 @@ export function Header({
   }, []);
 
   return (
-    <header className="h-16 flex-none bg-white dark:bg-[#1e1e1e] border-b border-gray-200 dark:border-[#333] px-4 md:px-6 flex items-center justify-between z-20">
+    <header className="h-16 flex-none bg-white dark:bg-[#1e1e1e] border-b border-gray-200 dark:border-[#333] px-4 md:px-6 flex items-center justify-between z-40">
       <div className="flex items-center gap-2 md:gap-3">
         <ImageIcon className="w-5 h-5 md:w-6 md:h-6 text-indigo-500 dark:text-indigo-400 animate-pulse" />
         <h1 className="text-base md:text-lg font-medium text-slate-800 dark:text-slate-100 tracking-wide hidden sm:block">
@@ -105,7 +105,7 @@ export function Header({
           <ChevronDown className="w-4 h-4 text-slate-500 mr-2 hidden md:block" />
         </div>
         {isSearchOpen && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-[#1e1e1e] border border-gray-200 dark:border-[#333] rounded-xl shadow-2xl max-h-[60vh] overflow-y-auto">
+          <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-[#1e1e1e] border border-gray-200 dark:border-[#333] rounded-xl shadow-2xl max-h-[60vh] overflow-y-auto z-50">
             <div className="p-2 border-b border-gray-200 dark:border-[#333] flex justify-between items-center bg-gray-50 dark:bg-[#252525] rounded-t-xl sticky top-0 z-10">
               <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase ml-2 hidden md:inline">Library ({finalPrompts.length})</span>
               <button onClick={() => { onNewConfig(); setIsSearchOpen(false); }} className="text-xs bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-500/40 px-3 py-1.5 rounded flex items-center gap-1 transition-colors ml-auto md:ml-0">

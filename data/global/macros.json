@@ -46,6 +46,64 @@
       "Clutch Save",
       "Last Minute",
       "Career Mode"
+    ],
+    "@Hogwarts_Magic": [
+      "Spell Casting",
+      "Wand Duel",
+      "Ancient Magic",
+      "Forbidden Forest",
+      "Wizarding World"
+    ],
+    "@Feudal_Japan": [
+      "Samurai",
+      "Katana",
+      "Lilies",
+      "Feudal Era",
+      "Mount Yotei",
+      "Shinobi"
+    ],
+    "@Gamer_Hype": [
+      "Glitch",
+      "Speedrun",
+      "Easter Eggs",
+      "Secrets",
+      "Meta"
+    ],
+    "@Bossfight": [
+      "Boss Fight",
+      "No Damage",
+      "Epic Phase 2",
+      "Enraged Mode",
+      "Perfect Run"
+    ],
+    "@Arcane_Lore": [
+      "Mystery",
+      "Forbidden Spells",
+      "Ancient Scrolls",
+      "Runic History",
+      "Forgotten Gods"
+    ],
+    "@Gamer_God": [
+      "No Damage",
+      "Perfect Parry",
+      "World Record",
+      "Speedrun",
+      "Max Difficulty",
+      "Flawless"
+    ],
+    "@Stealth_Shinobi": [
+      "Ghost Run",
+      "Shadow Assassination",
+      "Grappling Hook",
+      "Poison Darts",
+      "Silent Takedown"
+    ],
+    "@Wizard_School": [
+      "Common Room",
+      "Spell Practice",
+      "Potion Brewing",
+      "Floo Network",
+      "Sorting Ceremony"
     ]
   },
   "tones": {
@@ -64,6 +122,36 @@
     "@Sweaty": [
       "Tactical",
       "Action-Packed"
+    ],
+    "@Cinematic": [
+      "Epic",
+      "Mysterious"
+    ],
+    "@Whimsical": [
+      "Cozy",
+      "Mysterious"
+    ],
+    "@Gothic": [
+      "Grim",
+      "Mysterious",
+      "Epic"
+    ],
+    "@Nostalgic": [
+      "Cozy",
+      "Mysterious"
+    ],
+    "@Ethereal": [
+      "Mysterious",
+      "Epic",
+      "Cozy"
+    ],
+    "@Anarchic": [
+      "Action-Packed",
+      "Grim"
+    ],
+    "@Melancholic": [
+      "Grim",
+      "Mysterious"
     ]
   },
   "elements": {
@@ -86,6 +174,54 @@
       "fog",
       "blood",
       "stars"
+    ],
+    "@Arcane": [
+      "magic aura",
+      "runic glows",
+      "embers"
+    ],
+    "@Nature_Vibe": [
+      "forest",
+      "mountains",
+      "stars",
+      "cherry blossoms"
+    ],
+    "@Stormy_Night": [
+      "lightning",
+      "rain",
+      "fog",
+      "cyber smoke"
+    ],
+    "@Celestial": [
+      "stars",
+      "abyssal void",
+      "nebula gas",
+      "cosmic stardust"
+    ],
+    "@Autumn": [
+      "forest",
+      "rain",
+      "crimson leaves",
+      "autumn maple leaves"
+    ],
+    "@Zen": [
+      "cherry blossoms",
+      "steaming hot springs",
+      "sacred petals",
+      "fog"
+    ],
+    "@Glitch_Tech": [
+      "cyber smoke",
+      "lightning",
+      "neon sparks",
+      "runic glows"
+    ],
+    "@Sorcery": [
+      "magic aura",
+      "runic glows",
+      "embers",
+      "crystalline shards",
+      "shadow wisps"
     ]
   }
 }

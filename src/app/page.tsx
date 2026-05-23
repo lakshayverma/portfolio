@@ -64,6 +64,9 @@ export default function Page() {
   const [copied, setCopied] = useState(false);
   const [isDraggingOver, setIsDraggingOver] = useState(false);
   const [isDraggingOverSummary, setIsDraggingOverSummary] = useState(false);
+  const [compiledOutput, setCompiledOutput] = useState('');
+  const [isCompiling, setIsCompiling] = useState(false);
+  const [lastFocusedInput, setLastFocusedInput] = useState<'description' | 'summary'>('summary');
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 800);
@@ -349,9 +352,8 @@ Original Content:
   };
 
   const insertVariable = (varStr: string) => {
-    const summaryInput = document.getElementsByName('summary')[0] as HTMLTextAreaElement;
-    const descInput = document.getElementsByName('description')[0] as HTMLTextAreaElement;
-    const input = document.activeElement === descInput ? descInput : (summaryInput || descInput);
+    const inputName = lastFocusedInput;
+    const input = document.getElementsByName(inputName)[0] as HTMLTextAreaElement;
     if (input) {
       const start = input.selectionStart;
       const end = input.selectionEnd;
@@ -359,8 +361,7 @@ Original Content:
       const before = text.substring(0, start);
       const after = text.substring(end, text.length);
       const newText = before + varStr + after;
-      const fieldName = input.getAttribute('name') as 'summary' | 'description';
-      setConfig(prev => ({ ...prev, [fieldName]: newText }));
+      setConfig(prev => ({ ...prev, [inputName]: newText }));
       setTimeout(() => {
         input.focus();
         input.setSelectionRange(start + varStr.length, start + varStr.length);
@@ -368,25 +369,24 @@ Original Content:
     }
   };
 
-  const generatedOutput = useMemo(() => {
+  const compileOutput = (configData: PromptConfig): string => {
     if (!appData) return '';
-    const context = config.outputContext || 'Image Prompt';
+    const context = configData.outputContext || 'Image Prompt';
     
-    const activeSubject = appData.subjects.find((s: any) => s.id === config.subjectId);
-    const subjectName = activeSubject ? activeSubject.name : config.subjectId;
+    const activeSubject = appData.subjects.find((s: any) => s.id === configData.subjectId);
+    const subjectName = activeSubject ? activeSubject.name : configData.subjectId;
     const subjectDesc = activeSubject ? activeSubject.descriptionTemplate : '';
     
-    // Resolve deep templates from API data
     const dicts = appData.global.dictionaries;
-    const expandedSubject = subjectDesc ? interpolateTemplate(subjectDesc, config) : `set in ${subjectName}`;
-    const expandedTime = resolveDeepTemplate('timeOfDay', config.timeOfDay, 'during', config, dicts);
-    const expandedStyle = resolveDeepTemplate('imageStyle', config.imageStyle, 'rendered in a', config, dicts);
-    const expandedPlacement = resolveDeepTemplate('textPlacements', config.textPlacements, 'leave space at', config, dicts);
-    const expandedFont = resolveDeepTemplate('fontStyle', config.fontStyle, 'for', config, dicts);
-    const expandedGoal = resolveDeepTemplate('goal', config.goal, 'aiming for', config, dicts);
+    const expandedSubject = subjectDesc ? interpolateTemplate(subjectDesc, configData) : `set in ${subjectName}`;
+    const expandedTime = resolveDeepTemplate('timeOfDay', configData.timeOfDay, 'during', configData, dicts);
+    const expandedStyle = resolveDeepTemplate('imageStyle', configData.imageStyle, 'rendered in a', configData, dicts);
+    const expandedPlacement = resolveDeepTemplate('textPlacements', configData.textPlacements, 'leave space at', configData, dicts);
+    const expandedFont = resolveDeepTemplate('fontStyle', configData.fontStyle, 'for', configData, dicts);
+    const expandedGoal = resolveDeepTemplate('goal', configData.goal, 'aiming for', configData, dicts);
     
-    const expandedTones = (config.tone || []).map(t => resolveDeepTemplate('tone', t, 'feeling', config, dicts)).join(' and ');
-    const activeElementsList = Object.entries(config.additionalElements || {}).filter(([_, v]) => v).map(([k]) => k);
+    const expandedTones = (configData.tone || []).map(t => resolveDeepTemplate('tone', t, 'feeling', configData, dicts)).join(' and ');
+    const activeElementsList = Object.entries(configData.additionalElements || {}).filter(([_, v]) => v).map(([k]) => k);
     let unfurledElements: string[] = [];
     activeElementsList.forEach(el => {
       if (appData.macros.elements && appData.macros.elements[el]) {
@@ -399,49 +399,68 @@ Original Content:
       return appData.global.dictionaries.elements?.[el] || el;
     }).join(', ');
 
-    const hashtags = [...new Set([subjectName.replace(/\s+/g, ''), ...(config.keywords || []).map(k => k.replace(/[\s@]+/g, ''))])]
+    const hashtags = [...new Set([subjectName.replace(/\s+/g, ''), ...(configData.keywords || []).map(k => k.replace(/[\s@]+/g, ''))])]
       .filter(Boolean).map(t => `#${t}`).join(' ');
 
     if (context === 'YouTube Description') {
-      return `🔥 ${config.title} | ${subjectName}
+      return `🔥 ${configData.title} | ${subjectName}
 
-${interpolateTemplate(config.summary || config.description, config)}
+${interpolateTemplate(configData.summary || configData.description, configData)}
 
-We are diving deep into ${subjectName} today. ${expandedSubject}. The vibe is ${config.tone?.join(', ') || 'epic'} as our primary objective is: ${config.goal}. 
+We are diving deep into ${subjectName} today. ${expandedSubject}. The vibe is ${configData.tone?.join(', ') || 'epic'} as our primary objective is: ${configData.goal}. 
 
-${config.scenery ? 'Current Location: ' + interpolateTemplate(config.scenery, config) : ''}
+${configData.scenery ? 'Current Location: ' + interpolateTemplate(configData.scenery, configData) : ''}
 ${activeElements ? 'Things to look out for: ' + activeElements : ''}
 
-${interpolateTemplate(config.customAdditions, config)}
+${interpolateTemplate(configData.customAdditions, configData)}
 
 ${hashtags}`.trim();
     }
 
     if (context === 'Image Prompt') {
-      const baseDesc = `${interpolateTemplate(config.summary || config.description, config)}. ${config.scenery ? interpolateTemplate(config.scenery, config) + '.' : ''} ${expandedSubject}. ${expandedTime}. ${expandedStyle}. ${expandedTones ? 'Atmosphere is ' + expandedTones + '.' : ''} ${activeElements ? 'Featuring ' + activeElements + '.' : ''} ${expandedPlacement} ${expandedFont}. ${expandedGoal}. ${interpolateTemplate(config.customAdditions, config)}. ${(config.keywords || []).join(', ')}`.replace(/\s+/g, ' ').trim();
+      const baseDesc = `${interpolateTemplate(configData.summary || configData.description, configData)}. ${configData.scenery ? interpolateTemplate(configData.scenery, configData) + '.' : ''} ${expandedSubject}. ${expandedTime}. ${expandedStyle}. ${expandedTones ? 'Atmosphere is ' + expandedTones + '.' : ''} ${activeElements ? 'Featuring ' + activeElements + '.' : ''} ${expandedPlacement} ${expandedFont}. ${expandedGoal}. ${interpolateTemplate(configData.customAdditions, configData)}. ${(configData.keywords || []).join(', ')}`.replace(/\s+/g, ' ').trim();
       
-      if (config.promptSyntax === 'Midjourney') {
-        return `${baseDesc} --ar ${config.primaryRatio} --style raw --v 6.0`;
-      } else if (config.promptSyntax === 'Gemini' || config.promptSyntax === 'ChatGPT') {
+      if (configData.promptSyntax === 'Midjourney') {
+        return `${baseDesc} --ar ${configData.primaryRatio} --style raw --v 6.0`;
+      } else if (configData.promptSyntax === 'Gemini' || configData.promptSyntax === 'ChatGPT') {
         return `Write a highly detailed and evocative image generation prompt describing the following scene:\n\n${baseDesc}\n\nEnsure it is vivid, cinematic, and tailored for an AI image generator to produce a stunning, high-quality result.`;
       } else {
-        // NanoBanana or others
         return `/generate prompt: ${baseDesc}`;
       }
     }
 
     if (context === 'Twitter/X Post') {
-      return `🎮 ${config.title}\n\n${interpolateTemplate(config.summary || config.description, config)}\n\n${expandedSubject} ${expandedTime}.\n\n${activeElements ? 'Highlighting: ' + activeElements : ''}\n\n${hashtags}`.trim();
+      return `🎮 ${configData.title}\n\n${interpolateTemplate(configData.summary || configData.description, configData)}\n\n${expandedSubject} ${expandedTime}.\n\n${activeElements ? 'Highlighting: ' + activeElements : ''}\n\n${hashtags}`.trim();
     }
 
     if (context === 'Instagram Caption') {
-      return `✨ ${config.title}\n\n${interpolateTemplate(config.summary || config.description, config)}\n\nCaptured in ${subjectName}. ${expandedSubject}. ${expandedTime}.\n\n${activeElements ? 'Featuring: ' + activeElements : ''}\n\n📸 Let me know what you think below!\n\n${hashtags}`.trim();
+      return `✨ ${configData.title}\n\n${interpolateTemplate(configData.summary || configData.description, configData)}\n\nCaptured in ${subjectName}. ${expandedSubject}. ${expandedTime}.\n\n${activeElements ? 'Featuring: ' + activeElements : ''}\n\n📸 Let me know what you think below!\n\n${hashtags}`.trim();
     }
 
     return 'Select a context';
+  };
+
+  // Debounced output compiler
+  useEffect(() => {
+    if (!appData) return;
+    setIsCompiling(true);
+    const delay = setTimeout(() => {
+      const compiled = compileOutput(config);
+      setCompiledOutput(compiled);
+      setIsCompiling(false);
+    }, 1700);
+
+    return () => clearTimeout(delay);
   }, [config, appData]);
 
-  const displayOutput = config.compiledOutputOverride ?? generatedOutput;
+  const handleManualCompile = () => {
+    if (!appData) return;
+    setIsCompiling(false);
+    const compiled = compileOutput(config);
+    setCompiledOutput(compiled);
+  };
+
+  const displayOutput = config.compiledOutputOverride ?? compiledOutput;
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(displayOutput).then(() => {
@@ -488,7 +507,7 @@ ${hashtags}`.trim();
             </div>
 
             {/* Sticky Variables Toolbar */}
-            <div className="sticky top-0 z-10 bg-gray-50/95 dark:bg-[#131314]/95 backdrop-blur-md border-b border-gray-200 dark:border-[#2a2a2a] py-3 -mx-4 md:-mx-8 px-4 md:px-8 mb-6 transition-all shadow-sm">
+            <div className="sticky top-0 z-30 bg-gray-50/95 dark:bg-[#131314]/95 backdrop-blur-md border-b border-gray-200 dark:border-[#2a2a2a] py-3 -mx-4 md:-mx-8 px-4 md:px-8 mb-6 transition-all shadow-sm">
               <div className="max-w-4xl mx-auto space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest flex items-center gap-1.5">
@@ -569,6 +588,7 @@ ${hashtags}`.trim();
                 </div>
                 <textarea 
                   name="description" value={config.description} onChange={handleInputChange} rows={3} 
+                  onFocus={() => setLastFocusedInput('description')}
                   onDragEnter={(e) => { e.preventDefault(); setIsDraggingOver(true); }}
                   onDragOver={(e) => { e.preventDefault(); }}
                   onDragLeave={() => setIsDraggingOver(false)}
@@ -628,6 +648,29 @@ ${hashtags}`.trim();
               </div>
             </div>
 
+            {/* Typography & Layout Section */}
+            <div className="space-y-6 pt-4">
+              <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-300 uppercase tracking-widest border-b border-gray-200 dark:border-[#333] pb-2">Typography & Layout</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="space-y-2 flex flex-col">
+                  <Combobox label="Text Placement / Alignment" name="textPlacements" value={config.textPlacements} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.textPlacements)} placeholder="e.g. Top Left" />
+                  <div className="mt-2 flex items-center gap-4">
+                    <TextPlacementGrid value={config.textPlacements} onChange={(val) => setConfig(prev => ({...prev, textPlacements: val}))} />
+                    <div className="text-xs text-slate-500 dark:text-slate-400">
+                      Select layout alignment to reserve clear negative space for text overlays.
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="space-y-2 flex flex-col justify-start">
+                  <Combobox label="Font Style Context" name="fontStyle" value={config.fontStyle} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.fontStyle)} placeholder="e.g. Bold Serif" />
+                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+                    Select typography target style so the AI adjusts color weight, contrast thresholds, and visual motifs to complement the font.
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="space-y-6 pt-4">
               <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-300 uppercase tracking-widest border-b border-gray-200 dark:border-[#333] pb-2">Additional Elements</h3>
               <div className="flex flex-wrap gap-2">
@@ -658,6 +701,7 @@ ${hashtags}`.trim();
                 value={config.summary || ''} 
                 onChange={handleInputChange} 
                 rows={4}
+                onFocus={() => setLastFocusedInput('summary')}
                 onDragEnter={(e) => { e.preventDefault(); setIsDraggingOverSummary(true); }}
                 onDragOver={(e) => { e.preventDefault(); }}
                 onDragLeave={() => setIsDraggingOverSummary(false)}
@@ -706,13 +750,41 @@ ${hashtags}`.trim();
           style={{ width: isMobile ? '100%' : `${100 - leftWidthPct}%`, display: isMobile && mobileActiveTab !== 'output' ? 'none' : 'flex' }}
         >
           <div className="p-4 md:p-6 border-b border-gray-200 dark:border-[#2a2a2a] flex flex-wrap gap-4 items-center justify-between bg-gray-50 dark:bg-[#18181b] flex-none">
-            <div className="flex gap-4">
+            <div className="flex gap-4 items-center">
               <select name="outputContext" value={config.outputContext} onChange={handleInputChange} className="bg-white dark:bg-[#25252b] text-slate-900 dark:text-slate-200 text-sm border border-gray-300 dark:border-[#333] rounded px-3 py-1.5 outline-none focus:border-indigo-500">
                 {appData.global.options.contexts.map((c: string) => <option key={c} value={c}>{c}</option>)}
               </select>
               <select name="promptSyntax" value={config.promptSyntax} onChange={handleInputChange} className="bg-white dark:bg-[#25252b] text-slate-900 dark:text-slate-200 text-sm border border-gray-300 dark:border-[#333] rounded px-3 py-1.5 outline-none focus:border-indigo-500">
                 {appData.global.options.syntaxes.map((s: string) => <option key={s} value={s}>{s}</option>)}
               </select>
+
+              {/* Compile Status & Bypass Button */}
+              <div className="flex items-center gap-2 pl-3 border-l border-gray-200 dark:border-[#2a2a2a]">
+                {isCompiling ? (
+                  <div className="flex items-center gap-1.5 text-xs text-amber-500 font-medium">
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    <span className="hidden lg:inline">Compiling...</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1.5 text-xs text-emerald-500 font-medium">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span className="hidden lg:inline">Compiled</span>
+                  </div>
+                )}
+                <button
+                  type="button"
+                  onClick={handleManualCompile}
+                  disabled={!isCompiling}
+                  className={`px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold rounded transition-all ${
+                    isCompiling 
+                      ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/20 active:scale-95' 
+                      : 'bg-gray-100 dark:bg-[#25252b] text-slate-400 border border-gray-200 dark:border-[#333] cursor-not-allowed'
+                  }`}
+                  title="Force compile immediate output changes"
+                >
+                  Push Now
+                </button>
+              </div>
             </div>
             
             <div className="flex items-center gap-2">

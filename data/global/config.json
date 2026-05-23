@@ -36,7 +36,23 @@
       "rain",
       "fog",
       "snow",
-      "blood"
+      "blood",
+      "lightning",
+      "embers",
+      "cherry blossoms",
+      "cyber smoke",
+      "runic glows",
+      "abyssal void",
+      "nebula gas",
+      "cosmic stardust",
+      "crimson leaves",
+      "autumn maple leaves",
+      "steaming hot springs",
+      "sacred petals",
+      "neon sparks",
+      "ethereal feathers",
+      "crystalline shards",
+      "shadow wisps"
     ]
   },
   "dictionaries": {
@@ -56,11 +72,17 @@
       "Tactical": "feeling calculated, precise, and high-stakes"
     },
     "imageStyle": {
-      "Cinematic 3D": "rendered in Unreal Engine 5 style, photorealistic, 35mm lens, volumetric fog, ray-traced lighting",
-      "Stylized 2D": "vibrant vector-style illustration, cel-shaded, clean lines, inspired by Studio Ghibli",
-      "Dark Fantasy Art": "painterly digital art style, heavy brushstrokes, chiaroscuro lighting, reminiscent of Frank Frazetta",
-      "Anime Style": "high-quality anime key visual style, dynamic perspective, vibrant FX animation frames",
-      "Broadcast Realism": "ultra-realistic, 8k resolution, sports photography style with deep depth of field"
+      "Cinematic 3D": "photorealistic cinematic 3D render, high-fidelity Unreal Engine 5.4, 35mm anamorphic lens, F/1.8 aperture, cinematic volumetric fog, path-traced global illumination, highly detailed leather and metal micro-textures, octane render style, pin-sharp depth-of-field, perfect anatomical accuracy, clean organic lines, zero cgi glitches, zero AI hand distortions, zero double-outline artifacting",
+      "Stylized 2D": "hand-drawn stylized 2D digital illustration, clean vector curves, crisp ink outlines, vibrant vector cell shading, Ghibli studio art direction, watercolor textured washes, soft painterly backgrounds, high-contrast flat color palette, absolutely no photorealism, zero muddy gradients, zero noisy textures",
+      "Dark Fantasy Art": "dark fantasy fine art oil painting, heavy paint impasto texture with visible canvas tooth, dramatic chiaroscuro contrasts, inspired by Frank Frazetta and Zdzisław Beksiński, detailed brushstroke realism, gothic atmosphere, heavy oil pigments, high fine-art quality, zero digital smoothing, zero flat vectors",
+      "Anime Style": "modern Japanese anime key visual, dynamic keyframe perspective, crisp cell shading, glowing magical particle effects, Kyoto Animation studio style, sharp linework, high-fidelity digital compositing, vivid screen FX, clean outlines, zero airbrushed gradients, zero anatomy faults",
+      "Broadcast Realism": "ultra-photorealistic broadcast journalism still, shot on Sony FX9 with Zeiss Master Prime lens, real-world sports photography action frame, pin-sharp focal tracking, natural day lighting, high shutter speed, raw photo sensor noise, zero CGI artifice, zero synthetic lighting bloom, zero plastic skin textures",
+      "Ukiyo-e Woodblock": "authentic 19th-century Japanese ukiyo-e woodblock print, detailed wood grain imprint, aged washi paper fiber texture, traditional sumi ink outlines, flat organic color blocks, inspired by Hokusai and Hiroshige, organic print press imperfections, zero modern gradients, zero digital glows",
+      "Retro Cyberpunk": "80s retro-cyberpunk aesthetic, gritty VHS tape scanline decay, authentic crt screen bulge, neon-pink and cyan chromatic aberration, heavy analog film grain, volumetric neon mist, analog synthwave key art, zero modern flat vectors, zero ultra-smooth CGI curves",
+      "Ethereal Watercolor": "delicate fine art watercolor and charcoal wash, soft bleeding edges, high-tooth textured cold-press paper, elegant minimalist ink splatters, muted pastel color palettes, atmospheric negative space, zero harsh digital outlines, zero synthetic gradients",
+      "Claymation Stop-Motion": "authentic claymation stop-motion figure model, detailed hand-sculpted plasticine clay textures with visible thumbprints and sculpting tool marks, cinematic miniature lighting, shallow depth of field, tactile material feel, zero smooth plastic render artifacts",
+      "Dark Synthwave 3D": "dark synthwave volumetric 3D render, high-contrast ultraviolet and magenta laser lighting, retro-futuristic grid lines, grid floor reflections, heavy atmospheric smog, glowing neon wireframes, inspired by Tron and 80s arcade cabinets, sharp clean emissive textures",
+      "Hyperrealistic Macro": "extreme close-up macro photography, shot on 100mm macro lens, ultra-shallow depth of field, crisp focus on micro-level surface details, visible skin pores, textile weave, metal scratches, dust particles floating in light beam, natural rim lighting"
     },
     "fontStyle": {
       "Bold Serif": "designed to complement bold, elegant serif typography",
@@ -71,15 +93,31 @@
     },
     "textPlacements": {
       "Top Left": "ensure a clear, uncluttered negative space in the top-left quadrant",
+      "Top Center": "leave the top-middle area free of complex details for centered text",
+      "Top Right": "ensure a clear, uncluttered negative space in the top-right quadrant",
+      "Center Left": "maintain a quiet, low-detail zone on the left side of the frame",
+      "Center": "keep the center composition extremely clean with minimalist design",
+      "Center Right": "maintain a quiet, low-detail zone on the right side of the frame",
+      "Bottom Left": "maintain a dark, low-detail area in the bottom-left quadrant",
+      "Bottom Center": "maintain a dark, low-detail area across the bottom center",
+      "Bottom Right": "maintain a dark, low-detail area in the bottom-right quadrant",
       "Center Bottom": "maintain a dark, low-detail area across the bottom center",
-      "Right Third": "keep the right-hand third of the composition relatively empty and low-contrast",
-      "Top Center": "leave the top-middle area free of complex details for centered text"
+      "Right Third": "keep the right-hand third of the composition relatively empty and low-contrast"
     },
     "goal": {
       "High CTR": "optimized for thumbnail readability, utilizing extreme contrast, vibrant focal points, and clear silhouettes",
       "Lore Focus": "packed with subtle environmental storytelling, authentic runic details, and canon-accurate artifacts",
       "Vibe / Relaxing": "prioritizing a soothing color palette and harmonious composition to induce relaxation",
-      "Hype / Reaction": "designed to induce excitement with extreme facial expressions or explosive background action"
+      "Hype / Reaction": "designed to induce excitement with extreme facial expressions or explosive background action",
+      "Cinematic Stills": "optimized for filmic fidelity, featuring anamorphic flares, naturalistic blocking, and authentic depth of field",
+      "Viral Socials": "designed for maximum visual hook, using extreme close-ups, bold saturation, and a strong central focus point",
+      "Concept Art Pack": "optimized for developer reference, highlighting technical weapon schematics, texture callouts, and multi-angle perspectives",
+      "Desktop Wallpaper": "optimized for high widescreen immersion, clean composition grids, and soothing background details",
+      "Speedrun Hype": "optimized to showcase blistering speed, showing motion blur, splits overlay space, and intense determination",
+      "No-Hit Run": "focused on flawless execution, showing pristine untouched armor, perfect dodge tracking, and high-tension gameplay composition",
+      "Boss Meltdown": "capturing the dramatic climax of an end-game boss fight with massive damage numbers, elemental status explosions, and epic visual feedback",
+      "Secrets Unlocked": "inviting curiosity with hidden passages, ancient glowing keys, and obscure environmental markings to intrigue viewers",
+      "Ultimate Showcase": "highlighting end-game maxed-out gear sets, weapon enchantment glows, and status buff particles in full glory"
     },
     "elements": {
       "fire": "roaring, chaotic magical fire illuminating the surroundings",
@@ -91,7 +129,23 @@
       "rain": "heavy, cinematic pouring rain reflecting ambient environmental lights",
       "fog": "a thick, clinging, and mysterious ground fog obscuring fine details",
       "snow": "a relentless, driving blizzard covering the desolate landscape in white",
-      "blood": "visceral, dramatic blood splatters telling a story of intense conflict"
+      "blood": "visceral, dramatic blood splatters telling a story of intense conflict",
+      "lightning": "crackling bolts of electrical lightning striking jagged structures in the background",
+      "embers": "swirling, incandescent ash and golden sparks floating upward into the air",
+      "cherry blossoms": "a gentle, wind-swept blizzard of pink sakura cherry blossom petals drifting around",
+      "cyber smoke": "thick, glowing neon-tinted smog and carbon venting from metallic exhaust pipes",
+      "runic glows": "ancient, pulsing mystical runes etched into surrounding stone surfaces glowing softly",
+      "abyssal void": "swirling dark matter ripples and celestial distortion bending ambient light around the focus",
+      "nebula gas": "thick, glowing stellar dust and colorful interstellar nebula gases floating in cosmic patterns",
+      "cosmic stardust": "shimmering clouds of ancient celestial stardust and micro-meteorites drifting silently",
+      "crimson leaves": "vibrant, hand-painted crimson and gold Japanese maple leaves falling in a gentle spiral",
+      "autumn maple leaves": "a dense shower of golden-orange autumn maple leaves swirling in gusts of wind",
+      "steaming hot springs": "thick, rising white steam venting from geothermal volcanic hot springs bubbling in stone basins",
+      "sacred petals": "soft, glowing white and blue spiritual cherry blossom petals floating gracefully",
+      "neon sparks": "bright, electric cyan and pink sparks flying off high-voltage cables and grinding metal",
+      "ethereal feathers": "shimmering, pure-white angelic feathers floating and drifting slowly downwards",
+      "crystalline shards": "sharp, glowing geometric crystal formations reflecting vibrant ambient light",
+      "shadow wisps": "crawling, shadowy tendrils and dark wisps of smoke absorbing light and drifting sluggishly"
     }
   }
 }
