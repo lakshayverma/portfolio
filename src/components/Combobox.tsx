@@ -27,7 +27,8 @@ export function Combobox({ label, name, value, onChange, options, placeholder }:
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const filtered = options.filter(opt => opt.toLowerCase().includes(inputValue.toLowerCase()) && opt.toLowerCase() !== inputValue.toLowerCase());
+  const isExactMatch = options.some(opt => opt.toLowerCase() === inputValue.toLowerCase());
+  const filtered = isExactMatch ? options : options.filter(opt => opt.toLowerCase().includes(inputValue.toLowerCase()));
 
   const handleSelect = (opt: string) => {
     setInputValue(opt);

@@ -21,9 +21,9 @@ export interface PromptConfig {
   compiledOutputOverride?: string;
 }
 
-const DB_NAME = 'PromptStudioDB_Next_v1';
+const DB_NAME = 'PromptStudioDB_Next_v3';
 const STORE_NAME = 'prompts';
-const DB_VERSION = 1;
+const DB_VERSION = 3;
 
 export const initDB = (): Promise<IDBDatabase> => {
   return new Promise((resolve, reject) => {

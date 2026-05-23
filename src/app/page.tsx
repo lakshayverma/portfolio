@@ -89,15 +89,34 @@ export default function Page() {
           const templates: PromptConfig[] = [];
           data.subjects.forEach((subj: any) => {
             if (subj.templates) {
-              subj.templates.forEach((t: string, i: number) => {
-                templates.push({
-                  ...DEFAULT_CONFIG,
-                  id: `template-${subj.id}-${i}`,
-                  title: `${subj.name}: ${t.substring(0, 20)}...`,
-                  subjectId: subj.id,
-                  description: t,
-                  primaryRatio: '16:9'
-                });
+              subj.templates.forEach((t: any, i: number) => {
+                if (typeof t === 'string') {
+                  templates.push({
+                    ...DEFAULT_CONFIG,
+                    id: `template-${subj.id}-${i}`,
+                    title: `${subj.name}: ${t.substring(0, 20)}...`,
+                    subjectId: subj.id,
+                    description: t,
+                    primaryRatio: '16:9'
+                  });
+                } else {
+                  const addElements = Object.fromEntries(
+                    data.global.options.elements.map((el: string) => [el, (t.additionalElements || []).includes(el)])
+                  );
+                  templates.push({
+                    ...DEFAULT_CONFIG,
+                    id: `template-${subj.id}-${i}`,
+                    title: `${subj.name}: ${t.title}`,
+                    subjectId: subj.id,
+                    description: t.description,
+                    timeOfDay: t.timeOfDay || '',
+                    tone: t.tone || [],
+                    imageStyle: t.imageStyle || '',
+                    goal: t.goal || '',
+                    primaryRatio: t.primaryRatio || '16:9',
+                    additionalElements: addElements
+                  });
+                }
               });
             }
           });
@@ -211,7 +230,18 @@ export default function Page() {
     const expandedGoal = resolveDeepTemplate('goal', config.goal, 'aiming for', config, dicts);
     
     const expandedTones = (config.tone || []).map(t => resolveDeepTemplate('tone', t, 'feeling', config, dicts)).join(' and ');
-    const activeElements = Object.entries(config.additionalElements || {}).filter(([_, v]) => v).map(([k]) => k).join(', ');
+    const activeElementsList = Object.entries(config.additionalElements || {}).filter(([_, v]) => v).map(([k]) => k);
+    let unfurledElements: string[] = [];
+    activeElementsList.forEach(el => {
+      if (appData.macros.elements && appData.macros.elements[el]) {
+        unfurledElements.push(...appData.macros.elements[el]);
+      } else {
+        unfurledElements.push(el);
+      }
+    });
+    const activeElements = [...new Set(unfurledElements)].map(el => {
+      return appData.global.dictionaries.elements?.[el] || el;
+    }).join(', ');
 
     const hashtags = [...new Set([subjectName.replace(/\s+/g, ''), ...(config.keywords || []).map(k => k.replace(/[\s@]+/g, ''))])]
       .filter(Boolean).map(t => `#${t}`).join(' ');
@@ -232,7 +262,24 @@ ${hashtags}`.trim();
     }
 
     if (context === 'Image Prompt') {
-      return `${interpolateTemplate(config.description, config)}. ${config.scenery ? interpolateTemplate(config.scenery, config) + '.' : ''} ${expandedSubject}. ${expandedTime}. ${expandedStyle}. ${expandedTones ? 'Atmosphere is ' + expandedTones + '.' : ''} ${activeElements ? 'Featuring ' + activeElements + '.' : ''} ${expandedPlacement} ${expandedFont}. ${expandedGoal}. ${interpolateTemplate(config.customAdditions, config)}. ${(config.keywords || []).join(', ')} --ar ${config.primaryRatio} --style raw --v 6.0`.replace(/\s+/g, ' ').trim();
+      const baseDesc = `${interpolateTemplate(config.description, config)}. ${config.scenery ? interpolateTemplate(config.scenery, config) + '.' : ''} ${expandedSubject}. ${expandedTime}. ${expandedStyle}. ${expandedTones ? 'Atmosphere is ' + expandedTones + '.' : ''} ${activeElements ? 'Featuring ' + activeElements + '.' : ''} ${expandedPlacement} ${expandedFont}. ${expandedGoal}. ${interpolateTemplate(config.customAdditions, config)}. ${(config.keywords || []).join(', ')}`.replace(/\s+/g, ' ').trim();
+      
+      if (config.promptSyntax === 'Midjourney') {
+        return `${baseDesc} --ar ${config.primaryRatio} --style raw --v 6.0`;
+      } else if (config.promptSyntax === 'Gemini' || config.promptSyntax === 'ChatGPT') {
+        return `Write a highly detailed and evocative image generation prompt describing the following scene:\n\n${baseDesc}\n\nEnsure it is vivid, cinematic, and tailored for an AI image generator to produce a stunning, high-quality result.`;
+      } else {
+        // NanoBanana or others
+        return `/generate prompt: ${baseDesc}`;
+      }
+    }
+
+    if (context === 'Twitter/X Post') {
+      return `🎮 ${config.title}\n\n${interpolateTemplate(config.description, config)}\n\n${expandedSubject} ${expandedTime}.\n\n${activeElements ? 'Highlighting: ' + activeElements : ''}\n\n${hashtags}`.trim();
+    }
+
+    if (context === 'Instagram Caption') {
+      return `✨ ${config.title}\n\n${interpolateTemplate(config.description, config)}\n\nCaptured in ${subjectName}. ${expandedSubject}. ${expandedTime}.\n\n${activeElements ? 'Featuring: ' + activeElements : ''}\n\n📸 Let me know what you think below!\n\n${hashtags}`.trim();
     }
 
     return 'Select a context';
@@ -254,15 +301,16 @@ ${hashtags}`.trim();
   const subjectOptions = appData.subjects.map((s: any) => s.id);
 
   return (
-    <div className="h-screen w-full flex flex-col overflow-hidden">
+    <div className="h-screen w-full flex flex-col overflow-hidden bg-gray-50 dark:bg-[#131314] text-slate-800 dark:text-slate-200">
       <Header 
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        filteredPrompts={savedPrompts.filter(p => p.title.toLowerCase().includes(searchQuery.toLowerCase()))}
+        filteredPrompts={savedPrompts}
         currentConfigId={config.id}
         onSelectConfig={setConfig}
         onNewConfig={() => setConfig({ ...DEFAULT_CONFIG, id: Date.now().toString(), title: 'New Configuration' })}
         onSave={handleSave}
+        availableGames={subjectOptions}
       />
 
       {isMobile && (
@@ -331,12 +379,12 @@ ${hashtags}`.trim();
             <div className="space-y-6 pt-4">
               <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-300 uppercase tracking-widest border-b border-gray-200 dark:border-[#333] pb-2">Additional Elements</h3>
               <div className="flex flex-wrap gap-2">
-                {appData.global.options.elements.map((el: string) => {
-                  const Icon = ELEMENT_ICONS[el];
+                {appData.global.options.elements.concat(Object.keys(appData.macros.elements || {})).map((el: string) => {
+                  const Icon = ELEMENT_ICONS[el] || Sparkles;
                   const isActive = config.additionalElements[el];
                   return (
                     <button key={el} onClick={() => handleElementToggle(el)} className={`px-3 py-1.5 rounded flex items-center gap-2 text-sm transition-all border ${isActive ? 'bg-indigo-600 text-white border-indigo-500 shadow-lg shadow-indigo-500/20' : 'bg-white dark:bg-[#1e1e1e] text-slate-600 dark:text-slate-400 border-gray-200 dark:border-[#333] hover:border-indigo-500/50'}`}>
-                      {Icon && <Icon className="w-4 h-4" />} {el}
+                      {Icon && <Icon className="w-4 h-4" />} {el.replace('@', '')}
                     </button>
                   );
                 })}

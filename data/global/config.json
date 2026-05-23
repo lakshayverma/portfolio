@@ -80,6 +80,18 @@
       "Lore Focus": "packed with subtle environmental storytelling, authentic runic details, and canon-accurate artifacts",
       "Vibe / Relaxing": "prioritizing a soothing color palette and harmonious composition to induce relaxation",
       "Hype / Reaction": "designed to induce excitement with extreme facial expressions or explosive background action"
+    },
+    "elements": {
+      "fire": "roaring, chaotic magical fire illuminating the surroundings",
+      "camp": "a rustic, weathered adventuring campsite providing brief sanctuary",
+      "forest": "a dense, overgrown ancient forest shrouded in thick canopy shadows",
+      "mountains": "towering, jagged mountain peaks reaching into a turbulent sky",
+      "stars": "a brilliant, sprawling celestial starlight canopy piercing the darkness",
+      "magic aura": "a crackling, ethereal magic aura radiating immense raw power",
+      "rain": "heavy, cinematic pouring rain reflecting ambient environmental lights",
+      "fog": "a thick, clinging, and mysterious ground fog obscuring fine details",
+      "snow": "a relentless, driving blizzard covering the desolate landscape in white",
+      "blood": "visceral, dramatic blood splatters telling a story of intense conflict"
     }
   }
 }

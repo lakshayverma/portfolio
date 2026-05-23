@@ -1,12 +1,12 @@
 {
-  "id": "fc2026",
+  "id": "assassin-creed",
   "category": "Games",
-  "name": "FC2026",
-  "descriptionTemplate": "capturing the high-octane, photorealistic broadcast quality of a modern global football stadium under floodlights",
+  "name": "Assassin Creed",
+  "descriptionTemplate": "blending breathtaking historical authenticity with cinematic parkour action and subtle sci-fi animus undertones",
   "templates": [
     {
       "title": "Template 1",
-      "description": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd.",
+      "description": "A hooded assassin perched silently on the sweeping, tiled roof of a majestic pagoda. Below, patrolling guards are entirely unaware of the deadly threat looming above.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -22,7 +22,7 @@
     },
     {
       "title": "Template 2",
-      "description": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd.",
+      "description": "A hooded assassin perched silently on the sweeping, tiled roof of a majestic pagoda. Below, patrolling guards are entirely unaware of the deadly threat looming above.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -36,7 +36,7 @@
     },
     {
       "title": "Template 3",
-      "description": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd.",
+      "description": "A hooded assassin perched silently on the sweeping, tiled roof of a majestic pagoda. Below, patrolling guards are entirely unaware of the deadly threat looming above.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -50,7 +50,7 @@
     },
     {
       "title": "Template 4",
-      "description": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd.",
+      "description": "A hooded assassin perched silently on the sweeping, tiled roof of a majestic pagoda. Below, patrolling guards are entirely unaware of the deadly threat looming above.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -65,7 +65,7 @@
     },
     {
       "title": "Template 5",
-      "description": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd.",
+      "description": "A hooded assassin perched silently on the sweeping, tiled roof of a majestic pagoda. Below, patrolling guards are entirely unaware of the deadly threat looming above.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -79,7 +79,7 @@
     },
     {
       "title": "Template 6",
-      "description": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out.",
+      "description": "A hulking enforcer violently smashing through a wooden paper-door with a massive spiked kanabo. Splinters fly outward as the chaotic brawl spills into the courtyard.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -95,7 +95,7 @@
     },
     {
       "title": "Template 7",
-      "description": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out.",
+      "description": "A hulking enforcer violently smashing through a wooden paper-door with a massive spiked kanabo. Splinters fly outward as the chaotic brawl spills into the courtyard.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -109,7 +109,7 @@
     },
     {
       "title": "Template 8",
-      "description": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out.",
+      "description": "A hulking enforcer violently smashing through a wooden paper-door with a massive spiked kanabo. Splinters fly outward as the chaotic brawl spills into the courtyard.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -123,7 +123,7 @@
     },
     {
       "title": "Template 9",
-      "description": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out.",
+      "description": "A hulking enforcer violently smashing through a wooden paper-door with a massive spiked kanabo. Splinters fly outward as the chaotic brawl spills into the courtyard.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -138,7 +138,7 @@
     },
     {
       "title": "Template 10",
-      "description": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out.",
+      "description": "A hulking enforcer violently smashing through a wooden paper-door with a massive spiked kanabo. Splinters fly outward as the chaotic brawl spills into the courtyard.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -152,7 +152,7 @@
     },
     {
       "title": "Template 11",
-      "description": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light.",
+      "description": "A mysterious, cloaked figure holding a glowing, Isu-crafted talisman. The ancient technology pulses with a brilliant golden light, illuminating dusty catacomb walls.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -168,7 +168,7 @@
     },
     {
       "title": "Template 12",
-      "description": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light.",
+      "description": "A mysterious, cloaked figure holding a glowing, Isu-crafted talisman. The ancient technology pulses with a brilliant golden light, illuminating dusty catacomb walls.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -182,7 +182,7 @@
     },
     {
       "title": "Template 13",
-      "description": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light.",
+      "description": "A mysterious, cloaked figure holding a glowing, Isu-crafted talisman. The ancient technology pulses with a brilliant golden light, illuminating dusty catacomb walls.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -196,7 +196,7 @@
     },
     {
       "title": "Template 14",
-      "description": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light.",
+      "description": "A mysterious, cloaked figure holding a glowing, Isu-crafted talisman. The ancient technology pulses with a brilliant golden light, illuminating dusty catacomb walls.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -211,7 +211,7 @@
     },
     {
       "title": "Template 15",
-      "description": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light.",
+      "description": "A mysterious, cloaked figure holding a glowing, Isu-crafted talisman. The ancient technology pulses with a brilliant golden light, illuminating dusty catacomb walls.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -225,7 +225,7 @@
     },
     {
       "title": "Template 16",
-      "description": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf.",
+      "description": "A breathtaking, stomach-dropping Leap of Faith from a massive cathedral spire. The wind rushes past the assassin as they free-fall toward a small cart of hay.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -241,7 +241,7 @@
     },
     {
       "title": "Template 17",
-      "description": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf.",
+      "description": "A breathtaking, stomach-dropping Leap of Faith from a massive cathedral spire. The wind rushes past the assassin as they free-fall toward a small cart of hay.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -255,7 +255,7 @@
     },
     {
       "title": "Template 18",
-      "description": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf.",
+      "description": "A breathtaking, stomach-dropping Leap of Faith from a massive cathedral spire. The wind rushes past the assassin as they free-fall toward a small cart of hay.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -269,7 +269,7 @@
     },
     {
       "title": "Template 19",
-      "description": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf.",
+      "description": "A breathtaking, stomach-dropping Leap of Faith from a massive cathedral spire. The wind rushes past the assassin as they free-fall toward a small cart of hay.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -284,7 +284,7 @@
     },
     {
       "title": "Template 20",
-      "description": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf.",
+      "description": "A breathtaking, stomach-dropping Leap of Faith from a massive cathedral spire. The wind rushes past the assassin as they free-fall toward a small cart of hay.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -298,7 +298,7 @@
     },
     {
       "title": "Template 21",
-      "description": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball.",
+      "description": "A massive, heavily armed galleon firing a devastating broadside of cannons. Plumes of thick black smoke and splintering wood fill the chaotic naval battlefield.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -314,7 +314,7 @@
     },
     {
       "title": "Template 22",
-      "description": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball.",
+      "description": "A massive, heavily armed galleon firing a devastating broadside of cannons. Plumes of thick black smoke and splintering wood fill the chaotic naval battlefield.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -328,7 +328,7 @@
     },
     {
       "title": "Template 23",
-      "description": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball.",
+      "description": "A massive, heavily armed galleon firing a devastating broadside of cannons. Plumes of thick black smoke and splintering wood fill the chaotic naval battlefield.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -342,7 +342,7 @@
     },
     {
       "title": "Template 24",
-      "description": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball.",
+      "description": "A massive, heavily armed galleon firing a devastating broadside of cannons. Plumes of thick black smoke and splintering wood fill the chaotic naval battlefield.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -357,7 +357,7 @@
     },
     {
       "title": "Template 25",
-      "description": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball.",
+      "description": "A massive, heavily armed galleon firing a devastating broadside of cannons. Plumes of thick black smoke and splintering wood fill the chaotic naval battlefield.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -371,7 +371,7 @@
     },
     {
       "title": "Template 26",
-      "description": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions.",
+      "description": "The historical environment violently glitching and tearing, revealing the glowing blue wireframes of the Animus simulation beneath the cobblestone streets.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -387,7 +387,7 @@
     },
     {
       "title": "Template 27",
-      "description": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions.",
+      "description": "The historical environment violently glitching and tearing, revealing the glowing blue wireframes of the Animus simulation beneath the cobblestone streets.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -401,7 +401,7 @@
     },
     {
       "title": "Template 28",
-      "description": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions.",
+      "description": "The historical environment violently glitching and tearing, revealing the glowing blue wireframes of the Animus simulation beneath the cobblestone streets.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -415,7 +415,7 @@
     },
     {
       "title": "Template 29",
-      "description": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions.",
+      "description": "The historical environment violently glitching and tearing, revealing the glowing blue wireframes of the Animus simulation beneath the cobblestone streets.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -430,7 +430,7 @@
     },
     {
       "title": "Template 30",
-      "description": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions.",
+      "description": "The historical environment violently glitching and tearing, revealing the glowing blue wireframes of the Animus simulation beneath the cobblestone streets.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -444,7 +444,7 @@
     },
     {
       "title": "Template 31",
-      "description": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike.",
+      "description": "A flawless, aerial hidden-blade assassination dropping directly onto an unaware target. The sudden, lethal strike is executed with terrifying, mechanical precision.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -460,7 +460,7 @@
     },
     {
       "title": "Template 32",
-      "description": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike.",
+      "description": "A flawless, aerial hidden-blade assassination dropping directly onto an unaware target. The sudden, lethal strike is executed with terrifying, mechanical precision.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -474,7 +474,7 @@
     },
     {
       "title": "Template 33",
-      "description": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike.",
+      "description": "A flawless, aerial hidden-blade assassination dropping directly onto an unaware target. The sudden, lethal strike is executed with terrifying, mechanical precision.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -488,7 +488,7 @@
     },
     {
       "title": "Template 34",
-      "description": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike.",
+      "description": "A flawless, aerial hidden-blade assassination dropping directly onto an unaware target. The sudden, lethal strike is executed with terrifying, mechanical precision.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -503,7 +503,7 @@
     },
     {
       "title": "Template 35",
-      "description": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike.",
+      "description": "A flawless, aerial hidden-blade assassination dropping directly onto an unaware target. The sudden, lethal strike is executed with terrifying, mechanical precision.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -517,7 +517,7 @@
     },
     {
       "title": "Template 36",
-      "description": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence.",
+      "description": "The assassin seamlessly blending into a bustling, vibrant market crowd. They subtly slip a poisoned blade into a passing noble without breaking stride.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -533,7 +533,7 @@
     },
     {
       "title": "Template 37",
-      "description": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence.",
+      "description": "The assassin seamlessly blending into a bustling, vibrant market crowd. They subtly slip a poisoned blade into a passing noble without breaking stride.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -547,7 +547,7 @@
     },
     {
       "title": "Template 38",
-      "description": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence.",
+      "description": "The assassin seamlessly blending into a bustling, vibrant market crowd. They subtly slip a poisoned blade into a passing noble without breaking stride.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -561,7 +561,7 @@
     },
     {
       "title": "Template 39",
-      "description": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence.",
+      "description": "The assassin seamlessly blending into a bustling, vibrant market crowd. They subtly slip a poisoned blade into a passing noble without breaking stride.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -576,7 +576,7 @@
     },
     {
       "title": "Template 40",
-      "description": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence.",
+      "description": "The assassin seamlessly blending into a bustling, vibrant market crowd. They subtly slip a poisoned blade into a passing noble without breaking stride.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -590,7 +590,7 @@
     },
     {
       "title": "Template 41",
-      "description": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors.",
+      "description": "A majestic eagle soaring high above a sprawling, historically accurate ancient city. The sweeping cinematic view reveals bustling ports, massive temples, and distant mountains.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -606,7 +606,7 @@
     },
     {
       "title": "Template 42",
-      "description": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors.",
+      "description": "A majestic eagle soaring high above a sprawling, historically accurate ancient city. The sweeping cinematic view reveals bustling ports, massive temples, and distant mountains.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -620,7 +620,7 @@
     },
     {
       "title": "Template 43",
-      "description": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors.",
+      "description": "A majestic eagle soaring high above a sprawling, historically accurate ancient city. The sweeping cinematic view reveals bustling ports, massive temples, and distant mountains.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -634,7 +634,7 @@
     },
     {
       "title": "Template 44",
-      "description": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors.",
+      "description": "A majestic eagle soaring high above a sprawling, historically accurate ancient city. The sweeping cinematic view reveals bustling ports, massive temples, and distant mountains.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -649,7 +649,7 @@
     },
     {
       "title": "Template 45",
-      "description": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors.",
+      "description": "A majestic eagle soaring high above a sprawling, historically accurate ancient city. The sweeping cinematic view reveals bustling ports, massive temples, and distant mountains.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -663,7 +663,7 @@
     },
     {
       "title": "Template 46",
-      "description": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements.",
+      "description": "An intense, prolonged sword duel against a heavily armored Templar captain. Sparks fly as heavy steel clashes against nimble, parrying daggers.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -679,7 +679,7 @@
     },
     {
       "title": "Template 47",
-      "description": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements.",
+      "description": "An intense, prolonged sword duel against a heavily armored Templar captain. Sparks fly as heavy steel clashes against nimble, parrying daggers.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -693,7 +693,7 @@
     },
     {
       "title": "Template 48",
-      "description": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements.",
+      "description": "An intense, prolonged sword duel against a heavily armored Templar captain. Sparks fly as heavy steel clashes against nimble, parrying daggers.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -707,7 +707,7 @@
     },
     {
       "title": "Template 49",
-      "description": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements.",
+      "description": "An intense, prolonged sword duel against a heavily armored Templar captain. Sparks fly as heavy steel clashes against nimble, parrying daggers.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -722,7 +722,7 @@
     },
     {
       "title": "Template 50",
-      "description": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements.",
+      "description": "An intense, prolonged sword duel against a heavily armored Templar captain. Sparks fly as heavy steel clashes against nimble, parrying daggers.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"

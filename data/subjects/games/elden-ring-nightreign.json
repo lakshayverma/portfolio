@@ -1,12 +1,12 @@
 {
-  "id": "fc2026",
+  "id": "elden-ring-nightreign",
   "category": "Games",
-  "name": "FC2026",
-  "descriptionTemplate": "capturing the high-octane, photorealistic broadcast quality of a modern global football stadium under floodlights",
+  "name": "Elden Ring Nightreign",
+  "descriptionTemplate": "immersed in an oppressive, eternal night filled with cosmic dread, stellar magic, and lingering shadows",
   "templates": [
     {
       "title": "Template 1",
-      "description": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd.",
+      "description": "A terrifying shadow beast prowling silently through tall, luminescent grass. Its countless eyes gleam with a predatory cosmic hunger in the pitch-black environment.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -22,7 +22,7 @@
     },
     {
       "title": "Template 2",
-      "description": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd.",
+      "description": "A terrifying shadow beast prowling silently through tall, luminescent grass. Its countless eyes gleam with a predatory cosmic hunger in the pitch-black environment.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -36,7 +36,7 @@
     },
     {
       "title": "Template 3",
-      "description": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd.",
+      "description": "A terrifying shadow beast prowling silently through tall, luminescent grass. Its countless eyes gleam with a predatory cosmic hunger in the pitch-black environment.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -50,7 +50,7 @@
     },
     {
       "title": "Template 4",
-      "description": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd.",
+      "description": "A terrifying shadow beast prowling silently through tall, luminescent grass. Its countless eyes gleam with a predatory cosmic hunger in the pitch-black environment.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -65,7 +65,7 @@
     },
     {
       "title": "Template 5",
-      "description": "A breathtaking, acrobatic bicycle kick suspended in mid-air. The stadium lights flare intensely as the player connects perfectly with the ball against a roaring crowd.",
+      "description": "A terrifying shadow beast prowling silently through tall, luminescent grass. Its countless eyes gleam with a predatory cosmic hunger in the pitch-black environment.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -79,7 +79,7 @@
     },
     {
       "title": "Template 6",
-      "description": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out.",
+      "description": "The enigmatic Gloam-Eyed Queen standing amidst a field of defeated demigods, channeling crackling black flame. Her presence distorts the very fabric of the surrounding shadows.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -95,7 +95,7 @@
     },
     {
       "title": "Template 7",
-      "description": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out.",
+      "description": "The enigmatic Gloam-Eyed Queen standing amidst a field of defeated demigods, channeling crackling black flame. Her presence distorts the very fabric of the surrounding shadows.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -109,7 +109,7 @@
     },
     {
       "title": "Template 8",
-      "description": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out.",
+      "description": "The enigmatic Gloam-Eyed Queen standing amidst a field of defeated demigods, channeling crackling black flame. Her presence distorts the very fabric of the surrounding shadows.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -123,7 +123,7 @@
     },
     {
       "title": "Template 9",
-      "description": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out.",
+      "description": "The enigmatic Gloam-Eyed Queen standing amidst a field of defeated demigods, channeling crackling black flame. Her presence distorts the very fabric of the surrounding shadows.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -138,7 +138,7 @@
     },
     {
       "title": "Template 10",
-      "description": "The adrenaline-pumping, glowing animation of opening a top-tier Ultimate Team pack. Golden confetti and blinding flares erupt as a legendary player walks out.",
+      "description": "The enigmatic Gloam-Eyed Queen standing amidst a field of defeated demigods, channeling crackling black flame. Her presence distorts the very fabric of the surrounding shadows.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -152,7 +152,7 @@
     },
     {
       "title": "Template 11",
-      "description": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light.",
+      "description": "A catastrophic dark sun eclipse hovering ominously over the decaying Erdtree. Corrupted golden ash rains down on the twisted, shadowy landscape below.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -168,7 +168,7 @@
     },
     {
       "title": "Template 12",
-      "description": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light.",
+      "description": "A catastrophic dark sun eclipse hovering ominously over the decaying Erdtree. Corrupted golden ash rains down on the twisted, shadowy landscape below.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -182,7 +182,7 @@
     },
     {
       "title": "Template 13",
-      "description": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light.",
+      "description": "A catastrophic dark sun eclipse hovering ominously over the decaying Erdtree. Corrupted golden ash rains down on the twisted, shadowy landscape below.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -196,7 +196,7 @@
     },
     {
       "title": "Template 14",
-      "description": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light.",
+      "description": "A catastrophic dark sun eclipse hovering ominously over the decaying Erdtree. Corrupted golden ash rains down on the twisted, shadowy landscape below.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -211,7 +211,7 @@
     },
     {
       "title": "Template 15",
-      "description": "The euphoric moment of a team captain lifting the massive, golden World Cup trophy. Flashbulbs from thousands of cameras create a blinding, celebratory sea of light.",
+      "description": "A catastrophic dark sun eclipse hovering ominously over the decaying Erdtree. Corrupted golden ash rains down on the twisted, shadowy landscape below.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -225,7 +225,7 @@
     },
     {
       "title": "Template 16",
-      "description": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf.",
+      "description": "A stealthy assassin executing a brutal stealth kill on a heavily armored knight under the pale light of a fragmented moon. Blood mists rapidly into the cold night air.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -241,7 +241,7 @@
     },
     {
       "title": "Template 17",
-      "description": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf.",
+      "description": "A stealthy assassin executing a brutal stealth kill on a heavily armored knight under the pale light of a fragmented moon. Blood mists rapidly into the cold night air.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -255,7 +255,7 @@
     },
     {
       "title": "Template 18",
-      "description": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf.",
+      "description": "A stealthy assassin executing a brutal stealth kill on a heavily armored knight under the pale light of a fragmented moon. Blood mists rapidly into the cold night air.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -269,7 +269,7 @@
     },
     {
       "title": "Template 19",
-      "description": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf.",
+      "description": "A stealthy assassin executing a brutal stealth kill on a heavily armored knight under the pale light of a fragmented moon. Blood mists rapidly into the cold night air.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -284,7 +284,7 @@
     },
     {
       "title": "Template 20",
-      "description": "A desperate, fully extended goalkeeper making a miraculous top-corner save. The tension of the match is visible in the strained muscles and flying turf.",
+      "description": "A stealthy assassin executing a brutal stealth kill on a heavily armored knight under the pale light of a fragmented moon. Blood mists rapidly into the cold night air.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -298,7 +298,7 @@
     },
     {
       "title": "Template 21",
-      "description": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball.",
+      "description": "An astronomer-mage weaving intricate starlight magic that shatters the surrounding darkness. Crystalline projectiles hover menacingly before launching at an unseen horror.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -314,7 +314,7 @@
     },
     {
       "title": "Template 22",
-      "description": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball.",
+      "description": "An astronomer-mage weaving intricate starlight magic that shatters the surrounding darkness. Crystalline projectiles hover menacingly before launching at an unseen horror.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -328,7 +328,7 @@
     },
     {
       "title": "Template 23",
-      "description": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball.",
+      "description": "An astronomer-mage weaving intricate starlight magic that shatters the surrounding darkness. Crystalline projectiles hover menacingly before launching at an unseen horror.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -342,7 +342,7 @@
     },
     {
       "title": "Template 24",
-      "description": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball.",
+      "description": "An astronomer-mage weaving intricate starlight magic that shatters the surrounding darkness. Crystalline projectiles hover menacingly before launching at an unseen horror.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -357,7 +357,7 @@
     },
     {
       "title": "Template 25",
-      "description": "A gritty, aggressive slide tackle in the pouring rain. Mud and water splash violently as two players clash heavily for possession of the slick ball.",
+      "description": "An astronomer-mage weaving intricate starlight magic that shatters the surrounding darkness. Crystalline projectiles hover menacingly before launching at an unseen horror.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -371,7 +371,7 @@
     },
     {
       "title": "Template 26",
-      "description": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions.",
+      "description": "A horrifying Godskin ritual taking place deep within an obsidian catacomb. Eerie green torches cast long, writhing shadows against the fleshy walls.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -387,7 +387,7 @@
     },
     {
       "title": "Template 27",
-      "description": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions.",
+      "description": "A horrifying Godskin ritual taking place deep within an obsidian catacomb. Eerie green torches cast long, writhing shadows against the fleshy walls.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -401,7 +401,7 @@
     },
     {
       "title": "Template 28",
-      "description": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions.",
+      "description": "A horrifying Godskin ritual taking place deep within an obsidian catacomb. Eerie green torches cast long, writhing shadows against the fleshy walls.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -415,7 +415,7 @@
     },
     {
       "title": "Template 29",
-      "description": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions.",
+      "description": "A horrifying Godskin ritual taking place deep within an obsidian catacomb. Eerie green torches cast long, writhing shadows against the fleshy walls.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -430,7 +430,7 @@
     },
     {
       "title": "Template 30",
-      "description": "A passionate manager shouting intense tactical instructions in the locker room. Veins bulge on their neck as the players listen with exhausted, determined expressions.",
+      "description": "A horrifying Godskin ritual taking place deep within an obsidian catacomb. Eerie green torches cast long, writhing shadows against the fleshy walls.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -444,7 +444,7 @@
     },
     {
       "title": "Template 31",
-      "description": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike.",
+      "description": "A Lovecraftian Moon Presence descending gracefully from a starry rift in the sky. Its eldritch form defies geometry, driving onlookers to madness.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -460,7 +460,7 @@
     },
     {
       "title": "Template 32",
-      "description": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike.",
+      "description": "A Lovecraftian Moon Presence descending gracefully from a starry rift in the sky. Its eldritch form defies geometry, driving onlookers to madness.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -474,7 +474,7 @@
     },
     {
       "title": "Template 33",
-      "description": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike.",
+      "description": "A Lovecraftian Moon Presence descending gracefully from a starry rift in the sky. Its eldritch form defies geometry, driving onlookers to madness.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -488,7 +488,7 @@
     },
     {
       "title": "Template 34",
-      "description": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike.",
+      "description": "A Lovecraftian Moon Presence descending gracefully from a starry rift in the sky. Its eldritch form defies geometry, driving onlookers to madness.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -503,7 +503,7 @@
     },
     {
       "title": "Template 35",
-      "description": "A high-tension standoff as a player prepares to take a crucial free kick. The defensive wall jumps in unison, their faces grimacing in anticipation of the strike.",
+      "description": "A Lovecraftian Moon Presence descending gracefully from a starry rift in the sky. Its eldritch form defies geometry, driving onlookers to madness.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -517,7 +517,7 @@
     },
     {
       "title": "Template 36",
-      "description": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence.",
+      "description": "A rider tearing through a vast field of glowing, ethereal blue grass. The wind whips past as unseen cosmic entities chase them through the eternal night.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -533,7 +533,7 @@
     },
     {
       "title": "Template 37",
-      "description": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence.",
+      "description": "A rider tearing through a vast field of glowing, ethereal blue grass. The wind whips past as unseen cosmic entities chase them through the eternal night.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -547,7 +547,7 @@
     },
     {
       "title": "Template 38",
-      "description": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence.",
+      "description": "A rider tearing through a vast field of glowing, ethereal blue grass. The wind whips past as unseen cosmic entities chase them through the eternal night.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -561,7 +561,7 @@
     },
     {
       "title": "Template 39",
-      "description": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence.",
+      "description": "A rider tearing through a vast field of glowing, ethereal blue grass. The wind whips past as unseen cosmic entities chase them through the eternal night.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -576,7 +576,7 @@
     },
     {
       "title": "Template 40",
-      "description": "The sheer focus of a striker stepping up to the penalty spot. The deafening noise of the stadium seems to fade into a cinematic, heart-pounding silence.",
+      "description": "A rider tearing through a vast field of glowing, ethereal blue grass. The wind whips past as unseen cosmic entities chase them through the eternal night.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -590,7 +590,7 @@
     },
     {
       "title": "Template 41",
-      "description": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors.",
+      "description": "A desperate clash against a towering knight clad in armor forged from fallen stars. Each strike of his blade leaves a trail of galaxy-like nebula dust.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -606,7 +606,7 @@
     },
     {
       "title": "Template 42",
-      "description": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors.",
+      "description": "A desperate clash against a towering knight clad in armor forged from fallen stars. Each strike of his blade leaves a trail of galaxy-like nebula dust.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -620,7 +620,7 @@
     },
     {
       "title": "Template 43",
-      "description": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors.",
+      "description": "A desperate clash against a towering knight clad in armor forged from fallen stars. Each strike of his blade leaves a trail of galaxy-like nebula dust.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -634,7 +634,7 @@
     },
     {
       "title": "Template 44",
-      "description": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors.",
+      "description": "A desperate clash against a towering knight clad in armor forged from fallen stars. Each strike of his blade leaves a trail of galaxy-like nebula dust.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -649,7 +649,7 @@
     },
     {
       "title": "Template 45",
-      "description": "A wild, uninhibited celebration as a player dives into the roaring crowd. Fans reach out in pure ecstasy, their faces painted in team colors.",
+      "description": "A desperate clash against a towering knight clad in armor forged from fallen stars. Each strike of his blade leaves a trail of galaxy-like nebula dust.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
@@ -663,7 +663,7 @@
     },
     {
       "title": "Template 46",
-      "description": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements.",
+      "description": "A slow, dread-inducing exploration of a colossal obsidian throne room. A massive, shadowy figure slumbers on the throne, breathing out waves of cold dark magic.",
       "timeOfDay": "Midnight",
       "tone": [
         "Grim",
@@ -679,7 +679,7 @@
     },
     {
       "title": "Template 47",
-      "description": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements.",
+      "description": "A slow, dread-inducing exploration of a colossal obsidian throne room. A massive, shadowy figure slumbers on the throne, breathing out waves of cold dark magic.",
       "timeOfDay": "Golden Hour",
       "tone": [
         "Epic"
@@ -693,7 +693,7 @@
     },
     {
       "title": "Template 48",
-      "description": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements.",
+      "description": "A slow, dread-inducing exploration of a colossal obsidian throne room. A massive, shadowy figure slumbers on the throne, breathing out waves of cold dark magic.",
       "timeOfDay": "Overcast",
       "tone": [
         "Mysterious"
@@ -707,7 +707,7 @@
     },
     {
       "title": "Template 49",
-      "description": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements.",
+      "description": "A slow, dread-inducing exploration of a colossal obsidian throne room. A massive, shadowy figure slumbers on the throne, breathing out waves of cold dark magic.",
       "timeOfDay": "Stormy",
       "tone": [
         "Action-Packed"
@@ -722,7 +722,7 @@
     },
     {
       "title": "Template 50",
-      "description": "A phenomenal display of footwork, effortlessly dribbling past a stumbling defender. The camera captures the motion blur of the insanely fast, precise movements.",
+      "description": "A slow, dread-inducing exploration of a colossal obsidian throne room. A massive, shadowy figure slumbers on the throne, breathing out waves of cold dark magic.",
       "timeOfDay": "Neon Night",
       "tone": [
         "Tactical"
