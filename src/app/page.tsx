@@ -230,6 +230,8 @@ export default function Page() {
     }));
   };
 
+
+
   const handleSave = async (isNew = false) => {
     if (!config.title.trim()) return alert('Please provide a title.');
     const configToSave = isNew ? { ...config, id: `custom-${Date.now()}` } : config;
@@ -427,11 +429,11 @@ Original Content:
 
   const insertVariable = (varStr: string) => {
     const inputName = lastFocusedInput;
-    const input = document.getElementsByName(inputName)[0] as HTMLTextAreaElement;
-    if (input) {
-      const start = input.selectionStart;
-      const end = input.selectionEnd;
-      const text = input.value;
+    const input = document.getElementsByName(inputName)[0] as HTMLTextAreaElement | undefined;
+    if (input && input.value !== undefined) {
+      const start = input.selectionStart || 0;
+      const end = input.selectionEnd || 0;
+      const text = input.value || '';
       const before = text.substring(0, start);
       const after = text.substring(end, text.length);
       const newText = before + varStr + after;
@@ -603,6 +605,7 @@ Original Content:
                     { name: 'tone', label: 'Tones' },
                     { name: 'platform', label: 'Platforms' },
                     { name: 'keywords', label: 'Keywords' },
+                    { name: 'additionalElements', label: 'Additional Elements' },
                   ].map((variable) => {
                     let val = '';
                     if (variable.name === 'tone') {
@@ -756,7 +759,7 @@ Original Content:
                       <span className={`w-2 h-2 rounded-full ${VARIABLE_COLORS.textPlacements} mr-2 shadow-sm`}></span>
                       Text Placement / Alignment
                     </label>
-                    <div className="mb-2"><TextPlacementGrid value={config.textPlacements} onChange={(val) => setConfig(prev => ({ ...prev, textPlacements: val }))} placements={Object.keys(appData.global.dictionaries.textPlacements)} /></div>
+                    <div className="mb-2"><TextPlacementGrid value={config.textPlacements} onChange={(val) => setConfig(prev => ({ ...prev, textPlacements: val }))} /></div>
                     <Combobox label="Text Placement / Alignment (Fallback)" name="textPlacements" value={config.textPlacements} onChange={handleInputChange} options={Object.keys(appData.global.dictionaries.textPlacements)} placeholder="e.g. Top Left" colorCode={VARIABLE_COLORS.textPlacements} />
                   </div>
                   <div className="flex flex-col gap-2">
@@ -818,6 +821,31 @@ Original Content:
             <select name="outputEngineId" value={config.outputEngineId} onChange={handleInputChange} className="bg-white dark:bg-[#25252b] text-sm border border-gray-300 dark:border-[#333] rounded-lg px-3 py-1.5 outline-none">
               {aiEngines.map(e => <option key={e.id} value={e.id}>{e.name}</option>)}
             </select>
+            <div className="flex items-center gap-2 pl-3 border-l border-gray-200 dark:border-[#2a2a2a]">
+              {isCompiling ? (
+                <div className="flex items-center gap-1.5 text-xs text-amber-500 font-medium">
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  <span className="hidden lg:inline">Compiling...</span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-1.5 text-xs text-emerald-500 font-medium">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span className="hidden lg:inline">Compiled</span>
+                </div>
+              )}
+              <button
+                type="button"
+                onClick={handleManualCompile}
+                disabled={!isCompiling}
+                className={`px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold rounded transition-all ${isCompiling
+                    ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/20 active:scale-95'
+                    : 'bg-gray-100 dark:bg-[#25252b] text-slate-400 border border-gray-200 dark:border-[#333] cursor-not-allowed'
+                  }`}
+                title="Force compile immediate output changes"
+              >
+                Push Now
+              </button>
+            </div>
           </div>
           <div className="flex-1 p-4 md:p-6 overflow-y-auto custom-scrollbar bg-gray-50 dark:bg-[#131314] flex flex-col gap-6">
             {Object.entries(compiledOutputs).map(([contextKey, compiledText]) => {
