@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { PortfolioEntry, InterestEntry } from '@/app/types';
 import FocusItems from './FocusItems';
 import Stats from './Stats';
@@ -23,6 +24,17 @@ const Job = ({
         <h1>
           <span>{title}</span>
         </h1>
+        {id === 'interests' && (
+          <div className="mt-4 hidden md:block">
+            <Image
+              src="/images/interests.svg"
+              alt="Interests Illustration"
+              width={120}
+              height={120}
+              style={{ opacity: 0.85 }}
+            />
+          </div>
+        )}
       </div>
 
       <div className="nine columns main-col">

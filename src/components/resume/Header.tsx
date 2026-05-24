@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { ResumeData } from '@/app/types';
 
 interface HeaderProps {
@@ -7,7 +8,14 @@ interface HeaderProps {
 const Header = ({ resumeData }: HeaderProps) => {
   return (
     <>
-      <header id="home">
+      <header id="home" style={{ position: 'relative' }}>
+        <Image
+          src="/images/header-background.svg"
+          alt="Header Background"
+          fill
+          priority
+          style={{ objectFit: 'cover', zIndex: -10 }}
+        />
         <nav id="nav-wrap">
           <a className="mobile-btn" href="#nav-wrap" title="Show navigation">
             <i className="fa fa-bars" aria-hidden="true" />

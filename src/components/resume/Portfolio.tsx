@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { ResumeData } from '@/app/types';
 
 interface PortfolioProps {
@@ -14,7 +15,15 @@ const Portfolio = ({ resumeData }: PortfolioProps) => (
             <div className="columns portfolio-item" key={item.id}>
               <div className="item-wrap">
                 <a href="#">
-                  <img src={`${item.imgurl}`} className="item-img" alt={item.name} />
+                  <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
+                    <Image
+                      src={item.imgurl}
+                      alt={item.name}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      className="item-img"
+                    />
+                  </div>
                   <div className="overlay">
                     <div className="portfolio-item-meta">
                       <h5>{item.name}</h5>

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { ResumeData } from '@/app/types';
 
 interface AboutProps {
@@ -8,7 +9,14 @@ const About = ({ resumeData }: AboutProps) => (
   <section id="about">
     <div className="row">
       <div className="three columns">
-        <img className="profile-pic" src="/images/profile.png" alt={resumeData.name} />
+        <Image
+          className="profile-pic"
+          src="/images/profile.png"
+          alt={resumeData.name}
+          width={120}
+          height={120}
+          style={{ borderRadius: '100%', objectFit: 'cover' }}
+        />
       </div>
       <div className="nine columns main-col">
         <h2>About Me</h2>

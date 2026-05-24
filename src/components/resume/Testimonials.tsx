@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { ResumeData } from '@/app/types';
 
 interface TestimonialsProps {
@@ -5,7 +6,13 @@ interface TestimonialsProps {
 }
 
 const Testimonials = ({ resumeData }: TestimonialsProps) => (
-  <section id="testimonials">
+  <section id="testimonials" style={{ position: 'relative' }}>
+    <Image
+      src="/images/testimonials-bg.svg"
+      alt="Testimonials Background"
+      fill
+      style={{ objectFit: 'cover', zIndex: -10 }}
+    />
     <div className="text-container">
       <div className="row">
         <div className="two columns header-col">
