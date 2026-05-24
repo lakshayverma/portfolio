@@ -1,84 +1,154 @@
+"use client";
+
+import React, { useState } from 'react';
 import type { ResumeData } from '@/app/types';
-import Dates from './Dates';
-import FocusItems from './FocusItems';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Briefcase, GraduationCap, Code2, ChevronDown, ChevronUp } from 'lucide-react';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from 'recharts';
 
 interface ResumeProps {
   resumeData: ResumeData;
 }
 
-const Resume = ({ resumeData }: ResumeProps) => (
-  <section id="resume">
-    <div className="row education">
-      <div className="three columns header-col">
-        <h1>
-          <span>Education</span>
-        </h1>
-      </div>
+const TimelineItem = ({ item, icon: Icon }: { item: any, icon: any }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const title = item.companyName || item.universityName;
+  const start = item.dates[0];
+  const end = item.dates[1];
 
-      <div className="nine columns main-col">
-        {resumeData.education?.map(item => (
-          <div className="row item" key={item.id}>
-            <div className="twelve columns">
-              <h3>{item.universityName}</h3>
-              <p className="info">
-                {item.specialization}
-                <span>&bull;</span> <Dates dates={item.dates} />
-              </p>
-              <FocusItems items={item.achievements} />
-            </div>
+  return (
+    <motion.div 
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      className="relative pl-8 md:pl-0"
+    >
+      <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-0.5 h-full bg-slate-200 dark:bg-slate-800"></div>
+      
+      <div className={`md:w-1/2 ${item.companyName ? 'md:pr-12 md:ml-0 text-left md:text-right' : 'md:pl-12 md:ml-auto text-left'}`}>
+        <div className="absolute left-0 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-background border-4 border-accent-primary flex items-center justify-center z-10 shadow-lg shadow-accent-primary/20">
+          <Icon className="w-3 h-3 text-accent-primary" />
+        </div>
+        
+        <div className="glass-panel p-6 rounded-2xl hover:neon-border transition-shadow cursor-pointer group" onClick={() => setIsOpen(!isOpen)}>
+          <div className="flex justify-between items-start md:items-center mb-2 flex-col md:flex-row">
+            <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 group-hover:text-accent-primary transition-colors">
+              {title}
+            </h3>
+            <span className="text-xs font-mono text-accent-secondary bg-accent-secondary/10 px-3 py-1 rounded-full mt-2 md:mt-0 whitespace-nowrap">
+              {start?.month} {start?.year} - {end?.title === 'End' || !end?.year ? 'Present' : `${end.month} ${end.year}`}
+            </span>
           </div>
-        ))}
-      </div>
-    </div>
+          <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-4">{item.specialization}</p>
+          
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden"
+              >
+                <ul className="list-disc pl-5 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+                  {item.achievements.map((ach: string, i: number) => (
+                    <li key={i}>{ach}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-    <div className="row work">
-      <div className="three columns header-col">
-        <h1>
-          <span>Work</span>
-        </h1>
-      </div>
-
-      <div className="nine columns main-col">
-        {resumeData.work?.map(item => (
-          <div className="row item" key={item.id}>
-            <div className="twelve columns">
-              <h3>{item.companyName}</h3>
-              <p className="info">
-                {item.specialization}
-                <span>&bull;</span>
-                <Dates dates={item.dates} />
-              </p>
-              <FocusItems items={item.achievements} />
-            </div>
+          <div className="mt-4 flex justify-center text-slate-400">
+            {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
           </div>
-        ))}
-      </div>
-    </div>
-
-    <div className="row skill">
-      <div className="three columns header-col">
-        <h1>
-          <span>Skills</span>
-        </h1>
-      </div>
-
-      <div className="nine columns main-col">
-        <p>{resumeData.skillsDescription}</p>
-
-        <div className="bars">
-          <ul className="skills">
-            {resumeData.skills?.map(item => (
-              <li key={item.id}>
-                <span className={`bar-expand ${item.skillName.toLowerCase()} percent-${item.percent}`}></span>
-                <em>{item.skillName}</em>
-                <span className="skill-level">{item.level}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </motion.div>
+  );
+};
+
+const Resume = ({ resumeData }: ResumeProps) => {
+  const chartData = resumeData.skills?.map(s => ({
+    subject: s.skillName,
+    A: parseInt(s.percent, 10),
+    fullMark: 100,
+  }));
+
+  return (
+    <section id="resume" className="py-24 bg-slate-50/50 dark:bg-[#0f0f13]/50">
+      <div className="container mx-auto px-6 max-w-6xl">
+        
+        {/* Experience Timeline */}
+        <div className="mb-32">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-4"><span className="neon-text">Work Experience</span></h2>
+            <div className="w-24 h-1 bg-accent-primary mx-auto rounded-full"></div>
+          </motion.div>
+
+          <div className="space-y-12 relative">
+            {resumeData.work?.map((item, index) => (
+              <TimelineItem key={item.id} item={item} icon={Briefcase} />
+            ))}
+          </div>
+        </div>
+
+        {/* Education Timeline */}
+        <div className="mb-32">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-4"><span className="neon-text">Education</span></h2>
+            <div className="w-24 h-1 bg-accent-secondary mx-auto rounded-full"></div>
+          </motion.div>
+
+          <div className="space-y-12 relative">
+            {resumeData.education?.map((item, index) => (
+              <TimelineItem key={item.id} item={item} icon={GraduationCap} />
+            ))}
+          </div>
+        </div>
+
+        {/* Skills Chart */}
+        <div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-4"><span className="neon-text">Core Skills</span></h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-accent-primary to-accent-secondary mx-auto rounded-full mb-6"></div>
+            <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">{resumeData.skillsDescription}</p>
+          </motion.div>
+
+          <div className="w-full h-[500px] glass-panel rounded-3xl p-4 md:p-8">
+            <ResponsiveContainer width="100%" height="100%">
+              <RadarChart cx="50%" cy="50%" outerRadius="70%" data={chartData}>
+                <PolarGrid stroke="var(--glass-border)" />
+                <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--foreground)', fontSize: 12, fontWeight: 600 }} />
+                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
+                <Tooltip 
+                  contentStyle={{ backgroundColor: 'var(--glass-bg)', backdropFilter: 'blur(10px)', borderRadius: '12px', border: '1px solid var(--glass-border)' }}
+                  itemStyle={{ color: 'var(--accent-primary)', fontWeight: 'bold' }}
+                />
+                <Radar name="Proficiency" dataKey="A" stroke="var(--accent-primary)" fill="var(--accent-primary)" fillOpacity={0.4} />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+};
 
 export default Resume;
+
