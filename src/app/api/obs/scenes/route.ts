@@ -566,14 +566,8 @@ const getFilePath = () => {
 
 const readScenesFile = (): any[] => {
   const filePath = getFilePath();
-  const dataDir = path.dirname(filePath);
-
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
 
   if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, JSON.stringify(DEFAULT_SCENES, null, 2), 'utf-8');
     return DEFAULT_SCENES;
   }
 
@@ -581,15 +575,9 @@ const readScenesFile = (): any[] => {
     const content = fs.readFileSync(filePath, 'utf-8');
     return JSON.parse(content);
   } catch (error) {
-    console.error('Error parsing obs-scenes.json, resetting to seed data:', error);
-    fs.writeFileSync(filePath, JSON.stringify(DEFAULT_SCENES, null, 2), 'utf-8');
+    console.error('Error parsing obs-scenes.json, returning default seed data:', error);
     return DEFAULT_SCENES;
   }
-};
-
-const writeScenesFile = (scenes: any[]) => {
-  const filePath = getFilePath();
-  fs.writeFileSync(filePath, JSON.stringify(scenes, null, 2), 'utf-8');
 };
 
 export async function GET(request: NextRequest) {
@@ -614,34 +602,8 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const reset = searchParams.get('reset');
-    if (reset === 'true') {
-      writeScenesFile(DEFAULT_SCENES);
-      return NextResponse.json({ success: true, message: 'Reset all scenes to factory defaults', count: DEFAULT_SCENES.length, scenes: DEFAULT_SCENES });
-    }
-
-    const scenes = readScenesFile();
-    const body = await request.json();
-
-    if (Array.isArray(body)) {
-      writeScenesFile(body);
-      return NextResponse.json({ success: true, message: 'Scenes array saved successfully', count: body.length });
-    } else if (body && body.id) {
-      const index = scenes.findIndex((s: any) => s.id === body.id);
-      if (index !== -1) {
-        scenes[index] = body;
-      } else {
-        scenes.push(body);
-      }
-      writeScenesFile(scenes);
-      return NextResponse.json({ success: true, message: `Scene ${body.id} saved successfully`, scene: body });
-    } else {
-      return NextResponse.json({ error: 'Invalid payload format. Expected scene object or scenes array' }, { status: 400 });
-    }
-  } catch (error: any) {
-    console.error('Failed to save OBS scene:', error);
-    return NextResponse.json({ error: 'Failed to save OBS scene', details: error.message }, { status: 500 });
-  }
+  return NextResponse.json(
+    { error: 'Server-side saving is disabled for security and privacy. Saving is handled locally.' },
+    { status: 405 }
+  );
 }

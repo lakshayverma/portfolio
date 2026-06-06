@@ -232,6 +232,19 @@ function OBSViewerContent() {
 
     async function fetchScene() {
       try {
+        // 1. Check local storage first since we want client-side overrides
+        const localScenesStr = localStorage.getItem('obs_scenes');
+        if (localScenesStr) {
+          const localScenes = JSON.parse(localScenesStr);
+          const localScene = localScenes.find((s: any) => s.id === sourceId);
+          if (localScene && active) {
+            setScene(localScene);
+            setError(null);
+            return;
+          }
+        }
+
+        // 2. Fallback to fetch from server if not found in local storage
         const res = await fetch(`/api/obs/scenes?id=${sourceId}`);
         if (!res.ok) {
           throw new Error(`Scene not found (${res.status})`);

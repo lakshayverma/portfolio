@@ -776,11 +776,18 @@ export default function OBSEditorPage() {
   // Canvas container reference for mouse coordinate calculations
   const canvasRef = useRef<HTMLDivElement>(null);
 
-  // Fetch all scenes from the backend
+  // Fetch all scenes from local storage (with fallback to default templates from server)
   const fetchScenes = async (selectId?: string) => {
     try {
-      const res = await fetch('/api/obs/scenes');
-      const data = await res.json();
+      let data: OBSScene[] = [];
+      const localData = localStorage.getItem('obs_scenes');
+      if (localData) {
+        data = JSON.parse(localData);
+      } else {
+        const res = await fetch('/api/obs/scenes');
+        data = await res.json();
+        localStorage.setItem('obs_scenes', JSON.stringify(data));
+      }
       setScenes(data);
       if (data.length > 0) {
         setSelectedSceneId(selectId || data[0].id);
@@ -847,23 +854,15 @@ export default function OBSEditorPage() {
     setContextMenu({ x, y, layerId });
   };
 
-  // Save the currently active scene to the backend
+  // Save the currently active scene to local storage
   const handleSaveScene = async () => {
     if (!activeScene) return;
     setSaving(true);
     try {
-      const res = await fetch('/api/obs/scenes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(activeScene)
-      });
-      
-      if (res.ok) {
-        triggerAlert('success', 'Scene configurations saved successfully on server!');
-        await fetchScenes(activeScene.id);
-      } else {
-        throw new Error('Server responded with error');
-      }
+      const updatedScenes = scenes.map(s => s.id === activeScene.id ? activeScene : s);
+      localStorage.setItem('obs_scenes', JSON.stringify(updatedScenes));
+      triggerAlert('success', 'Scene configurations saved successfully to local storage!');
+      await fetchScenes(activeScene.id);
     } catch (err: any) {
       triggerAlert('error', `Failed to save changes: ${err.message}`);
     } finally {
@@ -1017,21 +1016,12 @@ export default function OBSEditorPage() {
       const updatedScene = { ...activeScene, layers: newLayers };
       const updatedScenes = scenes.map(s => s.id === activeScene.id ? updatedScene : s);
 
-      // Save to server
-      const res = await fetch('/api/obs/scenes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedScene)
-      });
-
-      if (res.ok) {
-        setScenes(updatedScenes);
-        setSelectedLayerIds([]);
-        pushToHistory(updatedScenes);
-        triggerAlert('success', isTemplate ? `Successfully reset "${activeScene.title}" to default template!` : `Cleared all layers for "${activeScene.title}".`);
-      } else {
-        throw new Error('Failed to save reset scene on server');
-      }
+      // Save to local storage
+      localStorage.setItem('obs_scenes', JSON.stringify(updatedScenes));
+      setScenes(updatedScenes);
+      setSelectedLayerIds([]);
+      pushToHistory(updatedScenes);
+      triggerAlert('success', isTemplate ? `Successfully reset "${activeScene.title}" to default template!` : `Cleared all layers for "${activeScene.title}".`);
     } catch (err: any) {
       triggerAlert('error', `Reset failed: ${err.message}`);
     } finally {
@@ -1258,7 +1248,7 @@ export default function OBSEditorPage() {
     setSelectedSceneId(newId);
     setSelectedLayerIds([newScene.layers[1].id]);
     pushToHistory(updated);
-    triggerAlert('success', 'Created a new custom scene frame! Click Save to write to server.');
+    triggerAlert('success', 'Created a new custom scene frame! Click Save to store locally.');
   };
 
   // Delete the currently active scene
@@ -1272,20 +1262,13 @@ export default function OBSEditorPage() {
     const remainingScenes = scenes.filter(s => s.id !== selectedSceneId);
     try {
       setSaving(true);
-      const res = await fetch('/api/obs/scenes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(remainingScenes)
-      });
-      if (res.ok) {
-        triggerAlert('success', 'Scene deleted successfully.');
-        setScenes(remainingScenes);
-        setSelectedSceneId(remainingScenes[0].id);
-        setSelectedLayerIds([]);
-        pushToHistory(remainingScenes);
-      } else {
-        throw new Error('Failed to update list on server');
-      }
+      // Save remaining scenes to local storage
+      localStorage.setItem('obs_scenes', JSON.stringify(remainingScenes));
+      triggerAlert('success', 'Scene deleted successfully.');
+      setScenes(remainingScenes);
+      setSelectedSceneId(remainingScenes[0].id);
+      setSelectedLayerIds([]);
+      pushToHistory(remainingScenes);
     } catch (err: any) {
       triggerAlert('error', `Failed to delete scene: ${err.message}`);
     } finally {

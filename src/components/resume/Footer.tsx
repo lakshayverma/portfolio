@@ -68,8 +68,15 @@ const Footer = ({ resumeData }: FooterProps) => {
           })}
         </div>
 
-        <div className="text-slate-500 text-sm font-medium tracking-wide">
-          &copy; {year} {resumeData.name}. All rights reserved.
+        <div className="text-slate-500 text-sm font-medium tracking-wide flex flex-col items-center gap-2 mt-2">
+          <span>&copy; {year} {resumeData.name}. All rights reserved.</span>
+          <a 
+            href="/privacy" 
+            className="text-xs text-slate-400 hover:text-accent-primary underline transition-colors"
+            id="privacy-policy-link"
+          >
+            Privacy Policy
+          </a>
         </div>
 
         <a 
