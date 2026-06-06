@@ -21,16 +21,16 @@ const TimelineItem = ({ item, icon: Icon, index }: { item: any, icon: any, index
       initial={{ opacity: 0, x: -50 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      className="relative pl-8 md:pl-0"
+      className={`relative pl-8 md:pl-0 md:h-[340px] ${index > 0 ? 'mt-12 md:-mt-[140px]' : ''}`}
     >
       <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-0.5 h-full bg-slate-200 dark:bg-slate-800"></div>
 
-      <div className={`md:w-1/2 ${isLeft ? 'md:pr-12 md:ml-0 text-left md:text-right' : 'md:pl-12 md:ml-auto text-left'}`}>
-        <div className="absolute left-0 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-background border-4 border-accent-primary flex items-center justify-center z-10 shadow-none dark:shadow-lg dark:shadow-accent-primary/20">
+      <div className={`md:w-1/2 ${isLeft ? 'md:pr-6 md:ml-0 text-left md:text-right' : 'md:pl-6 md:ml-auto text-left'}`}>
+        <div className="absolute left-0 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-background border-4 border-accent-primary flex items-center justify-center z-10 shadow-none dark:shadow-lg dark:shadow-accent-primary/20 top-6">
           <Icon className="w-3 h-3 text-accent-primary" />
         </div>
 
-        <div className="glass-panel p-6 rounded-2xl hover:neon-border transition-shadow group">
+        <div className="glass-panel p-6 rounded-2xl hover:neon-border transition-shadow group md:h-[340px] flex flex-col">
           <div className="flex justify-between items-start md:items-center mb-2 flex-col md:flex-row">
             <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 group-hover:text-accent-primary transition-colors">
               {title}
@@ -41,7 +41,7 @@ const TimelineItem = ({ item, icon: Icon, index }: { item: any, icon: any, index
           </div>
           <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-4">{item.specialization}</p>
 
-          <div className="max-h-[340px] overflow-y-auto pr-2 custom-scrollbar text-left">
+          <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar text-left">
             <ul className="list-disc pl-5 space-y-2 text-sm text-slate-600 dark:text-slate-300">
               {item.achievements.map((ach: string, i: number) => (
                 <li key={i}>{ach}</li>
@@ -77,7 +77,7 @@ const Resume = ({ resumeData }: ResumeProps) => {
             <div className="w-24 h-1 bg-accent-primary mx-auto rounded-full"></div>
           </motion.div>
 
-          <div className="space-y-12 relative">
+          <div className="relative">
             {resumeData.work?.map((item, index) => (
               <TimelineItem key={item.id} item={item} icon={Briefcase} index={index} />
             ))}
@@ -96,7 +96,7 @@ const Resume = ({ resumeData }: ResumeProps) => {
             <div className="w-24 h-1 bg-accent-secondary mx-auto rounded-full"></div>
           </motion.div>
 
-          <div className="space-y-12 relative">
+          <div className="relative">
             {resumeData.education?.map((item, index) => (
               <TimelineItem key={item.id} item={item} icon={GraduationCap} index={index} />
             ))}
