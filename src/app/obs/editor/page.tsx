@@ -170,10 +170,10 @@ const FACTORY_TEMPLATES: Record<string, OBSLayer[]> = {
       "type": "text",
       "visible": true,
       "opacity": 1,
-      "top": 33.5,
+      "top": 33,
       "left": 75,
       "width": 22,
-      "height": 3,
+      "height": 4,
       "zIndex": 4,
       "text": "LAKSHAY LIVE",
       "fontFamily": "Impact",
@@ -197,7 +197,7 @@ const FACTORY_TEMPLATES: Record<string, OBSLayer[]> = {
       "opacity": 0.8,
       "top": 78,
       "left": 6,
-      "width": 30,
+      "width": 35,
       "height": 12,
       "zIndex": 1,
       "gradientType": "linear",
@@ -225,7 +225,7 @@ const FACTORY_TEMPLATES: Record<string, OBSLayer[]> = {
       "opacity": 1,
       "top": 79.5,
       "left": 7.5,
-      "width": 27,
+      "width": 32,
       "height": 5,
       "zIndex": 3,
       "text": "Dr. Helena Carter",
@@ -249,7 +249,7 @@ const FACTORY_TEMPLATES: Record<string, OBSLayer[]> = {
       "opacity": 0.9,
       "top": 84.5,
       "left": 7.5,
-      "width": 27,
+      "width": 32,
       "height": 4,
       "zIndex": 4,
       "text": "Director of Deep Learning Research",
@@ -341,7 +341,7 @@ const FACTORY_TEMPLATES: Record<string, OBSLayer[]> = {
       "top": 2,
       "left": 30,
       "width": 40,
-      "height": 7,
+      "height": 5.5,
       "zIndex": 1,
       "gradientType": "linear",
       "gradientAngle": 90,
@@ -353,10 +353,11 @@ const FACTORY_TEMPLATES: Record<string, OBSLayer[]> = {
       "type": "color",
       "visible": true,
       "opacity": 0.95,
-      "top": 2,
-      "left": 47.5,
-      "width": 5,
-      "height": 7,
+      "top": 7.5,
+      "left": 47,
+      "width": 6,
+      "height": 3.5,
+      "borderRadius": 4,
       "zIndex": 2,
       "bgColor": "#ec4899"
     },
@@ -366,10 +367,10 @@ const FACTORY_TEMPLATES: Record<string, OBSLayer[]> = {
       "type": "text",
       "visible": true,
       "opacity": 1,
-      "top": 2.5,
+      "top": 2,
       "left": 31,
-      "width": 12,
-      "height": 6,
+      "width": 11,
+      "height": 5.5,
       "zIndex": 3,
       "text": "ANTIGRAVITY",
       "fontFamily": "Orbitron",
@@ -384,10 +385,10 @@ const FACTORY_TEMPLATES: Record<string, OBSLayer[]> = {
       "type": "text",
       "visible": true,
       "opacity": 1,
-      "top": 2.5,
-      "left": 57,
-      "width": 12,
-      "height": 6,
+      "top": 2,
+      "left": 58,
+      "width": 11,
+      "height": 5.5,
       "zIndex": 3,
       "text": "DEEPMIND FC",
       "fontFamily": "Orbitron",
@@ -403,9 +404,9 @@ const FACTORY_TEMPLATES: Record<string, OBSLayer[]> = {
       "visible": true,
       "opacity": 1,
       "top": 2,
-      "left": 43,
-      "width": 14,
-      "height": 7,
+      "left": 42,
+      "width": 16,
+      "height": 5.5,
       "zIndex": 4,
       "text": "3   -   2",
       "fontFamily": "Impact",
@@ -421,10 +422,10 @@ const FACTORY_TEMPLATES: Record<string, OBSLayer[]> = {
       "type": "text",
       "visible": true,
       "opacity": 1,
-      "top": 2,
-      "left": 47.5,
-      "width": 5,
-      "height": 7,
+      "top": 7.5,
+      "left": 47,
+      "width": 6,
+      "height": 3.5,
       "zIndex": 4,
       "text": "14:35",
       "fontFamily": "Bebas Neue",
@@ -806,10 +807,43 @@ export default function OBSEditorPage() {
     fetchScenes();
   }, []);
 
+  const [canvasWidth, setCanvasWidth] = useState<number>(1920);
+
+  // ResizeObserver to track container width for accurate font scaling
+  useEffect(() => {
+    if (typeof window === 'undefined' || !canvasRef.current) return;
+    const canvasElement = canvasRef.current;
+    
+    // Initial measurement
+    const initialRect = canvasElement.getBoundingClientRect();
+    if (initialRect.width > 0) {
+      setCanvasWidth(initialRect.width);
+    }
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.contentRect.width > 0) {
+          setCanvasWidth(entry.contentRect.width);
+        }
+      }
+    });
+
+    observer.observe(canvasElement);
+    return () => {
+      observer.disconnect();
+    };
+  }, [loading]);
+
   // Selected Scene Computed
   const activeScene = useMemo(() => {
     return scenes.find(s => s.id === selectedSceneId) || null;
   }, [scenes, selectedSceneId]);
+
+  // Preview Scale Factor
+  const previewScale = useMemo(() => {
+    if (!activeScene) return 1;
+    return canvasWidth / activeScene.width;
+  }, [canvasWidth, activeScene]);
 
   // Selected Layer Computed
   const activeLayer = useMemo(() => {
@@ -2059,23 +2093,23 @@ export default function OBSEditorPage() {
                   const shadowColor = layer.shadowColor || '#000000';
                   let boxShadow: string | undefined = undefined;
                   if (layer.shadowColor && (layer.shadowBlur !== undefined || layer.shadowOffset)) {
-                    const sx = layer.shadowOffset?.x ?? 0;
-                    const sy = layer.shadowOffset?.y ?? 4;
-                    const sb = layer.shadowBlur ?? 12;
-                    const ss = layer.shadowSpread ?? 0;
+                    const sx = (layer.shadowOffset?.x ?? 0) * previewScale;
+                    const sy = (layer.shadowOffset?.y ?? 4) * previewScale;
+                    const sb = (layer.shadowBlur ?? 12) * previewScale;
+                    const ss = (layer.shadowSpread ?? 0) * previewScale;
                     const inset = layer.shadowInset ? 'inset' : '';
                     boxShadow = `${inset} ${sx}px ${sy}px ${sb}px ${ss}px ${shadowColor}`.trim();
                   }
 
                   const borderStyleObj: React.CSSProperties = {
-                    borderRadius: layer.borderRadius !== undefined ? `${layer.borderRadius}px` : undefined,
-                    borderWidth: layer.borderWidth !== undefined ? `${layer.borderWidth}px` : undefined,
+                    borderRadius: layer.borderRadius !== undefined ? `${layer.borderRadius * previewScale}px` : undefined,
+                    borderWidth: layer.borderWidth !== undefined ? `${layer.borderWidth * previewScale}px` : undefined,
                     borderColor: layer.borderColor ? toRGBA(layer.borderColor, layer.borderOpacity ?? 1) : undefined,
                     borderStyle: layer.borderWidth ? (layer.borderStyle || 'solid') : undefined,
                     boxShadow: boxShadow,
                     boxSizing: layer.borderType === 'outside' ? 'content-box' : 'border-box',
-                    padding: layer.padding !== undefined ? `${layer.padding}px` : undefined,
-                    overflow: 'hidden'
+                    padding: layer.padding !== undefined ? `${layer.padding * previewScale}px` : undefined,
+                    overflow: (layer.type === 'text' || layer.type === 'countdown') ? 'visible' : 'hidden'
                   };
 
                   const layerPreviewStyle: React.CSSProperties = {
@@ -2197,33 +2231,34 @@ export default function OBSEditorPage() {
                     const filterParts: string[] = [];
 
                     if (layer.shadowColor) {
-                      const sx = layer.shadowOffset?.x ?? 2;
-                      const sy = layer.shadowOffset?.y ?? 2;
-                      const sb = layer.shadowBlur ?? 4;
+                      const sx = (layer.shadowOffset?.x ?? 2) * previewScale;
+                      const sy = (layer.shadowOffset?.y ?? 2) * previewScale;
+                      const sb = (layer.shadowBlur ?? 4) * previewScale;
                       textShadow = `${sx}px ${sy}px ${sb}px ${layer.shadowColor}`;
                     }
 
                     if (layer.outerGlowColor) {
-                      filterParts.push(`drop-shadow(0 0 ${layer.outerGlowBlur || 8}px ${layer.outerGlowColor})`);
+                      filterParts.push(`drop-shadow(0 0 ${(layer.outerGlowBlur || 8) * previewScale}px ${layer.outerGlowColor})`);
                     }
 
                     if (layer.innerGlowColor) {
-                      const igb = layer.innerGlowBlur || 2;
+                      const igb = (layer.innerGlowBlur || 2) * previewScale;
                       const innerShadow = `0 0 ${igb}px ${layer.innerGlowColor}`;
                       textShadow = textShadow ? `${textShadow}, ${innerShadow}` : innerShadow;
                     }
 
                     const textStyle: React.CSSProperties = {
                       fontFamily: layer.fontFamily || 'sans-serif',
-                      fontSize: layer.fontSize ? `${layer.fontSize}px` : '24px',
+                      fontSize: layer.fontSize ? `${layer.fontSize * previewScale}px` : `${24 * previewScale}px`,
                       color: layer.color || '#ffffff',
                       fontWeight: layer.fontWeight || 'normal',
                       fontStyle: layer.fontStyle || 'normal',
                       textTransform: (layer.textTransform as any) || 'none',
-                      letterSpacing: layer.letterSpacing ? `${layer.letterSpacing}px` : 'normal',
+                      letterSpacing: layer.letterSpacing ? `${layer.letterSpacing * previewScale}px` : 'normal',
                       textShadow: textShadow || undefined,
                       filter: filterParts.length > 0 ? filterParts.join(' ') : undefined,
-                      lineHeight: 1.2
+                      lineHeight: 1.2,
+                      whiteSpace: 'nowrap'
                     };
 
                     let displayText = layer.text || 'Text Layer';
@@ -2252,33 +2287,34 @@ export default function OBSEditorPage() {
                     const filterParts: string[] = [];
 
                     if (layer.shadowColor) {
-                      const sx = layer.shadowOffset?.x ?? 2;
-                      const sy = layer.shadowOffset?.y ?? 2;
-                      const sb = layer.shadowBlur ?? 4;
+                      const sx = (layer.shadowOffset?.x ?? 2) * previewScale;
+                      const sy = (layer.shadowOffset?.y ?? 2) * previewScale;
+                      const sb = (layer.shadowBlur ?? 4) * previewScale;
                       textShadow = `${sx}px ${sy}px ${sb}px ${layer.shadowColor}`;
                     }
 
                     if (layer.outerGlowColor) {
-                      filterParts.push(`drop-shadow(0 0 ${layer.outerGlowBlur || 8}px ${layer.outerGlowColor})`);
+                      filterParts.push(`drop-shadow(0 0 ${(layer.outerGlowBlur || 8) * previewScale}px ${layer.outerGlowColor})`);
                     }
 
                     if (layer.innerGlowColor) {
-                      const igb = layer.innerGlowBlur || 2;
+                      const igb = (layer.innerGlowBlur || 2) * previewScale;
                       const innerShadow = `0 0 ${igb}px ${layer.innerGlowColor}`;
                       textShadow = textShadow ? `${textShadow}, ${innerShadow}` : innerShadow;
                     }
 
                     const textStyle: React.CSSProperties = {
                       fontFamily: layer.fontFamily || 'sans-serif',
-                      fontSize: layer.fontSize ? `${layer.fontSize}px` : '24px',
+                      fontSize: layer.fontSize ? `${layer.fontSize * previewScale}px` : `${24 * previewScale}px`,
                       color: layer.color || '#ffffff',
                       fontWeight: layer.fontWeight || 'normal',
                       fontStyle: layer.fontStyle || 'normal',
                       textTransform: (layer.textTransform as any) || 'none',
-                      letterSpacing: layer.letterSpacing ? `${layer.letterSpacing}px` : 'normal',
+                      letterSpacing: layer.letterSpacing ? `${layer.letterSpacing * previewScale}px` : 'normal',
                       textShadow: textShadow || undefined,
                       filter: filterParts.length > 0 ? filterParts.join(' ') : undefined,
-                      lineHeight: 1.2
+                      lineHeight: 1.2,
+                      whiteSpace: 'nowrap'
                     };
 
                     innerVisual = (

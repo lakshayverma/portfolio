@@ -413,7 +413,7 @@ function OBSViewerContent() {
           boxShadow: boxShadow,
           boxSizing: layer.borderType === 'outside' ? 'content-box' : 'border-box',
           padding: layer.padding !== undefined ? `${layer.padding}px` : undefined,
-          overflow: 'hidden'
+          overflow: (layer.type === 'text' || layer.type === 'countdown') ? 'visible' : 'hidden'
         };
 
         const baseStyle: React.CSSProperties = {
@@ -587,7 +587,8 @@ function OBSViewerContent() {
             letterSpacing: layer.letterSpacing ? `${layer.letterSpacing}px` : 'normal',
             textShadow: textShadow || undefined,
             filter: filterParts.length > 0 ? filterParts.join(' ') : undefined,
-            lineHeight: 1.2
+            lineHeight: 1.2,
+            whiteSpace: 'nowrap'
           };
 
           let displayText = layer.text || 'Text Layer';
@@ -647,7 +648,8 @@ function OBSViewerContent() {
             letterSpacing: layer.letterSpacing ? `${layer.letterSpacing}px` : 'normal',
             textShadow: textShadow || undefined,
             filter: filterParts.length > 0 ? filterParts.join(' ') : undefined,
-            lineHeight: 1.2
+            lineHeight: 1.2,
+            whiteSpace: 'nowrap'
           };
 
           return (

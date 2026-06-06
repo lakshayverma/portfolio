@@ -24,7 +24,11 @@ const DEFAULT_SCENES = [
         "zIndex": 1,
         "gradientType": "linear",
         "gradientAngle": 90,
-        "gradientColors": ["#ec4899", "#8b5cf6", "#3b82f6"],
+        "gradientColors": [
+          "#ec4899",
+          "#8b5cf6",
+          "#3b82f6"
+        ],
         "animationSpeed": 6,
         "animationType": "shift"
       },
@@ -50,7 +54,10 @@ const DEFAULT_SCENES = [
         "letterSpacing": 2,
         "shadowColor": "#000000",
         "shadowBlur": 4,
-        "shadowOffset": { "x": 2, "y": 2 },
+        "shadowOffset": {
+          "x": 2,
+          "y": 2
+        },
         "outerGlowColor": "#ec4899",
         "outerGlowBlur": 8
       },
@@ -67,7 +74,10 @@ const DEFAULT_SCENES = [
         "zIndex": 2,
         "gradientType": "linear",
         "gradientAngle": 135,
-        "gradientColors": ["#ec4899", "#8b5cf6"],
+        "gradientColors": [
+          "#ec4899",
+          "#8b5cf6"
+        ],
         "bgColor": "#ffffff"
       },
       {
@@ -89,10 +99,10 @@ const DEFAULT_SCENES = [
         "type": "text",
         "visible": true,
         "opacity": 1,
-        "top": 33.5,
+        "top": 33,
         "left": 75,
         "width": 22,
-        "height": 3,
+        "height": 4,
         "zIndex": 4,
         "text": "LAKSHAY LIVE",
         "fontFamily": "Impact",
@@ -123,12 +133,15 @@ const DEFAULT_SCENES = [
         "opacity": 0.8,
         "top": 78,
         "left": 6,
-        "width": 30,
+        "width": 35,
         "height": 12,
         "zIndex": 1,
         "gradientType": "linear",
         "gradientAngle": 90,
-        "gradientColors": ["rgba(30, 30, 30, 0.85)", "rgba(15, 15, 15, 0.95)"]
+        "gradientColors": [
+          "rgba(30, 30, 30, 0.85)",
+          "rgba(15, 15, 15, 0.95)"
+        ]
       },
       {
         "id": "badge-border-accent",
@@ -151,10 +164,10 @@ const DEFAULT_SCENES = [
         "opacity": 1,
         "top": 79.5,
         "left": 7.5,
-        "width": 27,
+        "width": 32,
         "height": 5,
         "zIndex": 3,
-        "text": "Dr. Helena Carter",
+        "text": "Lakshay Verma",
         "fontFamily": "Montserrat",
         "fontSize": 32,
         "color": "#ffffff",
@@ -165,7 +178,10 @@ const DEFAULT_SCENES = [
         "letterSpacing": 1,
         "shadowColor": "#000000",
         "shadowBlur": 4,
-        "shadowOffset": { "x": 1, "y": 1 }
+        "shadowOffset": {
+          "x": 1,
+          "y": 1
+        }
       },
       {
         "id": "badge-title",
@@ -175,7 +191,7 @@ const DEFAULT_SCENES = [
         "opacity": 0.9,
         "top": 84.5,
         "left": 7.5,
-        "width": 27,
+        "width": 32,
         "height": 4,
         "zIndex": 4,
         "text": "Director of Deep Learning Research",
@@ -212,7 +228,12 @@ const DEFAULT_SCENES = [
         "zIndex": 1,
         "gradientType": "linear",
         "gradientAngle": 45,
-        "gradientColors": ["#1e1b4b", "#311042", "#0f172a", "#1e1b4b"],
+        "gradientColors": [
+          "#1e1b4b",
+          "#311042",
+          "#0f172a",
+          "#1e1b4b"
+        ],
         "animationSpeed": 10,
         "animationType": "shift"
       },
@@ -238,7 +259,10 @@ const DEFAULT_SCENES = [
         "letterSpacing": 8,
         "shadowColor": "#000000",
         "shadowBlur": 15,
-        "shadowOffset": { "x": 0, "y": 4 },
+        "shadowOffset": {
+          "x": 0,
+          "y": 4
+        },
         "outerGlowColor": "#ec4899",
         "outerGlowBlur": 20
       },
@@ -281,11 +305,14 @@ const DEFAULT_SCENES = [
         "top": 2,
         "left": 30,
         "width": 40,
-        "height": 7,
+        "height": 5.5,
         "zIndex": 1,
         "gradientType": "linear",
         "gradientAngle": 90,
-        "gradientColors": ["rgba(15, 23, 42, 0.9)", "rgba(8, 8, 12, 0.95)"]
+        "gradientColors": [
+          "rgba(15, 23, 42, 0.9)",
+          "rgba(8, 8, 12, 0.95)"
+        ]
       },
       {
         "id": "timer-indicator-bg",
@@ -293,10 +320,11 @@ const DEFAULT_SCENES = [
         "type": "color",
         "visible": true,
         "opacity": 0.95,
-        "top": 2,
-        "left": 47.5,
-        "width": 5,
-        "height": 7,
+        "top": 7.5,
+        "left": 47,
+        "width": 6,
+        "height": 3.5,
+        "borderRadius": 4,
         "zIndex": 2,
         "bgColor": "#ec4899"
       },
@@ -306,10 +334,10 @@ const DEFAULT_SCENES = [
         "type": "text",
         "visible": true,
         "opacity": 1,
-        "top": 2.5,
+        "top": 2,
         "left": 31,
-        "width": 12,
-        "height": 6,
+        "width": 11,
+        "height": 5.5,
         "zIndex": 3,
         "text": "ANTIGRAVITY",
         "fontFamily": "Orbitron",
@@ -324,10 +352,10 @@ const DEFAULT_SCENES = [
         "type": "text",
         "visible": true,
         "opacity": 1,
-        "top": 2.5,
-        "left": 57,
-        "width": 12,
-        "height": 6,
+        "top": 2,
+        "left": 58,
+        "width": 11,
+        "height": 5.5,
         "zIndex": 3,
         "text": "DEEPMIND FC",
         "fontFamily": "Orbitron",
@@ -343,9 +371,9 @@ const DEFAULT_SCENES = [
         "visible": true,
         "opacity": 1,
         "top": 2,
-        "left": 43,
-        "width": 14,
-        "height": 7,
+        "left": 42,
+        "width": 16,
+        "height": 5.5,
         "zIndex": 4,
         "text": "3   -   2",
         "fontFamily": "Impact",
@@ -361,10 +389,10 @@ const DEFAULT_SCENES = [
         "type": "text",
         "visible": true,
         "opacity": 1,
-        "top": 2,
-        "left": 47.5,
-        "width": 5,
-        "height": 7,
+        "top": 7.5,
+        "left": 47,
+        "width": 6,
+        "height": 3.5,
         "zIndex": 4,
         "text": "14:35",
         "fontFamily": "Bebas Neue",
@@ -407,7 +435,10 @@ const DEFAULT_SCENES = [
         "zIndex": 2,
         "gradientType": "linear",
         "gradientAngle": 180,
-        "gradientColors": ["#ec4899", "#8b5cf6"]
+        "gradientColors": [
+          "#ec4899",
+          "#8b5cf6"
+        ]
       },
       {
         "id": "chat-box-header",
@@ -442,7 +473,10 @@ const DEFAULT_SCENES = [
         "zIndex": 1,
         "gradientType": "linear",
         "gradientAngle": 45,
-        "gradientColors": ["#8b5cf6", "#3b82f6"]
+        "gradientColors": [
+          "#8b5cf6",
+          "#3b82f6"
+        ]
       },
       {
         "id": "webcam-cutout-br",
@@ -496,7 +530,11 @@ const DEFAULT_SCENES = [
         "height": 100,
         "zIndex": 1,
         "gradientType": "radial",
-        "gradientColors": ["#251535", "#0f081d", "#05020c"],
+        "gradientColors": [
+          "#251535",
+          "#0f081d",
+          "#05020c"
+        ],
         "animationSpeed": 15,
         "animationType": "wave"
       },
@@ -513,7 +551,10 @@ const DEFAULT_SCENES = [
         "zIndex": 5,
         "gradientType": "linear",
         "gradientAngle": 90,
-        "gradientColors": ["#f472b6", "#c084fc"],
+        "gradientColors": [
+          "#f472b6",
+          "#c084fc"
+        ],
         "animationSpeed": 5,
         "animationType": "shift"
       },
