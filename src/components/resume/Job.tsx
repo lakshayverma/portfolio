@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import type { PortfolioEntry, InterestEntry } from '@/app/types';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface JobProps {
   id?: string;
@@ -10,6 +11,7 @@ interface JobProps {
   items?: Array<PortfolioEntry | InterestEntry>;
   description?: string;
   statsTitle?: string | null;
+  isCarousel?: boolean;
 }
 
 const Card = ({ item, statsTitle }: { item: any, statsTitle: string | null }) => {
@@ -65,8 +67,21 @@ const Job = ({
   title = 'Jobs',
   items = [],
   description = '',
-  statsTitle = null
+  statsTitle = null,
+  isCarousel = false
 }: JobProps) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 2 >= items.length ? 0 : prevIndex + 2));
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 2 < 0 ? Math.max(0, items.length - 2) : prevIndex - 2));
+  };
+
+  const visibleItems = items.slice(currentIndex, currentIndex + 2);
+
   return (
     <section id={id} className="py-24 relative">
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
@@ -83,11 +98,49 @@ const Job = ({
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">{description}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {items.map((item, index) => (
-            <Card key={item.id} item={item} statsTitle={statsTitle} />
-          ))}
-        </div>
+        {isCarousel ? (
+          <div className="relative">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[400px]">
+              <AnimatePresence mode="popLayout">
+                {visibleItems.map((item) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ duration: 0.5 }}
+                    className="h-full"
+                  >
+                    <Card item={item} statsTitle={statsTitle} />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+            
+            {items.length > 2 && (
+              <>
+                <button 
+                  onClick={prevSlide} 
+                  className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-accent-primary hover:text-white transition-colors border border-glass-border shadow-lg z-10"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button 
+                  onClick={nextSlide} 
+                  className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-accent-primary hover:text-white transition-colors border border-glass-border shadow-lg z-10"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </>
+            )}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {items.map((item) => (
+              <Card key={item.id} item={item} statsTitle={statsTitle} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

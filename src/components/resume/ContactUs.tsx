@@ -14,8 +14,8 @@ const ContactUs = ({ resumeData }: ContactUsProps) => (
     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-accent-primary/5 pointer-events-none"></div>
     <div className="container mx-auto px-6 max-w-4xl relative z-10 text-center">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         className="glass-panel p-12 md:p-20 rounded-[3rem] neon-border relative overflow-hidden group"
       >

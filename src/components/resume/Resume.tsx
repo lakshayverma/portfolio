@@ -10,11 +10,11 @@ interface ResumeProps {
   resumeData: ResumeData;
 }
 
-const TimelineItem = ({ item, icon: Icon }: { item: any, icon: any }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const TimelineItem = ({ item, icon: Icon, index }: { item: any, icon: any, index: number }) => {
   const title = item.companyName || item.universityName;
   const start = item.dates[0];
   const end = item.dates[1];
+  const isLeft = index % 2 === 0;
 
   return (
     <motion.div 
@@ -25,12 +25,12 @@ const TimelineItem = ({ item, icon: Icon }: { item: any, icon: any }) => {
     >
       <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-0.5 h-full bg-slate-200 dark:bg-slate-800"></div>
       
-      <div className={`md:w-1/2 ${item.companyName ? 'md:pr-12 md:ml-0 text-left md:text-right' : 'md:pl-12 md:ml-auto text-left'}`}>
+      <div className={`md:w-1/2 ${isLeft ? 'md:pr-12 md:ml-0 text-left md:text-right' : 'md:pl-12 md:ml-auto text-left'}`}>
         <div className="absolute left-0 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-background border-4 border-accent-primary flex items-center justify-center z-10 shadow-lg shadow-accent-primary/20">
           <Icon className="w-3 h-3 text-accent-primary" />
         </div>
         
-        <div className="glass-panel p-6 rounded-2xl hover:neon-border transition-shadow cursor-pointer group" onClick={() => setIsOpen(!isOpen)}>
+        <div className="glass-panel p-6 rounded-2xl hover:neon-border transition-shadow group">
           <div className="flex justify-between items-start md:items-center mb-2 flex-col md:flex-row">
             <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 group-hover:text-accent-primary transition-colors">
               {title}
@@ -41,25 +41,12 @@ const TimelineItem = ({ item, icon: Icon }: { item: any, icon: any }) => {
           </div>
           <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-4">{item.specialization}</p>
           
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="overflow-hidden"
-              >
-                <ul className="list-disc pl-5 space-y-2 text-sm text-slate-600 dark:text-slate-300">
-                  {item.achievements.map((ach: string, i: number) => (
-                    <li key={i}>{ach}</li>
-                  ))}
-                </ul>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          <div className="mt-4 flex justify-center text-slate-400">
-            {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          <div className="max-h-[140px] overflow-y-auto pr-2 custom-scrollbar text-left">
+            <ul className="list-disc pl-5 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+              {item.achievements.map((ach: string, i: number) => (
+                <li key={i}>{ach}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
@@ -92,7 +79,7 @@ const Resume = ({ resumeData }: ResumeProps) => {
 
           <div className="space-y-12 relative">
             {resumeData.work?.map((item, index) => (
-              <TimelineItem key={item.id} item={item} icon={Briefcase} />
+              <TimelineItem key={item.id} item={item} icon={Briefcase} index={index} />
             ))}
           </div>
         </div>
@@ -111,7 +98,7 @@ const Resume = ({ resumeData }: ResumeProps) => {
 
           <div className="space-y-12 relative">
             {resumeData.education?.map((item, index) => (
-              <TimelineItem key={item.id} item={item} icon={GraduationCap} />
+              <TimelineItem key={item.id} item={item} icon={GraduationCap} index={index} />
             ))}
           </div>
         </div>

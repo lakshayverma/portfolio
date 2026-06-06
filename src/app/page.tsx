@@ -41,10 +41,10 @@ export default function HomePage() {
       <Header resumeData={resumeData} />
       <About resumeData={resumeData} />
       <Resume resumeData={resumeData} />
-      <Job items={resumeData.portfolio} description={resumeData.portfolioDescription} statsTitle="Technology Used" />
+      <Job items={resumeData.portfolio} description={resumeData.portfolioDescription} statsTitle="Technology Used" isCarousel={true} />
       <Testimonials resumeData={resumeData} />
       <ContactUs resumeData={resumeData} />
-      <Job id="interests" title="Interests" items={resumeData.interests} description={resumeData.interestsDescription} />
+      <Job id="interests" title="Interests" items={resumeData.interests} description={resumeData.interestsDescription} isCarousel={false} />
       <Footer resumeData={resumeData} />
     </div>
   );

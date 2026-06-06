@@ -22,7 +22,7 @@ const Footer = ({ resumeData }: FooterProps) => {
 
   return (
     <footer className="py-12 bg-background border-t border-glass-border relative z-10">
-      <div className="container mx-auto px-6 flex flex-col items-center">
+      <div className="container mx-auto px-6 flex flex-col items-center justify-center">
         
         <div className="flex space-x-6 mb-8">
           {resumeData.socialLinks?.map(item => {

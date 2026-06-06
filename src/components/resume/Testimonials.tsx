@@ -40,24 +40,26 @@ const Testimonials = ({ resumeData }: TestimonialsProps) => {
         </div>
 
         <div 
-          className="relative glass-panel rounded-3xl p-8 md:p-16 min-h-[300px] flex items-center justify-center"
+          className="relative glass-panel rounded-3xl p-8 md:p-16 min-h-[300px] flex items-center justify-center shadow-[0_0_40px_rgba(165,180,252,0.3)] dark:shadow-[0_0_50px_rgba(99,102,241,0.3)] border border-accent-primary/30 hover:shadow-[0_0_60px_rgba(165,180,252,0.5)] dark:hover:shadow-[0_0_80px_rgba(99,102,241,0.5)] transition-all duration-500 overflow-hidden group"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
+          <div className="absolute inset-0 bg-gradient-to-r from-accent-primary/5 via-accent-secondary/10 to-accent-primary/5 opacity-50 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="text-center w-full"
+              initial={{ opacity: 0, scale: 0.95, filter: "blur(8px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, scale: 1.05, filter: "blur(8px)" }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="text-center w-full relative z-10"
             >
-              <p className="text-xl md:text-2xl font-medium text-slate-700 dark:text-slate-300 italic mb-8 leading-relaxed">
+              <p className="text-xl md:text-3xl font-medium text-slate-800 dark:text-slate-100 italic mb-8 leading-relaxed drop-shadow-lg">
                 "{testimonials[currentIndex].description}"
               </p>
               <div className="inline-block border-b-2 border-accent-secondary pb-1">
-                <span className="text-lg font-bold uppercase tracking-widest text-slate-900 dark:text-slate-100">
+                <span className="text-lg font-bold uppercase tracking-widest text-slate-900 dark:text-slate-100 neon-text">
                   {testimonials[currentIndex].name}
                 </span>
               </div>
