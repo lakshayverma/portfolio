@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
@@ -8,8 +8,19 @@ import { useTheme } from 'next-themes';
 
 function ParticleSwarm() {
   const ref = useRef<THREE.Points>(null);
-  const { resolvedTheme } = useTheme();
-  const starColor = resolvedTheme === 'dark' ? '#6366f1' : '#b45309';
+  const { theme } = useTheme();
+  const starColor = theme === 'dark' ? '#6366f1' : '#b45309';
+  const mouse = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      // Normalize to -1 to 1 (R3F style coordinates)
+      mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   // Generate 2000 random points within a sphere
   const originalPositions = useMemo(() => {
@@ -18,7 +29,7 @@ function ParticleSwarm() {
       const radius = 10 * Math.cbrt(Math.random());
       const theta = 2 * Math.PI * Math.random();
       const phi = Math.acos(2 * Math.random() - 1);
-      
+
       const x = radius * Math.sin(phi) * Math.cos(theta);
       const y = radius * Math.sin(phi) * Math.sin(theta);
       const z = radius * Math.cos(phi);
@@ -38,17 +49,17 @@ function ParticleSwarm() {
       ref.current.rotation.x -= delta / 15;
 
       const positionsArr = ref.current.geometry.attributes.position.array as Float32Array;
-      const mouseX = (state.pointer.x * state.viewport.width) / 2;
-      const mouseY = (state.pointer.y * state.viewport.height) / 2;
-      
+      const mouseX = (mouse.current.x * state.viewport.width) / 2;
+      const mouseY = (mouse.current.y * state.viewport.height) / 2;
+
       for (let i = 0; i < 2000; i++) {
         const ox = originalPositions[i * 3];
         const oy = originalPositions[i * 3 + 1];
-        
+
         const dx = mouseX - ox;
         const dy = mouseY - oy;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        
+
         const maxDist = 4;
         if (dist < maxDist) {
           const pull = Math.pow(1 - (dist / maxDist), 2);
@@ -81,9 +92,18 @@ function ParticleSwarm() {
 }
 
 export function ThreeBackground() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <div className="absolute inset-0 z-0 pointer-events-none opacity-40 dark:opacity-70">
-      <Canvas camera={{ position: [0, 0, 8] }}>
+      <Canvas key={theme} camera={{ position: [0, 0, 8] }}>
         <ParticleSwarm />
       </Canvas>
     </div>
