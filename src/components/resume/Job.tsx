@@ -73,14 +73,14 @@ const Job = ({
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 2 >= items.length ? 0 : prevIndex + 2));
+    setCurrentIndex((prevIndex) => (prevIndex + 1 >= items.length ? 0 : prevIndex + 1));
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 2 < 0 ? Math.max(0, items.length - 2) : prevIndex - 2));
+    setCurrentIndex((prevIndex) => (prevIndex - 1 < 0 ? items.length - 1 : prevIndex - 1));
   };
 
-  const visibleItems = items.slice(currentIndex, currentIndex + 2);
+  const visibleItems = items.slice(currentIndex, currentIndex + 1);
 
   return (
     <section id={id} className="py-24 relative">
@@ -99,8 +99,8 @@ const Job = ({
         </div>
 
         {isCarousel ? (
-          <div className="relative">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[400px]">
+          <div className="relative max-w-2xl mx-auto">
+            <div className="min-h-[400px]">
               <AnimatePresence mode="popLayout">
                 {visibleItems.map((item) => (
                   <motion.div
@@ -109,7 +109,18 @@ const Job = ({
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -50 }}
                     transition={{ duration: 0.5 }}
-                    className="h-full"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.7}
+                    onDragEnd={(e, info) => {
+                      const swipeThreshold = 50;
+                      if (info.offset.x < -swipeThreshold) {
+                        nextSlide();
+                      } else if (info.offset.x > swipeThreshold) {
+                        prevSlide();
+                      }
+                    }}
+                    className="h-full cursor-grab active:cursor-grabbing touch-pan-y"
                   >
                     <Card item={item} statsTitle={statsTitle} />
                   </motion.div>
@@ -117,22 +128,33 @@ const Job = ({
               </AnimatePresence>
             </div>
             
-            {items.length > 2 && (
+            {items.length > 1 && (
               <>
                 <button 
                   onClick={prevSlide} 
-                  className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-accent-primary hover:text-white transition-colors border border-glass-border shadow-none dark:shadow-lg z-10"
+                  className="absolute -left-4 md:-left-16 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-accent-primary hover:text-white transition-colors border border-glass-border shadow-none dark:shadow-lg z-10"
                 >
                   <ChevronLeft size={20} />
                 </button>
                 <button 
                   onClick={nextSlide} 
-                  className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-accent-primary hover:text-white transition-colors border border-glass-border shadow-none dark:shadow-lg z-10"
+                  className="absolute -right-4 md:-right-16 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-accent-primary hover:text-white transition-colors border border-glass-border shadow-none dark:shadow-lg z-10"
                 >
                   <ChevronRight size={20} />
                 </button>
               </>
             )}
+
+            {/* Indicators */}
+            <div className="flex justify-center mt-8 space-x-2">
+              {items.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? 'w-8 bg-accent-primary' : 'bg-slate-400/50 hover:bg-slate-400'}`}
+                />
+              ))}
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

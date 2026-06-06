@@ -34,9 +34,9 @@ const Header = ({ resumeData }: HeaderProps) => {
 
   return (
     <header id="home" className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-20">
-      
+
       {/* Navigation */}
-      <motion.nav 
+      <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-panel shadow-none dark:shadow-md py-3' : 'bg-transparent py-5'}`}
@@ -44,23 +44,22 @@ const Header = ({ resumeData }: HeaderProps) => {
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <div className="relative w-8 h-8 rounded-full overflow-hidden border border-accent-primary/30 shadow-[0_0_10px_rgba(120,53,4,0.15)] dark:shadow-[0_0_10px_rgba(99,102,241,0.2)] bg-slate-900/50 flex-none">
-              <Image 
-                src="/images/lakshay.png" 
-                alt="LV Logo" 
+              <Image
+                src="/images/lakshay.png"
+                alt="LV Logo"
                 width={32}
                 height={32}
                 priority
                 className="object-cover"
               />
             </div>
-            <div className="font-bold text-xl gradient-text tracking-tighter">LV.</div>
           </div>
-          
+
           <ul className="hidden md:flex space-x-8 font-medium text-sm">
             {['Home', 'About', 'Resume', 'Jobs', 'Testimonials', 'Interests'].map((item) => (
               <li key={item}>
-                <a 
-                  href={`#${item.toLowerCase()}`} 
+                <a
+                  href={`#${item.toLowerCase()}`}
                   className="hover:text-accent-primary transition-colors tracking-wide uppercase text-xs font-semibold relative group"
                 >
                   {item}
@@ -69,7 +68,7 @@ const Header = ({ resumeData }: HeaderProps) => {
               </li>
             ))}
           </ul>
-          
+
           <ThemeToggle />
         </div>
       </motion.nav>
@@ -77,7 +76,7 @@ const Header = ({ resumeData }: HeaderProps) => {
       {/* Hero Content */}
       <div className="container mx-auto px-6 relative z-10 text-center flex flex-col items-center">
         {/* Profile Avatar */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -85,13 +84,13 @@ const Header = ({ resumeData }: HeaderProps) => {
         >
           {/* Pulsing neon glowing outer circle */}
           <div className="absolute -inset-1 bg-gradient-to-r from-accent-primary to-accent-secondary rounded-full blur opacity-0 dark:opacity-70 dark:group-hover:opacity-100 transition duration-1000 group-hover:duration-200 dark:animate-pulse"></div>
-          
+
           {/* Glassmorphic border container */}
           <div className="relative w-36 h-36 md:w-40 md:h-40 rounded-full p-1 bg-white/10 dark:bg-black/30 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-none dark:shadow-2xl flex items-center justify-center">
             {/* Inner image container */}
             <div className="relative w-full h-full rounded-full overflow-hidden">
-              <Image 
-                src="/images/lakshay.png" 
+              <Image
+                src="/images/lakshay.png"
                 alt={resumeData.name}
                 fill
                 priority
@@ -102,7 +101,7 @@ const Header = ({ resumeData }: HeaderProps) => {
           </div>
         </motion.div>
 
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -110,8 +109,8 @@ const Header = ({ resumeData }: HeaderProps) => {
         >
           {resumeData.name}
         </motion.h1>
-        
-        <motion.h2 
+
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
@@ -122,7 +121,7 @@ const Header = ({ resumeData }: HeaderProps) => {
 
         <Terminal text={resumeData.roleDescription} />
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
@@ -131,10 +130,10 @@ const Header = ({ resumeData }: HeaderProps) => {
           {resumeData.socialLinks?.map(item => {
             const Icon = ICON_MAP[item.name] || Code2;
             return (
-              <a 
-                key={item.id} 
-                href={item.url} 
-                target="_blank" 
+              <a
+                key={item.id}
+                href={item.url}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-full glass-panel hover:neon-border hover:text-accent-primary transition-all hover:scale-110"
               >
@@ -145,7 +144,7 @@ const Header = ({ resumeData }: HeaderProps) => {
         </motion.div>
       </div>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}

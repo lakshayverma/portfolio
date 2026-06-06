@@ -17,19 +17,19 @@ const TimelineItem = ({ item, icon: Icon, index }: { item: any, icon: any, index
   const isLeft = index % 2 === 0;
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, x: -50 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       className="relative pl-8 md:pl-0"
     >
       <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-0.5 h-full bg-slate-200 dark:bg-slate-800"></div>
-      
+
       <div className={`md:w-1/2 ${isLeft ? 'md:pr-12 md:ml-0 text-left md:text-right' : 'md:pl-12 md:ml-auto text-left'}`}>
         <div className="absolute left-0 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-background border-4 border-accent-primary flex items-center justify-center z-10 shadow-none dark:shadow-lg dark:shadow-accent-primary/20">
           <Icon className="w-3 h-3 text-accent-primary" />
         </div>
-        
+
         <div className="glass-panel p-6 rounded-2xl hover:neon-border transition-shadow group">
           <div className="flex justify-between items-start md:items-center mb-2 flex-col md:flex-row">
             <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 group-hover:text-accent-primary transition-colors">
@@ -40,8 +40,8 @@ const TimelineItem = ({ item, icon: Icon, index }: { item: any, icon: any, index
             </span>
           </div>
           <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-4">{item.specialization}</p>
-          
-          <div className="max-h-[140px] overflow-y-auto pr-2 custom-scrollbar text-left">
+
+          <div className="max-h-[340px] overflow-y-auto pr-2 custom-scrollbar text-left">
             <ul className="list-disc pl-5 space-y-2 text-sm text-slate-600 dark:text-slate-300">
               {item.achievements.map((ach: string, i: number) => (
                 <li key={i}>{ach}</li>
@@ -64,10 +64,10 @@ const Resume = ({ resumeData }: ResumeProps) => {
   return (
     <section id="resume" className="py-24 bg-slate-50/50 dark:bg-[#0f0f13]/50">
       <div className="container mx-auto px-6 max-w-6xl">
-        
+
         {/* Experience Timeline */}
         <div className="mb-32">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -86,7 +86,7 @@ const Resume = ({ resumeData }: ResumeProps) => {
 
         {/* Education Timeline */}
         <div className="mb-32">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -105,7 +105,7 @@ const Resume = ({ resumeData }: ResumeProps) => {
 
         {/* Skills Chart */}
         <div>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -122,7 +122,7 @@ const Resume = ({ resumeData }: ResumeProps) => {
                 <PolarGrid stroke="var(--glass-border)" />
                 <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--foreground)', fontSize: 12, fontWeight: 600 }} />
                 <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-                <Tooltip 
+                <Tooltip
                   contentStyle={{ backgroundColor: 'var(--glass-bg)', backdropFilter: 'blur(10px)', borderRadius: '12px', border: '1px solid var(--glass-border)' }}
                   itemStyle={{ color: 'var(--accent-primary)', fontWeight: 'bold' }}
                 />

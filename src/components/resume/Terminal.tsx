@@ -47,7 +47,7 @@ export function Terminal({ text }: TerminalProps) {
           <TerminalIcon size={14} /> guest@lakshay.dev: ~
         </div>
       </div>
-      <div className="p-4 bg-slate-900/80 min-h-[120px] font-mono text-sm sm:text-base text-slate-300">
+      <div className="p-4 bg-slate-900/80 h-[160px] sm:h-[120px] overflow-y-auto font-mono text-sm sm:text-base text-slate-300">
         <span className="text-emerald-400">➜</span> <span className="text-cyan-400">~</span> ./execute_profile.sh
         <div className="mt-2 text-slate-300">
           {displayedText}

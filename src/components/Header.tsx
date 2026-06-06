@@ -66,22 +66,56 @@ export function Header({
   }, []);
 
   return (
-    <header className="h-16 flex-none bg-white dark:bg-[#1e1e1e] border-b border-gray-200 dark:border-[#333] px-4 md:px-6 flex items-center justify-between z-40">
-      <div className="flex items-center gap-2 md:gap-3">
-        <ImageIcon className="w-5 h-5 md:w-6 md:h-6 text-indigo-500 dark:text-indigo-400 animate-pulse" />
-        <h1 className="text-base md:text-lg font-medium text-slate-800 dark:text-slate-100 tracking-wide hidden sm:block">
-          Prompt Studio<span className="text-xs text-indigo-500 ml-1 font-bold">Next</span>
-        </h1>
-        <Link 
-          href="/obs/editor" 
-          className="ml-3 px-3 py-1.5 bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400 text-xs font-semibold rounded-lg hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 dark:hover:text-white transition-all flex items-center gap-1.5"
-        >
-          <Monitor className="w-3.5 h-3.5" />
-          <span>OBS Overlays</span>
-        </Link>
+    <header className="flex-none bg-white dark:bg-[#1e1e1e] border-b border-gray-200 dark:border-[#333] px-4 md:px-6 flex flex-col md:flex-row md:h-16 justify-between items-center py-3 md:py-0 gap-3 md:gap-4 z-40">
+      
+      {/* Top row containing logo and buttons on mobile, normal placement on desktop */}
+      <div className="flex w-full md:w-auto items-center justify-between md:justify-start gap-2 md:gap-3">
+        <div className="flex items-center gap-2 md:gap-3">
+          <ImageIcon className="w-5 h-5 md:w-6 md:h-6 text-indigo-500 dark:text-indigo-400 animate-pulse flex-shrink-0" />
+          <h1 className="text-base md:text-lg font-medium text-slate-800 dark:text-slate-100 tracking-wide hidden sm:block">
+            Prompt Studio<span className="text-xs text-indigo-500 ml-1 font-bold">Next</span>
+          </h1>
+          <Link 
+            href="/obs/editor" 
+            className="ml-3 px-2 sm:px-3 py-1.5 bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400 text-[11px] sm:text-xs font-semibold rounded-lg hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-50 dark:hover:text-white transition-all flex items-center gap-1.5 flex-shrink-0"
+          >
+            <Monitor className="w-3.5 h-3.5" />
+            <span>OBS Overlays</span>
+          </Link>
+        </div>
+
+        {/* Action buttons (only on mobile, hidden on desktop to allow correct spacing/placement) */}
+        <div className="flex md:hidden items-center gap-1.5">
+          {mounted && (
+            <>
+              <button
+                onClick={() => setIsAISettingsOpen(true)}
+                className="p-1.5 rounded-full hover:bg-gray-200 dark:hover:bg-[#363636] text-slate-600 dark:text-slate-300 transition-colors"
+                title="AI Provider Settings"
+              >
+                <Settings className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className="p-1.5 rounded-full hover:bg-gray-200 dark:hover:bg-[#363636] text-slate-600 dark:text-slate-300 transition-colors"
+                title="Toggle Theme"
+              >
+                {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </button>
+            </>
+          )}
+          <button onClick={() => onSave(false)} className="text-[11px] font-medium px-2.5 py-1.5 bg-gray-200 dark:bg-[#2d2d2d] hover:bg-gray-300 dark:hover:bg-[#363636] text-slate-800 dark:text-slate-200 rounded-full flex items-center gap-1">
+            <Save className="w-3 h-3" />
+            <span>Save</span>
+          </button>
+          <button onClick={() => onSave(true)} className="text-[11px] font-medium px-2.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 dark:hover:bg-indigo-500 text-white rounded-full">
+            <span>New</span>
+          </button>
+        </div>
       </div>
 
-      <div className="flex-1 max-w-xl mx-4 md:mx-8 relative" ref={searchRef}>
+      {/* Search Bar - centered, 80vw on mobile, max-w-xl on desktop */}
+      <div className="w-[80vw] md:flex-1 md:max-w-xl md:mx-4 md:mx-8 relative" ref={searchRef}>
         <div className="flex items-center bg-gray-100 dark:bg-[#2d2d2d] rounded-full px-2 py-1.5 border border-transparent focus-within:border-indigo-500/50">
           <Search className="w-4 h-4 text-slate-500 dark:text-slate-400 ml-2 mr-2 flex-shrink-0" />
           
@@ -130,7 +164,8 @@ export function Header({
         )}
       </div>
 
-      <div className="flex items-center gap-2 md:gap-3">
+      {/* Desktop Buttons (hidden on mobile) */}
+      <div className="hidden md:flex items-center gap-2 md:gap-3">
         {mounted && (
           <>
             <button
