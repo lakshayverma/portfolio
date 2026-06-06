@@ -24,8 +24,8 @@ const ContactUs = ({ resumeData }: ContactUsProps) => (
         <p className="text-xl md:text-2xl text-slate-700 dark:text-slate-300 font-medium mb-12 leading-relaxed">
           "{resumeData.endNote}"
         </p>
-        <a 
-          href={`mailto:contact@lakshay.dev`} 
+        <a
+          href={`mailto:lakshayverma@outlook.in`}
           className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-accent-primary hover:bg-accent-secondary text-white font-bold text-lg transition-all shadow-lg hover:shadow-[0_0_20px_rgba(120,53,4,0.4)] dark:hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] hover:-translate-y-1"
         >
           <Mail size={24} /> Get in Touch
