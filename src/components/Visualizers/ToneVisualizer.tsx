@@ -2,7 +2,7 @@
 import React from 'react';
 import { Mountain, Skull, Coffee, Eye, Zap, Target, Palette } from 'lucide-react';
 
-const TONE_ICONS: Record<string, React.ElementType> = {
+const TONE_ICONS: Record<string, React.ComponentType<any>> = {
   'Epic': Mountain, 'Grim': Skull, 'Cozy': Coffee, 'Mysterious': Eye,
   'Action-Packed': Zap, 'Tactical': Target
 };

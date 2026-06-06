@@ -4,7 +4,7 @@ import React from 'react';
 import { PlayCircle, Camera, Hash, Smartphone, MessageCircle } from 'lucide-react';
 
 export function PlatformVisualizer({ values, onChange, platforms }: { values: string[], onChange: (vals: string[]) => void, platforms: string[] }) {
-  const platformIcons: Record<string, React.ElementType> = {
+  const platformIcons: Record<string, React.ComponentType<any>> = {
     'YouTube': PlayCircle,
     'YouTube Shorts': Smartphone,
     'Instagram': Camera,

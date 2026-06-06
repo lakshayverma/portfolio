@@ -2,7 +2,7 @@
 import React from 'react';
 import { MousePointerClick, BookOpen, Smile, Flame, Video, Share2, Palette, Monitor, Zap, ShieldAlert, Skull, Key, Trophy } from 'lucide-react';
 
-const GOAL_ICONS: Record<string, React.ElementType> = {
+const GOAL_ICONS: Record<string, React.ComponentType<any>> = {
   'High CTR': MousePointerClick,
   'Lore Focus': BookOpen,
   'Vibe / Relaxing': Smile,

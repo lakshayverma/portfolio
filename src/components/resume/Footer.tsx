@@ -2,13 +2,13 @@
 
 import React from 'react';
 import type { ResumeData } from '@/app/types';
-import { ChevronUp, Code2, User, MessageCircle, Camera, Gamepad2, Video } from 'lucide-react';
+import { ChevronUp, Code2, User, MessageCircle, Camera, Gamepad2, Video, LucideIcon } from 'lucide-react';
 
 interface FooterProps {
   resumeData: ResumeData;
 }
 
-const ICON_MAP: Record<string, React.ElementType> = {
+const ICON_MAP: Record<string, LucideIcon> = {
   'github': Code2,
   'linkedin': User,
   'twitter': MessageCircle,
@@ -26,7 +26,7 @@ const Footer = ({ resumeData }: FooterProps) => {
         
         <div className="flex space-x-6 mb-8">
           {resumeData.socialLinks?.map(item => {
-            const Icon = ICON_MAP[item.name] || Github;
+            const Icon = ICON_MAP[item.name] || Code2;
             return (
               <a 
                 key={item.id} 

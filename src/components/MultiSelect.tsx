@@ -8,7 +8,7 @@ interface MultiSelectProps {
   values: string[];
   onChange: (newValues: string[]) => void;
   suggestions: string[];
-  iconMap?: Record<string, React.ElementType>;
+  iconMap?: Record<string, any>;
   tagSets?: Record<string, string[]>;
   colorCode?: string;
 }
