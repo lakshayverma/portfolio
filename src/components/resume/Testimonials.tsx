@@ -36,7 +36,7 @@ const Testimonials = ({ resumeData }: TestimonialsProps) => {
       <div className="container mx-auto px-6 max-w-4xl relative z-10">
         <div className="text-center mb-16">
           <Quote className="w-16 h-16 mx-auto text-accent-primary/50 mb-6" />
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 neon-text">What People Say</h2>
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 gradient-text">What People Say</h2>
         </div>
 
         <div 
@@ -59,7 +59,7 @@ const Testimonials = ({ resumeData }: TestimonialsProps) => {
                 "{testimonials[currentIndex].description}"
               </p>
               <div className="inline-block border-b-2 border-accent-secondary pb-1">
-                <span className="text-lg font-bold uppercase tracking-widest text-slate-900 dark:text-slate-100 neon-text">
+                <span className="text-lg font-bold uppercase tracking-widest text-slate-900 dark:text-slate-100 gradient-text">
                   {testimonials[currentIndex].name}
                 </span>
               </div>

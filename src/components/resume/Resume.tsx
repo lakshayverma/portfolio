@@ -73,7 +73,7 @@ const Resume = ({ resumeData }: ResumeProps) => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-4"><span className="neon-text">Work Experience</span></h2>
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-4"><span className="gradient-text">Work Experience</span></h2>
             <div className="w-24 h-1 bg-accent-primary mx-auto rounded-full"></div>
           </motion.div>
 
@@ -92,7 +92,7 @@ const Resume = ({ resumeData }: ResumeProps) => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-4"><span className="neon-text">Education</span></h2>
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-4"><span className="gradient-text">Education</span></h2>
             <div className="w-24 h-1 bg-accent-secondary mx-auto rounded-full"></div>
           </motion.div>
 
@@ -111,7 +111,7 @@ const Resume = ({ resumeData }: ResumeProps) => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-4"><span className="neon-text">Core Skills</span></h2>
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-4"><span className="gradient-text">Core Skills</span></h2>
             <div className="w-24 h-1 bg-gradient-to-r from-accent-primary to-accent-secondary mx-auto rounded-full mb-6"></div>
             <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">{resumeData.skillsDescription}</p>
           </motion.div>

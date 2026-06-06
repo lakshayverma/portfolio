@@ -55,7 +55,7 @@ const Header = ({ resumeData }: HeaderProps) => {
                 className="object-cover"
               />
             </div>
-            <div className="font-bold text-xl neon-text tracking-tighter">LV.</div>
+            <div className="font-bold text-xl gradient-text tracking-tighter">LV.</div>
           </div>
           
           <ul className="hidden md:flex space-x-8 font-medium text-sm">
@@ -108,7 +108,7 @@ const Header = ({ resumeData }: HeaderProps) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tight neon-text"
+          className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tight gradient-text"
         >
           {resumeData.name}
         </motion.h1>

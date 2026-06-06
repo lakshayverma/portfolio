@@ -27,7 +27,7 @@ const Card = ({ item, statsTitle }: { item: any, statsTitle: string | null }) =>
       <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/10 to-accent-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       
       <div className="relative z-10 flex-1">
-        <h3 className="text-2xl font-bold mb-3 text-slate-800 dark:text-slate-100 group-hover:neon-text transition-all">
+        <h3 className="text-2xl font-bold mb-3 text-slate-800 dark:text-slate-100 group-hover:gradient-text transition-all">
           {item.name}
         </h3>
         <p className="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
@@ -92,7 +92,7 @@ const Job = ({
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-extrabold mb-4"
           >
-            <span className="neon-text">{title}</span>
+            <span className="gradient-text">{title}</span>
           </motion.h2>
           <div className="w-24 h-1 bg-gradient-to-r from-accent-primary to-accent-secondary mx-auto rounded-full mb-6"></div>
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">{description}</p>

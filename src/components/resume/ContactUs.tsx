@@ -20,7 +20,7 @@ const ContactUs = ({ resumeData }: ContactUsProps) => (
         className="glass-panel p-12 md:p-20 rounded-[3rem] neon-border relative overflow-hidden group"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-        <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter neon-text">Let's Build the Future</h2>
+        <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter gradient-text">Let's Build the Future</h2>
         <p className="text-xl md:text-2xl text-slate-700 dark:text-slate-300 font-medium mb-12 leading-relaxed">
           "{resumeData.endNote}"
         </p>
