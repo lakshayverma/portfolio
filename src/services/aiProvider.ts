@@ -13,21 +13,54 @@ export interface ProviderConfig {
 }
 
 export const getAIConfigs = (): ProviderConfig[] => {
-  if (typeof window === 'undefined') {
-    return [{
+  const defaults: ProviderConfig[] = [
+    {
       id: 'default-gemini',
-      name: 'Default Gemini',
+      name: 'Google Gemini (Text & Copy AI)',
       type: 'text-llm',
       provider: 'google',
       apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY || '',
       modelName: 'gemini-2.5-flash-preview-09-2025'
-    }];
+    },
+    {
+      id: 'default-midjourney',
+      name: 'Midjourney v6 (Image Compiler)',
+      type: 'image-engine',
+      provider: 'midjourney',
+      apiKey: ''
+    },
+    {
+      id: 'default-dalle',
+      name: 'DALL-E 3 / OpenAI (Image Compiler)',
+      type: 'image-engine',
+      provider: 'openai',
+      apiKey: ''
+    },
+    {
+      id: 'default-stable-diffusion',
+      name: 'Stable Diffusion (Image Compiler)',
+      type: 'image-engine',
+      provider: 'custom',
+      apiKey: ''
+    }
+  ];
+
+  if (typeof window === 'undefined') {
+    return defaults;
   }
   
   const saved = localStorage.getItem('ai_configs');
   if (saved) {
     try {
-      return JSON.parse(saved);
+      const parsed: ProviderConfig[] = JSON.parse(saved);
+      // Auto-migrate: if the user only has text-llm engines, append the default image engines
+      const hasImageEngine = parsed.some(c => c.type === 'image-engine');
+      if (!hasImageEngine) {
+        const merged = [...parsed, ...defaults.filter(d => d.type === 'image-engine')];
+        localStorage.setItem('ai_configs', JSON.stringify(merged));
+        return merged;
+      }
+      return parsed;
     } catch (e) {
       console.error('Failed to parse AI configs', e);
     }
@@ -37,7 +70,7 @@ export const getAIConfigs = (): ProviderConfig[] => {
   if (legacySaved) {
     try {
       const parsed = JSON.parse(legacySaved);
-      return [{
+      const legacy: ProviderConfig = {
         id: 'legacy-config',
         name: 'Legacy Text Assistant',
         type: 'text-llm',
@@ -45,18 +78,15 @@ export const getAIConfigs = (): ProviderConfig[] => {
         apiKey: parsed.apiKey || '',
         baseUrl: parsed.baseUrl,
         modelName: parsed.modelName
-      }];
+      };
+      const merged = [legacy, ...defaults.filter(d => d.id !== 'default-gemini')];
+      localStorage.setItem('ai_configs', JSON.stringify(merged));
+      return merged;
     } catch (e) {}
   }
   
-  return [{
-    id: 'default-gemini',
-    name: 'Default Gemini',
-    type: 'text-llm',
-    provider: 'google',
-    apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY || '',
-    modelName: 'gemini-2.5-flash-preview-09-2025'
-  }];
+  localStorage.setItem('ai_configs', JSON.stringify(defaults));
+  return defaults;
 };
 
 export const fetchAI = async (prompt: string, systemInstruction = "You are a helpful assistant.", signal?: AbortSignal) => {

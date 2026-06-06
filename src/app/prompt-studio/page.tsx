@@ -106,8 +106,9 @@ export default function Page() {
     const checkKey = () => {
       const configs = getAIConfigs();
       setAiEngines(configs);
-      const activeEngine = configs.find(c => c.id === config.outputEngineId) || configs[0];
-      const hasKeys = !!activeEngine?.apiKey || activeEngine?.provider === 'custom';
+      // Verify keys for the text-llm assistant that powers Expand and Magic Fill
+      const textEngine = configs.find(c => c.type === 'text-llm') || configs[0];
+      const hasKeys = !!textEngine?.apiKey || textEngine?.provider === 'custom';
       setHasAIKey(hasKeys);
     };
     checkKey();
