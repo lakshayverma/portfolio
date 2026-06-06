@@ -14,6 +14,8 @@ type TerminalPhase =
   | 'command_entered'
   | 'loading'
   | 'typing_output'
+  | 'completed_prompt'
+  | 'typing_ending_command'
   | 'completed';
 
 export function Terminal({ text }: TerminalProps) {
@@ -27,9 +29,11 @@ function TerminalInner({ text }: TerminalProps) {
   const [phase, setPhase] = useState<TerminalPhase>('idle');
   const [displayedCommand, setDisplayedCommand] = useState('');
   const [displayedOutput, setDisplayedOutput] = useState('');
+  const [displayedEndingCommand, setDisplayedEndingCommand] = useState('');
   const terminalRef = useRef<HTMLDivElement>(null);
 
   const commandText = './hello_world.sh';
+  const endingCommandText = 'cat about_lakshay.md';
 
   // Helper function to auto-scroll to the bottom of the terminal content
   const scrollToBottom = () => {
@@ -41,12 +45,13 @@ function TerminalInner({ text }: TerminalProps) {
   // Keep scrolled to bottom whenever output or command changes
   useEffect(() => {
     scrollToBottom();
-  }, [displayedCommand, displayedOutput, phase]);
+  }, [displayedCommand, displayedOutput, displayedEndingCommand, phase]);
 
   useEffect(() => {
     let active = true;
     let commandTimer: NodeJS.Timeout;
     let outputInterval: NodeJS.Timeout;
+    let endingCommandTimer: NodeJS.Timeout;
 
     // Helper timeout that checks if component is still mounted
     const runTimeout = (fn: () => void, ms: number) => {
@@ -68,7 +73,7 @@ function TerminalInner({ text }: TerminalProps) {
       if (index <= commandText.length) {
         setDisplayedCommand(commandText.slice(0, index));
         if (index < commandText.length) {
-          const randomDelay = Math.random() * (120 - 60) + 60; // 60ms to 120ms
+          const randomDelay = Math.random() * (90 - 40) + 40; // 40ms to 90ms
           commandTimer = setTimeout(() => {
             if (active) startTypingCommand(index + 1);
           }, randomDelay);
@@ -106,9 +111,33 @@ function TerminalInner({ text }: TerminalProps) {
           currentIndex++;
         } else {
           clearInterval(outputInterval);
-          setPhase('completed');
+          setPhase('completed_prompt');
+          startCompletedPrompt();
         }
       }, charDelay);
+    };
+
+    // Phase 6: Show empty ending prompt line, wait before typing ending command
+    const startCompletedPrompt = () => {
+      runTimeout(() => {
+        setPhase('typing_ending_command');
+        startTypingEndingCommand(0);
+      }, 400); // 400ms pause on empty prompt line
+    };
+
+    // Phase 7: Type the ending command character by character
+    const startTypingEndingCommand = (index: number) => {
+      if (index <= endingCommandText.length) {
+        setDisplayedEndingCommand(endingCommandText.slice(0, index));
+        if (index < endingCommandText.length) {
+          const randomDelay = Math.random() * (90 - 40) + 40; // 40ms to 90ms
+          endingCommandTimer = setTimeout(() => {
+            if (active) startTypingEndingCommand(index + 1);
+          }, randomDelay);
+        } else {
+          setPhase('completed');
+        }
+      }
     };
 
     startIdle();
@@ -117,12 +146,14 @@ function TerminalInner({ text }: TerminalProps) {
       active = false;
       clearTimeout(commandTimer);
       clearInterval(outputInterval);
+      clearTimeout(endingCommandTimer);
     };
   }, [text]);
 
   const showCursorAtCommand = phase === 'idle' || phase === 'typing_command' || phase === 'command_entered';
   const showCursorAtOutput = phase === 'loading' || phase === 'typing_output';
-  const isCursorBlinking = phase === 'idle' || phase === 'loading' || phase === 'completed';
+  const showCursorAtEndingCommand = phase === 'completed_prompt' || phase === 'typing_ending_command' || phase === 'completed';
+  const isCursorBlinking = phase === 'idle' || phase === 'loading' || phase === 'completed_prompt' || phase === 'completed';
 
   const cursorClass = `inline-block w-2 h-4 bg-accent-primary ml-1 align-middle ${isCursorBlinking ? 'animate-pulse' : ''
     }`;
@@ -156,20 +187,20 @@ function TerminalInner({ text }: TerminalProps) {
           {showCursorAtCommand && <span className={cursorClass}></span>}
         </div>
 
-        {(phase === 'loading' || phase === 'typing_output' || phase === 'completed') && (
+        {(phase === 'loading' || phase === 'typing_output' || phase === 'completed_prompt' || phase === 'typing_ending_command' || phase === 'completed') && (
           <div className="mt-2 text-slate-700 dark:text-slate-300">
             <span>{displayedOutput}</span>
             {showCursorAtOutput && <span className={cursorClass}></span>}
           </div>
         )}
 
-        {phase === 'completed' && (
+        {(phase === 'completed_prompt' || phase === 'typing_ending_command' || phase === 'completed') && (
           <div className="mt-2 text-sm">
             <span className="text-accent-primary">➜</span> <span className="text-accent-secondary">~</span>
             <span className="text-slate-800 dark:text-slate-400">
-              &nbsp;begin
+              &nbsp;{displayedEndingCommand}
             </span>
-            <span className={cursorClass}></span>
+            {showCursorAtEndingCommand && <span className={cursorClass}></span>}
           </div>
         )}
       </div>
