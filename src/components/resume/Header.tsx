@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import type { ResumeData } from '@/app/types';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { ThreeBackground } from './ThreeBackground';
 import { Terminal } from './Terminal';
 import { ThemeToggle } from './ThemeToggle';
 import { ChevronDown, Code2, User, MessageCircle, Camera, Gamepad2, Video, LucideIcon } from 'lucide-react';
@@ -35,7 +34,6 @@ const Header = ({ resumeData }: HeaderProps) => {
 
   return (
     <header id="home" className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-20">
-      <ThreeBackground />
       
       {/* Navigation */}
       <motion.nav 

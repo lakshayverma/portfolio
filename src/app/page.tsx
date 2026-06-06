@@ -8,6 +8,7 @@ import Testimonials from '@/components/resume/Testimonials';
 import ContactUs from '@/components/resume/ContactUs';
 import Footer from '@/components/resume/Footer';
 import Job from '@/components/resume/Job';
+import { ThreeBackground } from '@/components/resume/ThreeBackground';
 import type { ResumeData } from '@/app/types';
 
 export default function HomePage() {
@@ -37,7 +38,8 @@ export default function HomePage() {
   }
 
   return (
-    <div className="App">
+    <div className="App relative min-h-screen">
+      <ThreeBackground />
       <Header resumeData={resumeData} />
       <About resumeData={resumeData} />
       <Resume resumeData={resumeData} />

@@ -45,30 +45,47 @@ function ParticleSwarm() {
 
   useFrame((state, delta) => {
     if (ref.current) {
-      ref.current.rotation.y -= delta / 10;
-      ref.current.rotation.x -= delta / 15;
+      // Slow down default rotation to make the mouse gravity effect stand out
+      ref.current.rotation.y -= delta / 25;
+      ref.current.rotation.x -= delta / 35;
 
       const positionsArr = ref.current.geometry.attributes.position.array as Float32Array;
       const mouseX = (mouse.current.x * state.viewport.width) / 2;
       const mouseY = (mouse.current.y * state.viewport.height) / 2;
 
       for (let i = 0; i < 2000; i++) {
+        const px = positionsArr[i * 3];
+        const py = positionsArr[i * 3 + 1];
+        const pz = positionsArr[i * 3 + 2];
         const ox = originalPositions[i * 3];
         const oy = originalPositions[i * 3 + 1];
+        const oz = originalPositions[i * 3 + 2];
 
-        const dx = mouseX - ox;
-        const dy = mouseY - oy;
+        // Vector from current particle position to the mouse
+        const dx = mouseX - px;
+        const dy = mouseY - py;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        const maxDist = 4;
+        const maxDist = 5.0; // Radius of mouse gravity influence
+
         if (dist < maxDist) {
+          // Stronger pull close to the center
           const pull = Math.pow(1 - (dist / maxDist), 2);
-          positionsArr[i * 3] += (ox + dx * pull * 0.6 - positionsArr[i * 3]) * 0.1;
-          positionsArr[i * 3 + 1] += (oy + dy * pull * 0.6 - positionsArr[i * 3 + 1]) * 0.1;
-        } else {
-          positionsArr[i * 3] += (ox - positionsArr[i * 3]) * 0.05;
-          positionsArr[i * 3 + 1] += (oy - positionsArr[i * 3 + 1]) * 0.05;
+          
+          // Gravitational pull directly towards mouse
+          positionsArr[i * 3] += dx * pull * 0.18;
+          positionsArr[i * 3 + 1] += dy * pull * 0.18;
+
+          // Gravitational orbital swirl (perpendicular force)
+          const swirl = pull * 0.08;
+          positionsArr[i * 3] -= dy * swirl;
+          positionsArr[i * 3 + 1] += dx * swirl;
         }
+
+        // Spring-like restoring force back to original resting coordinates
+        positionsArr[i * 3] += (ox - positionsArr[i * 3]) * 0.04;
+        positionsArr[i * 3 + 1] += (oy - positionsArr[i * 3 + 1]) * 0.04;
+        positionsArr[i * 3 + 2] += (oz - positionsArr[i * 3 + 2]) * 0.04;
       }
       ref.current.geometry.attributes.position.needsUpdate = true;
     }
@@ -102,7 +119,7 @@ export function ThreeBackground() {
   if (!mounted) return null;
 
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none opacity-40 dark:opacity-70">
+    <div className="fixed inset-0 z-0 pointer-events-none opacity-40 dark:opacity-70">
       <Canvas key={theme} camera={{ position: [0, 0, 8] }}>
         <ParticleSwarm />
       </Canvas>
