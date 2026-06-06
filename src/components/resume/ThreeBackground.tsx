@@ -9,7 +9,7 @@ import { useTheme } from 'next-themes';
 function ParticleSwarm() {
   const ref = useRef<THREE.Points>(null);
   const { resolvedTheme } = useTheme();
-  const starColor = resolvedTheme === 'dark' ? '#6366f1' : '#a5b4fc';
+  const starColor = resolvedTheme === 'dark' ? '#6366f1' : '#b45309';
 
   // Generate 2000 random points within a sphere
   const originalPositions = useMemo(() => {

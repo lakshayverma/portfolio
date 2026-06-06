@@ -37,7 +37,7 @@ const About = ({ resumeData }: AboutProps) => {
             <div className="pt-4">
               <a 
                 href="#resume" 
-                className="inline-flex items-center px-6 py-3 rounded-full bg-accent-primary hover:bg-accent-secondary text-white font-semibold transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1 transform duration-200"
+                className="inline-flex items-center px-6 py-3 rounded-full bg-accent-primary hover:bg-accent-secondary text-white font-semibold transition-colors shadow-none dark:shadow-lg dark:hover:shadow-xl hover:-translate-y-1 transform duration-200"
               >
                 Explore Experience
               </a>
@@ -45,16 +45,16 @@ const About = ({ resumeData }: AboutProps) => {
           </motion.div>
 
           <motion.div style={{ y: y2 }} className="flex-1 w-full flex justify-center perspective-[1000px]">
-            <div className="relative w-full max-w-sm aspect-square rounded-3xl glass-panel p-8 flex flex-col justify-center items-center neon-border transform rotate-3 hover:rotate-0 hover:-translate-y-4 hover:shadow-[0_20px_50px_rgba(99,102,241,0.3)] transition-all duration-500 group">
+            <div className="relative w-full max-w-sm aspect-square rounded-3xl glass-panel p-8 flex flex-col justify-center items-center neon-border transform rotate-3 hover:rotate-0 hover:-translate-y-4 hover:shadow-none dark:hover:shadow-[0_20px_50px_rgba(99,102,241,0.3)] transition-all duration-500 group">
               <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 rounded-3xl group-hover:opacity-100 opacity-40 transition-opacity duration-500 pointer-events-none"></div>
               <div className="absolute -inset-1 bg-gradient-to-tr from-accent-primary/30 to-accent-secondary/30 blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none"></div>
               
               <div className="relative z-10 text-center transform transition-all duration-500 group-hover:-translate-y-3 group-hover:scale-105">
-                <div className="text-6xl font-black text-slate-800 dark:text-slate-100 mb-2 drop-shadow-md group-hover:neon-text transition-all">14+</div>
+                <div className="text-6xl font-black text-slate-800 dark:text-slate-100 mb-2 drop-shadow-none dark:drop-shadow-md group-hover:neon-text transition-all">14+</div>
                 <div className="text-sm uppercase tracking-widest text-slate-500 font-bold">Years of Experience</div>
               </div>
               <div className="relative z-10 text-center mt-8 transform transition-all duration-500 group-hover:-translate-y-2 group-hover:scale-105">
-                <div className="text-4xl font-black text-slate-800 dark:text-slate-100 mb-2 drop-shadow-md group-hover:neon-text transition-all">15+</div>
+                <div className="text-4xl font-black text-slate-800 dark:text-slate-100 mb-2 drop-shadow-none dark:drop-shadow-md group-hover:neon-text transition-all">15+</div>
                 <div className="text-sm uppercase tracking-widest text-slate-500 font-bold">Engineers Mentored</div>
               </div>
             </div>

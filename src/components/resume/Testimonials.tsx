@@ -40,7 +40,7 @@ const Testimonials = ({ resumeData }: TestimonialsProps) => {
         </div>
 
         <div 
-          className="relative glass-panel rounded-3xl p-8 md:p-16 min-h-[300px] flex items-center justify-center shadow-[0_0_40px_rgba(165,180,252,0.3)] dark:shadow-[0_0_50px_rgba(99,102,241,0.3)] border border-accent-primary/30 hover:shadow-[0_0_60px_rgba(165,180,252,0.5)] dark:hover:shadow-[0_0_80px_rgba(99,102,241,0.5)] transition-all duration-500 overflow-hidden group"
+          className="relative glass-panel rounded-3xl p-8 md:p-16 min-h-[300px] flex items-center justify-center shadow-[0_0_40px_rgba(120,53,4,0.12)] dark:shadow-[0_0_50px_rgba(99,102,241,0.3)] border border-accent-primary/30 hover:shadow-[0_0_60px_rgba(120,53,4,0.25)] dark:hover:shadow-[0_0_80px_rgba(99,102,241,0.5)] transition-all duration-500 overflow-hidden group"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >

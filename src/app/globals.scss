@@ -2,14 +2,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* High Contrast Pastel Light Theme */
+  /* High Contrast Warm Brown Light Theme */
   --background: #ffffff;
   --foreground: #0f172a;
-  --accent-primary: #4f46e5;
-  --accent-secondary: #9333ea;
+  --accent-primary: #5c2e0b; /* Rich dark espresso brown */
+  --accent-secondary: #9a3412; /* Rich dark rust orange-brown */
   --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(255, 255, 255, 0.6);
-  --flare-color: rgba(79, 70, 229, 0.2);
+  --glass-border: rgba(120, 53, 4, 0.15); /* Warm light brown border */
+  --flare-color: rgba(120, 53, 4, 0.12); /* Warm brown flare */
 }
 
 @theme inline {
@@ -57,10 +57,18 @@ body {
 }
 
 .neon-text {
+  text-shadow: none;
+}
+
+.dark .neon-text {
   text-shadow: 0 0 10px var(--accent-primary), 0 0 20px var(--accent-secondary);
 }
 
 .neon-border {
+  box-shadow: none;
+}
+
+.dark .neon-border {
   box-shadow: 0 0 15px rgba(99, 102, 241, 0.3), inset 0 0 10px rgba(217, 70, 239, 0.2);
 }
 

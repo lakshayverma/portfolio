@@ -35,7 +35,7 @@ export function Terminal({ text }: TerminalProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.2 }}
-      className="w-full max-w-2xl mx-auto rounded-lg overflow-hidden glass-panel shadow-2xl"
+      className="w-full max-w-2xl mx-auto rounded-lg overflow-hidden glass-panel shadow-none dark:shadow-2xl"
     >
       <div className="flex items-center px-4 py-2 bg-slate-900/50 border-b border-slate-700/50">
         <div className="flex space-x-2">

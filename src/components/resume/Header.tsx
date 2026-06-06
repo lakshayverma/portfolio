@@ -41,11 +41,11 @@ const Header = ({ resumeData }: HeaderProps) => {
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-panel shadow-md py-3' : 'bg-transparent py-5'}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-panel shadow-none dark:shadow-md py-3' : 'bg-transparent py-5'}`}
       >
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-accent-primary/30 shadow-[0_0_10px_rgba(99,102,241,0.2)] bg-slate-900/50 flex-none">
+            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-accent-primary/30 shadow-[0_0_10px_rgba(120,53,4,0.15)] dark:shadow-[0_0_10px_rgba(99,102,241,0.2)] bg-slate-900/50 flex-none">
               <Image 
                 src="/images/lakshay.png" 
                 alt="LV Logo" 
@@ -86,10 +86,10 @@ const Header = ({ resumeData }: HeaderProps) => {
           className="relative mb-8 group"
         >
           {/* Pulsing neon glowing outer circle */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-accent-primary to-accent-secondary rounded-full blur opacity-70 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-accent-primary to-accent-secondary rounded-full blur opacity-0 dark:opacity-70 dark:group-hover:opacity-100 transition duration-1000 group-hover:duration-200 dark:animate-pulse"></div>
           
           {/* Glassmorphic border container */}
-          <div className="relative w-36 h-36 md:w-40 md:h-40 rounded-full p-1 bg-white/10 dark:bg-black/30 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-2xl flex items-center justify-center">
+          <div className="relative w-36 h-36 md:w-40 md:h-40 rounded-full p-1 bg-white/10 dark:bg-black/30 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-none dark:shadow-2xl flex items-center justify-center">
             {/* Inner image container */}
             <div className="relative w-full h-full rounded-full overflow-hidden">
               <Image 

@@ -26,7 +26,7 @@ const TimelineItem = ({ item, icon: Icon, index }: { item: any, icon: any, index
       <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-0.5 h-full bg-slate-200 dark:bg-slate-800"></div>
       
       <div className={`md:w-1/2 ${isLeft ? 'md:pr-12 md:ml-0 text-left md:text-right' : 'md:pl-12 md:ml-auto text-left'}`}>
-        <div className="absolute left-0 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-background border-4 border-accent-primary flex items-center justify-center z-10 shadow-lg shadow-accent-primary/20">
+        <div className="absolute left-0 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-background border-4 border-accent-primary flex items-center justify-center z-10 shadow-none dark:shadow-lg dark:shadow-accent-primary/20">
           <Icon className="w-3 h-3 text-accent-primary" />
         </div>
         

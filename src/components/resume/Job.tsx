@@ -121,13 +121,13 @@ const Job = ({
               <>
                 <button 
                   onClick={prevSlide} 
-                  className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-accent-primary hover:text-white transition-colors border border-glass-border shadow-lg z-10"
+                  className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-accent-primary hover:text-white transition-colors border border-glass-border shadow-none dark:shadow-lg z-10"
                 >
                   <ChevronLeft size={20} />
                 </button>
                 <button 
                   onClick={nextSlide} 
-                  className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-accent-primary hover:text-white transition-colors border border-glass-border shadow-lg z-10"
+                  className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-accent-primary hover:text-white transition-colors border border-glass-border shadow-none dark:shadow-lg z-10"
                 >
                   <ChevronRight size={20} />
                 </button>

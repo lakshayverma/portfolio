@@ -47,7 +47,7 @@ const Footer = ({ resumeData }: FooterProps) => {
 
         <a 
           href="#home" 
-          className="absolute -top-6 w-12 h-12 bg-background border border-glass-border rounded-full flex items-center justify-center text-slate-400 hover:text-accent-primary hover:border-accent-primary transition-all shadow-md"
+          className="absolute -top-6 w-12 h-12 bg-background border border-glass-border rounded-full flex items-center justify-center text-slate-400 hover:text-accent-primary hover:border-accent-primary transition-all shadow-none dark:shadow-md"
           title="Back to Top"
         >
           <ChevronUp size={24} />
