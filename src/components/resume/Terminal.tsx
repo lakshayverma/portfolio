@@ -146,7 +146,7 @@ function TerminalInner({ text }: TerminalProps) {
       </div>
       <div
         ref={terminalRef}
-        className="p-4 bg-slate-50/60 dark:bg-slate-950/60 h-[160px] text-left overflow-y-auto font-mono text-sm sm:text-base text-slate-700 dark:text-slate-300 scroll-smooth"
+        className="p-4 bg-slate-50/60 dark:bg-slate-950/60 h-[200px] sm:h-[160px] text-left overflow-y-auto font-mono text-sm sm:text-base text-slate-700 dark:text-slate-300 scroll-smooth"
       >
         <div className='text-sm'>
           <span className="text-accent-primary">➜</span> <span className="text-accent-secondary">~</span>

@@ -146,9 +146,9 @@ const Header = ({ resumeData }: HeaderProps) => {
 
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
+        animate={{ opacity: 0.7 }}
+        transition={{ delay: 1.3, duration: 1 }}
+        className="absolute bottom-20 left-1/2 transform -translate-x-1/2 animate-bounce"
       >
         <a href="#about" className="text-slate-400 hover:text-accent-primary transition-colors">
           <ChevronDown size={32} />
