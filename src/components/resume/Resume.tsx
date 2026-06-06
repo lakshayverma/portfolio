@@ -12,8 +12,7 @@ interface ResumeProps {
 
 const TimelineItem = ({ item, icon: Icon, index }: { item: any, icon: any, index: number }) => {
   const title = item.companyName || item.universityName;
-  const start = item.dates[0];
-  const end = item.dates[1];
+  const [start, end] = item.dates;
   const isLeft = index % 2 === 0;
 
   return (
@@ -36,7 +35,7 @@ const TimelineItem = ({ item, icon: Icon, index }: { item: any, icon: any, index
               {title}
             </h3>
             <span className="text-xs font-mono text-accent-secondary bg-accent-secondary/10 px-3 py-1 rounded-full mt-2 md:mt-0 whitespace-nowrap">
-              {start?.month} {start?.year} - {end?.title === 'End' || !end?.year ? 'Present' : `${end.month} ${end.year}`}
+              {start?.month ? `${start.month} ` : ''}{start?.year} - {end?.year === 'Present' || !end?.year ? `Present` : `${end.month ? `${end.month} ` : ''}${end.year}`}
             </span>
           </div>
           <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-4">{item.specialization}</p>

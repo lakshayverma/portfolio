@@ -5,11 +5,15 @@
   /* High Contrast Warm Brown Light Theme */
   --background: #ffffff;
   --foreground: #0f172a;
-  --accent-primary: #5c2e0b; /* Rich dark espresso brown */
-  --accent-secondary: #9a3412; /* Rich dark rust orange-brown */
+  --accent-primary: #782604;
+  /* Rich dark espresso brown */
+  --accent-secondary: #953207;
+  /* Rich dark rust orange-brown */
   --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(120, 53, 4, 0.15); /* Warm light brown border */
-  --flare-color: rgba(120, 53, 4, 0.12); /* Warm brown flare */
+  --glass-border: rgba(120, 53, 4, 0.15);
+  /* Warm light brown border */
+  --flare-color: rgba(120, 53, 4, 0.12);
+  /* Warm brown flare */
 }
 
 @theme inline {
@@ -17,19 +21,6 @@
   --color-foreground: var(--foreground);
   --color-accent-primary: var(--accent-primary);
   --color-accent-secondary: var(--accent-secondary);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Neon Dark Theme */
-    --background: #050505;
-    --foreground: #f8fafc;
-    --accent-primary: #6366f1; /* Neon Indigo */
-    --accent-secondary: #e879f9; /* Neon Fuchsia */
-    --glass-bg: rgba(5, 5, 5, 0.6);
-    --glass-border: rgba(99, 102, 241, 0.3);
-    --flare-color: rgba(99, 102, 241, 0.6);
-  }
 }
 
 .dark {
@@ -85,13 +76,16 @@ body {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--accent-primary);
   border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-secondary);
 }

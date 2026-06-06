@@ -8,8 +8,9 @@ import { useTheme } from 'next-themes';
 
 function ParticleSwarm() {
   const ref = useRef<THREE.Points>(null);
-  const { theme } = useTheme();
-  const starColor = theme === 'dark' ? '#6366f1' : '#b45309';
+  const { theme, systemTheme } = useTheme();
+  const activeTheme = theme === 'system' ? systemTheme : theme;
+  const starColor = activeTheme === 'light' ? '#782604' : '#6366f1';
   const mouse = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -71,7 +72,7 @@ function ParticleSwarm() {
         if (dist < maxDist) {
           // Stronger pull close to the center
           const pull = Math.pow(1 - (dist / maxDist), 2);
-          
+
           // Gravitational pull directly towards mouse
           positionsArr[i * 3] += dx * pull * 0.18;
           positionsArr[i * 3 + 1] += dy * pull * 0.18;
@@ -95,6 +96,7 @@ function ParticleSwarm() {
     <group rotation={[0, 0, Math.PI / 4]}>
       <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
         <PointMaterial
+          key={activeTheme}
           transparent
           color={starColor}
           size={0.03}
@@ -109,7 +111,6 @@ function ParticleSwarm() {
 }
 
 export function ThreeBackground() {
-  const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -120,7 +121,7 @@ export function ThreeBackground() {
 
   return (
     <div className="fixed inset-0 z-0 pointer-events-none opacity-40 dark:opacity-70">
-      <Canvas key={theme} camera={{ position: [0, 0, 8] }}>
+      <Canvas camera={{ position: [0, 0, 8] }}>
         <ParticleSwarm />
       </Canvas>
     </div>
